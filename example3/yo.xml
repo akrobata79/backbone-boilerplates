@@ -1,0 +1,48 @@
+<Extensions>
+    <SuperSlate>
+        <TriggerPoint>TRIGGER_END</TriggerPoint>
+        <GlobalScaleSetting>ALWAYS</GlobalScaleSetting>
+        <DesignSize>300,250</DesignSize>
+        <BackgroundVideoPresent>true</BackgroundVideoPresent>
+        <GridSize>16</GridSize>
+        <BackgroundURL>
+            <![CDATA[
+http://vindicoass1.edgesuite.net/Repository/CampaignCreative/Campaign_10865/BANNERCREATIVE/tkEndCard.jpg
+]]>
+        </BackgroundURL>
+        <SmartTiles>
+            <SmartTile id="slateClick" order="0">
+                <Tile width="300" height="250" CUSTOMAction="true">
+                    <![CDATA[
+http://vindicoass1.edgesuite.net/Repository/CampaignCreative/Campaign_10865/BANNERCREATIVE/timerEndCard.swf
+]]>
+                </Tile>
+                <InitParams/>
+                <Actions>
+                    <Action>
+                        <ActionType>ACTIVATE</ActionType>
+                        <ActionCode>
+                            <![CDATA[ {call:slateClick.onActivate;} ]]>
+                        </ActionCode>
+                    </Action>
+                </Actions>
+            </SmartTile>
+            <SmartTile id="actionNode">
+                <Actions>
+                    <Action id="clickThru">
+                        <ActionType>CTL</ActionType>
+                        <ActionURL>
+                            <![CDATA[ http://www.tiltedkilt.com/locations/ ]]>
+                        </ActionURL>
+                        <ActionTag>CLICK_SLATE</ActionTag>
+                    </Action>
+                </Actions>
+            </SmartTile>
+        </SmartTiles>
+        <TrackingBase>
+            <![CDATA[
+http://trk.vindicosuite.com/Tracking/V5/Instream/Impression/?%SWITCH%|2933|84939|96570|10865|36580|undefined|1456|3738|1|BBEEND|&iari=180120&cb=634816613879696315&internalRedirect=false
+]]>
+        </TrackingBase>
+    </SuperSlate>
+</Extensions>

@@ -1,0 +1,81 @@
+
+.inner1{
+    position: absolute;
+}
+.inner2{
+    /*position: absolute;*/
+    padding-top: 39px;
+
+}
+
+.shape{
+    height: 100%;
+    width: 100%;
+}
+.hide {
+    display: none;
+}
+
+
+#foo {
+    /*position:relative;*/
+    /*//margin-left: 20px;*/
+    /*float: left;*/
+}
+
+
+.donut {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(12, 255, 70);
+}
+
+.tab-pane{
+    width: 100%;
+    height: 500px;
+    /*background-color: rgb(235, 235, 235);*/
+}
+
+.some {
+    float: right;
+
+    width: 20px;
+    height: 20px;
+    /*background: top right url(http://cdn1.iconfinder.com/data/icons/fugue/icon/arrow-resize-135.png);*/
+    padding-left: 10px;
+    padding-top: 10px;
+
+    color: rgb(249, 7, 0);
+    background-color: rgb(12, 255, 70);
+    border: 10px solid rgba(0, 123, 249, 0.2);
+
+    -moz-border-radius: 15px;
+
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px 2px #BBB;
+
+}
+
+.control {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 2px;
+    cursor: pointer;
+}
+
+.resize {
+    background: top left no-repeat url(http://cdn1.iconfinder.com/data/icons/fugue/icon/arrow-resize-135.png);
+    right: 5px;
+    cursor: nw-resize;
+}
+
+.delete {
+    background: top left no-repeat url(http://cdn3.iconfinder.com/data/icons/uidesignicons/delete.png);
+    right: 26px;
+}
+
+.change-color {
+    background: top left no-repeat url(http://cdn1.iconfinder.com/data/icons/silk2/color_wheel.png);
+    right: 47px;
+}​
