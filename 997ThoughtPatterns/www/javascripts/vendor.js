@@ -20634,28 +20634,25 @@ var RF = {};;
 
 (function() {
 
-    var RFScrollableElement = function() {
-        this.initialize();
-    }
-
+    var RFScrollableElement = function() {this.initialize();}
     var p = RFScrollableElement.prototype = new createjs.Container();
-
-    p.Container_initialize = p.initialize;
 
     p.width;
     p.height;
     p.data;
 
+    p.Container_initialize = p.initialize;
     p.initialize = function() {
         this.Container_initialize();
     }
 
-
-    p.setProps = function(props) {
+    p.setSetters = function(props) {
         _.each(
             props,
             function(val, key){
-                this[key]=val;
+
+                this[key](val);
+
             },this);
     }
 
@@ -20679,85 +20676,84 @@ var RF = {};;
         this.initialize();
     }
 
-    RFScrollableList.prototype = new Container();
-    RFScrollableList.prototype.Container_initialize = RFScrollableList.prototype.initialize;
+    RFScrollableList.prototype = p = new Container();
 
-    RFScrollableList.prototype.background = new RFBlock();
+    p.background = new RFBlock();
 
-    RFScrollableList.prototype.curVal=null;
-    RFScrollableList.prototype.prevVal;
-    RFScrollableList.prototype.timer;
-    RFScrollableList.prototype.targetProp;
-    RFScrollableList.prototype.mouseDown;
+    p.curVal=null;
+    p.prevVal;
+    p.timer;
+    p.targetProp;
+    p.mouseDown;
 
+    p.val;
+    p.distance;
 
-    RFScrollableList.prototype.val
-    RFScrollableList.prototype.distance
+    p.arr = new Array();
 
-    RFScrollableList.prototype.arr = new Array();
-
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-
-
-    RFScrollableList.prototype.initialize = function() {
+    p.Container_initialize = p.initialize;
+    p.initialize = function() {
 
         this.Container_initialize();
         this.addChild(this.background);
         this.background.setSize(640,550);
 
-        var btn = new RFButtonBitmap();
-        btn.init("images/btnL1_def.png","images/btnL1_down.png");
-        this.addChild(btn);
-        btn.y=230;
-
+//        var btn = new RFButtonBitmap();
+//        btn.init("images/btnL1_def.png","images/btnL1_down.png");
+//        this.addChild(btn);
+//        btn.y=230;
 
     };
 
-    RFScrollableList.prototype.init = function( targetProp,
-                                                targetClass,
-                                                size,
-                                                howMany,
-                                                dataSet
-                                               ) {
+    p.init = function( targetProp,
+                       targetClass,
+                       size,
+                       howMany,
+                       dataSet
+        ) {
 
         var that=this;
         this.targetProp = targetProp;
         this.recordValue = _.bind( this.recordValue, this );
-
 
         RF.stage.onMouseDown = function(e) {
             that.mouseDown = true;
         }
 
         RF.stage.onMouseUp = function(e) {
-            //console.log("onMouseUp");
             that.mouseDown = false;
         }
 
         RF.stage.onMouseMove = function(e) {
-//            console.log("onMouseMove");
             if(that.mouseDown) that.recordValue(e);
         }
+
+
+        for ( var i = 0; i < howMany; i++) {
+
+            var t = new targetClass();
+            this.addChild(t);
+            t.init();
+            if(targetProp=="y") t.y+=size.h*i;
+
+            t.setSetters( {setLabel:"newnewnew"} )
+
+        }
+
+
+
+
+//        t.y=300;
+//        t.init();
 
         Ticker.addListener(this);
 
     };
-    RFScrollableList.prototype.tick = function() {
-
+    p.tick = function() {
 
     }
 
-
-    RFScrollableList.prototype.recordValue = function(e) {
+    p.recordValue = function(e) {
         console.log("e", e.stageX,e.stageY);
         this.prevVal = this.curVal;
 
@@ -20766,26 +20762,8 @@ var RF = {};;
 
         console.log("this[targetProp]",this.prevVal,this.curVal);
 
-        ///this[targetProp]
-//
-//        RFScrollableList.prototype.curVal;
-//        RFScrollableList.prototype.prevVal;
-
-
     }
 
-
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
-//    RFScrollableList.prototype
 
     window.RFScrollableList = RFScrollableList;
 

@@ -1,18 +1,49 @@
 
 (function() {
 
-    var PlusPageButtons = function() {
-        this.initialize();
-    }
+    var PlusPageButtons = function() {this.initialize();}
 
     PlusPageButtons.prototype = p = new RFScrollableElement();
-    p.color=9
 
+    p.label;
+    p.background;
+    p.text;
 
-    p.setSizeSup = p.setSize;
+    p.sup_setSize = p.setSize;
     p.setSize = function(w,h) {
-        this.setSizeSup(w,h);
+        this.sup_setSize(w,h);
     };
+
+    p.init = function() {
+
+        this.label = "yo00000000";
+
+
+        this.text = new createjs.Text(this.label, "20px Arial", "#000");
+        this.text.textBaseline = "top";
+        this.text.textAlign = "center";
+       // this.text.text="ggggg"
+
+        var width = 100+30;
+        var height = 40+20;
+
+        this.background = new createjs.Shape();
+        this.background.graphics.beginFill( "#CCC").drawRoundRect(0,0,width,height,10);
+
+//        text.x = width/2;
+//        text.y = 10;
+
+        this.addChild(this.background,this.text);
+        console.log("333");
+
+    };
+
+    p.setLabel=function(label){
+
+//        console.log("labellllll",label);
+
+        this.text.text=label;
+    }
 
     window.PlusPageButtons = PlusPageButtons;
 }());

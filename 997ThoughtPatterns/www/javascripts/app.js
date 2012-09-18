@@ -333,6 +333,9 @@ window.require.define({"classes/PatternPage": function(exports, require, module)
 
 window.require.define({"classes/PlusPage": function(exports, require, module) {
   
+
+  require('classes/PlusPageButtons');
+
   (function(window) {
 
       function PlusPage() {
@@ -340,17 +343,22 @@ window.require.define({"classes/PlusPage": function(exports, require, module) {
       }
 
       PlusPage.prototype = new Container();
-      PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
 
+      PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
       PlusPage.prototype.initialize = function() {
+
+          console.log("111");
 
           this.Container_initialize();
 
           var list = new RFScrollableList();
           this.addChild(list);
-          list.init("y");
+          list.init("y",PlusPageButtons,{w:100,h:40},5);
 
           list.y=130;
+
+
+
 
 
       };
@@ -379,18 +387,49 @@ window.require.define({"classes/PlusPageButtons": function(exports, require, mod
   
   (function() {
 
-      var PlusPageButtons = function() {
-          this.initialize();
-      }
+      var PlusPageButtons = function() {this.initialize();}
 
       PlusPageButtons.prototype = p = new RFScrollableElement();
-      p.color=9
 
+      p.label;
+      p.background;
+      p.text;
 
-      p.setSizeSup = p.setSize;
+      p.sup_setSize = p.setSize;
       p.setSize = function(w,h) {
-          this.setSizeSup(w,h);
+          this.sup_setSize(w,h);
       };
+
+      p.init = function() {
+
+          this.label = "yo00000000";
+
+
+          this.text = new createjs.Text(this.label, "20px Arial", "#000");
+          this.text.textBaseline = "top";
+          this.text.textAlign = "center";
+         // this.text.text="ggggg"
+
+          var width = 100+30;
+          var height = 40+20;
+
+          this.background = new createjs.Shape();
+          this.background.graphics.beginFill( "#CCC").drawRoundRect(0,0,width,height,10);
+
+  //        text.x = width/2;
+  //        text.y = 10;
+
+          this.addChild(this.background,this.text);
+          console.log("333");
+
+      };
+
+      p.setLabel=function(label){
+
+  //        console.log("labellllll",label);
+
+          this.text.text=label;
+      }
 
       window.PlusPageButtons = PlusPageButtons;
   }());
@@ -1008,7 +1047,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           var bmp = new Bitmap("images/BACK.jpg");
           this.stage.addChild(bmp);
 
-          this.stage.alpha=0.1;
+  //        this.stage.alpha=0.1;
 
           //SCREENMANAGER
           var screenManager = new ScreenManager();
@@ -1052,16 +1091,6 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           //TOP
           var top = new Bitmap("images/top.png");
           this.stage.addChild(top);
-  //
-  //        var ty = new RFScrollableElement();
-  //        this.stage.addChild(ty);
-
-          var ta = new PlusPageButtons();
-
-
-          var props = {width : 666, height : 999, color : 3}
-          ta.setProps(props);
-          console.log("ta",ta.width);
 
           Ticker.addListener(this);
           Ticker.setFPS(60);

@@ -1,27 +1,24 @@
 (function() {
 
-    var RFScrollableElement = function() {
-        this.initialize();
-    }
-
+    var RFScrollableElement = function() {this.initialize();}
     var p = RFScrollableElement.prototype = new createjs.Container();
-
-    p.Container_initialize = p.initialize;
 
     p.width;
     p.height;
     p.data;
 
+    p.Container_initialize = p.initialize;
     p.initialize = function() {
         this.Container_initialize();
     }
 
-
-    p.setProps = function(props) {
+    p.setSetters = function(props) {
         _.each(
             props,
             function(val, key){
-                this[key]=val;
+
+                this[key](val);
+
             },this);
     }
 

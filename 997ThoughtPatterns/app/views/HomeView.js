@@ -94,7 +94,7 @@ module.exports = View.extend({
         var bmp = new Bitmap("images/BACK.jpg");
         this.stage.addChild(bmp);
 
-        this.stage.alpha=0.1;
+//        this.stage.alpha=0.1;
 
         //SCREENMANAGER
         var screenManager = new ScreenManager();
@@ -138,16 +138,6 @@ module.exports = View.extend({
         //TOP
         var top = new Bitmap("images/top.png");
         this.stage.addChild(top);
-//
-//        var ty = new RFScrollableElement();
-//        this.stage.addChild(ty);
-
-        var ta = new PlusPageButtons();
-
-
-        var props = {width : 666, height : 999, color : 3}
-        ta.setProps(props);
-        console.log("ta",ta.width);
 
         Ticker.addListener(this);
         Ticker.setFPS(60);
