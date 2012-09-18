@@ -2,8 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d11ae213-ea6d-427b-a7a0-203745659edd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/999JMobile/indo.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/Pattern.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easel.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Bitmap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/BitmapAnimation.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Container.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/DOMElement.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/DisplayObject.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Graphics.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Shadow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Shape.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/SpriteSheet.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Stage.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Text.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/events/MouseEvent.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/filters/BoxBlurFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/filters/ColorFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/filters/ColorMatrixFilter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/filters/Filter.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/geom/Matrix2D.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/geom/Point.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/geom/Rectangle.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/ui/Touch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/utils/SpriteSheetUtils.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/utils/Ticker.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/utils/UID.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/999JMobile/indo.html" afterPath="$PROJECT_DIR$/999JMobile/indo.html" />
     </list>
     <ignored path="backbone-boilerplates.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,17 +49,52 @@
     <favorites_list name="backbone-boilerplates" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="indo.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/999JMobile/indo.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.023183925">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.4302222">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="indo.html" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/999JMobile/indo.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="9" column="55" selection-start="0" selection-end="5799" vertical-scroll-proportion="0.023183925">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Pattern.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/js/Pattern.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/index.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="40" column="27" selection-start="1393" selection-end="1393" vertical-scroll-proportion="0.023183925">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/js/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="22" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -47,7 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/example1/indo.html" />
         <option value="$PROJECT_DIR$/example1/editor.js" />
         <option value="$PROJECT_DIR$/example2/editor.css" />
         <option value="$PROJECT_DIR$/example2/starter.html" />
@@ -60,7 +119,10 @@
         <option value="$PROJECT_DIR$/example3/css/editor.css" />
         <option value="$PROJECT_DIR$/example3/sample_index.html" />
         <option value="$PROJECT_DIR$/example3/js2/editor.js" />
+        <option value="$PROJECT_DIR$/999JMobile/js/Pattern.js" />
         <option value="$PROJECT_DIR$/999JMobile/indo.html" />
+        <option value="$PROJECT_DIR$/998PhGap/phGap/1/www/js/index.js" />
+        <option value="$PROJECT_DIR$/998PhGap/phGap/1/www/index.html" />
       </list>
     </option>
   </component>
@@ -103,6 +165,66 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="999JMobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="999JMobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backbone-boilerplates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="999JMobile" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope">
@@ -128,6 +250,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/998PhGap/phGap/1/www/js" />
       <recent name="$PROJECT_DIR$/example3" />
       <recent name="$PROJECT_DIR$/example3/css" />
       <recent name="$PROJECT_DIR$/example3/js2" />
@@ -180,8 +303,8 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26605505" sideWeight="0.51195496" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26605505" sideWeight="0.47819972" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20606916" sideWeight="0.4092827" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20606916" sideWeight="0.580872" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -252,51 +375,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wrapbootstrap-desi/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="158" column="24" selection-start="7886" selection-end="7886" vertical-scroll-proportion="1.2982998" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrapbootstrap-desi/js/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="26" selection-start="3929" selection-end="3929" vertical-scroll-proportion="1.0219299" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrapbootstrap-desi/css/docs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="47" selection-start="4035" selection-end="4036" vertical-scroll-proportion="-0.24590164" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrapbootstrap-desi/full-width.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="546" column="0" selection-start="24889" selection-end="27853" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example3/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="2" selection-start="297" selection-end="297" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example3/index_ui.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="42" selection-start="7189" selection-end="7189" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrapbootstrap-desi/single-desc.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="27" selection-start="3290" selection-end="3290" vertical-scroll-proportion="0.288" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wrapbootstrap-desi/portfolio-2column.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example3/yo.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="31" selection-start="269" selection-end="269" vertical-scroll-proportion="0.022354694" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example3/sample_index_another.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -327,9 +405,56 @@
         <state line="181" column="384" selection-start="9003" selection-end="9007" vertical-scroll-proportion="0.8145286" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/js/easeljs/display/Bitmap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="1219" selection-end="1219" vertical-scroll-proportion="0.023112481" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/css/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="6" selection-start="104" selection-end="104" vertical-scroll-proportion="-1.1956856" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/cordova-2.0.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/VERSION">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/999JMobile/js/Pattern.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="20" selection-start="505" selection-end="505" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/999JMobile/indo.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="442" selection-end="442" vertical-scroll-proportion="0.023183925">
+        <state line="9" column="55" selection-start="0" selection-end="5799" vertical-scroll-proportion="0.023183925">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/js/Pattern.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="0" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/998PhGap/phGap/1/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="27" selection-start="1393" selection-end="1393" vertical-scroll-proportion="0.023183925">
           <folding />
         </state>
       </provider>
