@@ -2,51 +2,58 @@
 (function() {
 
     var PlusPageButtons = function() {this.initialize();}
-
     PlusPageButtons.prototype = p = new RFScrollableElement();
 
     p.label;
     p.background;
     p.text;
 
-    p.sup_setSize = p.setSize;
-    p.setSize = function(w,h) {
-        this.sup_setSize(w,h);
-    };
+    p.width=100;
+    p.height=100;
 
     p.init = function() {
 
-        this.label = "yo00000000";
-
-
-        this.text = new createjs.Text(this.label, "20px Arial", "#000");
+        var backButton = new RFButtonBitmap();
+        backButton.init("images/btnL1_def.png","images/btnL1_down.png");
+        this.text = new createjs.Text("TEMP", "50px Arial", "#000");
         this.text.textBaseline = "top";
-        this.text.textAlign = "center";
-       // this.text.text="ggggg"
 
-        var width = 100+30;
-        var height = 40+20;
+        this.text.x=10;
+        this.text.y=30;
 
-        this.background = new createjs.Shape();
-        this.background.graphics.beginFill( "#CCC").drawRoundRect(0,0,width,height,10);
+        this.addChild(backButton,this.text);
 
-//        text.x = width/2;
-//        text.y = 10;
+        this.temp = _.bind( this.temp, this );
+//        _.bin
 
-        this.addChild(this.background,this.text);
-        console.log("333");
+        setTimeout(this.temp,1000);
+
+
 
     };
 
+    p.temp=function(){
+//        this.text.text=label;
+        this.cache(0,0,472,96);
+
+        console.log("temp");
+    }
+
+
     p.setLabel=function(label){
-
-//        console.log("labellllll",label);
-
         this.text.text=label;
     }
 
     window.PlusPageButtons = PlusPageButtons;
+
 }());
+
+
+//example of how to override using super
+//    p.sup_setSize = p.setSize;
+//    p.setSize = function(w,h) {
+//        this.sup_setSize(w,h);
+//    };
 
 
 // ---------------------------

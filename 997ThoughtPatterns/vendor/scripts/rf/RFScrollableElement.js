@@ -16,9 +16,7 @@
         _.each(
             props,
             function(val, key){
-
                 this[key](val);
-
             },this);
     }
 

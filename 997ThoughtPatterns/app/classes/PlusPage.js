@@ -13,19 +13,21 @@ require('classes/PlusPageButtons');
     PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
     PlusPage.prototype.initialize = function() {
 
-        console.log("111");
-
         this.Container_initialize();
 
         var list = new RFScrollableList();
         this.addChild(list);
-        list.init("y",PlusPageButtons,{w:100,h:40},5);
 
-        list.y=130;
+        var dataSet = [
+            {setLabel:"BEDZIE DOBRZE"},
+            {setLabel:"BEDZIE MUSI BYC"},
+            {setLabel:"BEDZIE DOBRZE"},
+            {setLabel:"BEDZIE JUZ JEST"}
+        ];
 
-
-
-
+        list.init("y",PlusPageButtons,{w:479,h:96},5,dataSet);
+        list.y=170;
+        list.x=80;
 
     };
 

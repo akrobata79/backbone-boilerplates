@@ -26,7 +26,7 @@
 
     RFButtonBitmap.prototype.init = function(img1,img2,toggleBtn) {
 
-        this.click = _.bind( this.click, this );
+
         if(toggleBtn) this.toggleBtn = toggleBtn;
 
         this.img1= new Bitmap(img1);

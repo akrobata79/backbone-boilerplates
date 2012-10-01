@@ -9,6 +9,7 @@
  * http://krasimirtsonev.com/blog/article/javascript-managing-events-dispatch-listen
  * So, to pass params, all you need to do is save off the super initialize method, overwrite it, and then call it with the appropriate params. Similar to draw in all the DisplayObject subclasses. It's clearer in code:
  * https://groups.google.com/forum/#!topic/easeljs/qdK6VFSACQw
+ * scrolling explained: http://stackoverflow.com/questions/2863547/javascript-scroll-event-for-iphone-ipad
  */
 
 var View = require('./supers/View');
@@ -83,10 +84,8 @@ module.exports = View.extend({
 
     updateView: function() {
 
-        console.log("q");
-
         this.stage = new Stage(this.el);
-        Touch.enable ( this.stage , false , false );
+        Touch.enable ( this.stage , true , false );
         RF.stage=this.stage;
 
 //Stage
@@ -94,7 +93,6 @@ module.exports = View.extend({
         var bmp = new Bitmap("images/BACK.jpg");
         this.stage.addChild(bmp);
 
-//        this.stage.alpha=0.1;
 
         //SCREENMANAGER
         var screenManager = new ScreenManager();
@@ -128,7 +126,7 @@ module.exports = View.extend({
         //SCREENMANAGER
         screenManager.setController(nav,"PAGE_CHANGE_EVENT");
 
-        console.log("RF",RF);
+        console.log("RF",RF,"<<<");
 
         //FOOTER
         var f = new Bitmap("images/footer.png");
@@ -141,6 +139,8 @@ module.exports = View.extend({
 
         Ticker.addListener(this);
         Ticker.setFPS(60);
+
+//        this.stage.alpha=0.1;
 
     },
 
@@ -182,6 +182,13 @@ module.exports = View.extend({
     //--------------------------------------
 
 });
+
+//example of how to override using super
+//    p.sup_setSize = p.setSize;
+//    p.setSize = function(w,h) {
+//        this.sup_setSize(w,h);
+//    };
+
 
 // setInterval(this.donow,1000);
 //
