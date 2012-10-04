@@ -32,9 +32,17 @@
     p.speed;
     p.vx=0;
 
-
     p.upperBorder;
     p.lowerBorder;
+
+    p.elementSize;
+
+    p.mouseDown  = false;
+    p.mouseDownPoint  = new Point();
+    p.lastMouseDownPoint  = new Point();
+    p.allowMouseMove = false;
+
+    p.canvasHeight  = 0;
 
     p.Container_initialize = p.initialize;
     p.initialize = function() {
@@ -49,9 +57,11 @@
         ) {
 
         var that=this;
+
+        this.elementSize = size;
         this.targetProp = targetProp;
 
-        this.recordValue = _.bind( this.recordValue, this );
+
 
         this.dataSet = dataSet;
 
@@ -96,6 +106,13 @@
 
         Ticker.addListener(this);
 
+        //
+        // _.max(stooges, function(stooge){ return stooge.age; });
+
+
+
+        //   console.log("res",maxPos.y,minPos.y);
+
     };
 
     p.onMouseDown = function(e) {
@@ -109,7 +126,7 @@
 //            console.log("UPUP");
 //            this.curVal =null
 //            this.prevVal =null;
-
+        this.allowMouseMove = false;
         if (this.mouseDown) {
             this.mouseDown = false
         }
@@ -124,124 +141,78 @@
         this.mouseDownPoint.x= e.stageX
         this.mouseDownPoint.y= e.stageY
 
-
         if (this.mouseDown) {
-
-            for ( var i = 0; i < this.theArr.length; i++) {
-
-                var t = this.theArr[i];
-
-                t.y +=  this.mouseDownPoint.y-this.lastMouseDownPoint.y
-
-                if(t.y<this.upperBorder) t.y=this.lowerBorder;
-                if(t.y>this.lowerBorder) t.y=this.upperBorder;
+        this.allowMouseMove = true;
+        } else {
+            this.allowMouseMove = false;
+        }
 
 
-            }
+    }
 
+
+    p.reposition = function(t) {
+
+        if(t.y<this.upperBorder) {
+            var maxPos = _.max(this.theArr, function(stooge){return stooge.y; })
+            t.y=maxPos.y+this.elementSize.h
+        }
+
+        if(t.y>this.lowerBorder) {
+            var minPos =   _.min(this.theArr, function(stooge){return stooge.y; })
+            t.y=minPos.y-this.elementSize.h;
         }
 
     }
 
-    p.DECAY  = 0.93;
-    p.MOUSE_DOWN_DECAY  = 0.5;
-    p.SPEED_SPRINGNESS  = 0.4;
-    p.BOUNCING_SPRINGESS  = 0.2;
 
     // variables
-    p.mouseDown  = false;
-    p.velocity  = 0;
-    p.mouseDownY  = 0;
-    p.mouseDownPoint  = new Point();
-    p.lastMouseDownPoint  = new Point();
 
-    // elements
-    p.canvasHeight  = 0;
-    p.stage = RF.stage;
-    p.started =true;
+
+
 
     p.tick = function() {
 
         if(this.mouseDown) {
             if(this.lastMouseDownPoint) {
                 this.vx = this.mouseDownPoint.y-this.lastMouseDownPoint.y;
-            }
-        }
-        else
-        {
-            //thumb.x += vx;
 
+                if(this.allowMouseMove){
+
+                    for ( var i = 0; i < this.theArr.length; i++) {
+
+                        var t = this.theArr[i];
+                        this.reposition(t);
+
+
+                        var cap = this.mouseDownPoint.y-this.lastMouseDownPoint.y
+
+                        if(cap>30) cap =30
+                        this.reposition(t);
+                        t.y +=  cap;
+
+
+                        this.reposition(t);
+
+
+                    }
+                }
+
+
+            }
+        } else {
             for ( var i = 0; i < this.theArr.length; i++) {
 
                 var t = this.theArr[i];
+                this.reposition(t);
+
+                if(this.vx>30) this.vx=30;
 
                 t.y +=  this.vx;
-
-                console.log("this.vx",this.vx);
-
-                if(t.y<this.upperBorder) t.y=this.lowerBorder;
-                if(t.y>this.lowerBorder) t.y=this.upperBorder;
-
-
+                this.reposition(t);
             }
-
-
         }
-
-        this.vx *= 0.95;
-
-
-
-
-    }
-
-
-
-//    p.tick = function() {
-
-//        if (this.curVal && this.prevVal) {
-//            // console.log(this.curVal,this.prevVal,">",);
-//
-//            this.speed = this.curVal-this.prevVal;
-//
-//            console.log("this.speed",this.speed);
-//
-//            for ( var i = 0; i < this.theArr.length; i++) {
-//
-//                var t = this.theArr[i];
-////
-////                myMC.x += (stage.mouseX - myMC.x) / damping;
-////                myMC.y += (stage.mouseY - myMC.y) / damping;
-//
-//
-//
-//                t.y += (this.curVal - t.y )/8;
-//
-//
-//
-//                //t.y -= this.speed/2;
-////                this.vy += this.ay;
-////
-////                 t.y += vy;
-//
-//
-//                if(t.y<this.upperBorder) t.y=this.lowerBorder;
-//                if(t.y>this.lowerBorder) t.y=this.upperBorder;
-//
-//            }
-//
-//        }
-
-    // };
-
-    p.recordValue = function(e) {
-        // console.log("e", e.stageX,e.stageY);
-        this.prevVal = this.curVal;
-
-        if(this.targetProp=='y') this.curVal= e.stageY;
-        if(this.targetProp=='x') this.curVal= e.stageX;
-
-        console.log("this[targetProp]",this.prevVal,this.curVal);
+        this.vx *= 0.98;
 
     }
 

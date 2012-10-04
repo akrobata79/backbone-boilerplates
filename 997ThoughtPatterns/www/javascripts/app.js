@@ -626,6 +626,8 @@ window.require.define({"classes/ScreenManager": function(exports, require, modul
                       this.pageArr[i].visible=true;
                   }
 
+
+
               }
 
           }
@@ -1014,6 +1016,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
       initialize: function() {
 
           this.render = _.bind( this.render, this );
+
           console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
       },

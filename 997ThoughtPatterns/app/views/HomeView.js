@@ -55,6 +55,7 @@ module.exports = View.extend({
     initialize: function() {
 
         this.render = _.bind( this.render, this );
+
         console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
     },

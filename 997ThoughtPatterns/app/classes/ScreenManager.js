@@ -57,6 +57,8 @@
                     this.pageArr[i].visible=true;
                 }
 
+
+
             }
 
         }
