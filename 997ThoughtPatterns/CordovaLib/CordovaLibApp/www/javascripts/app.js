@@ -349,16 +349,34 @@ window.require.define({"classes/PlusPage": function(exports, require, module) {
           var list = new RFScrollableList();
           this.addChild(list);
 
-          var dataSet = [
-              {setLabel:"BEDZIE DOBRZE"},
-              {setLabel:"BEDZIE MUSI BYC"},
-              {setLabel:"BEDZIE DOBRZE"},
-              {setLabel:"BEDZIE JUZ JEST"}
-          ];
+          var DonutModel = Backbone.Model.extend({
+              defaults: {setLabel:"BEDZIE OK"}
+          });
+          var DonutsCollection = Backbone.Collection.extend({
+              model : DonutModel
+          });
+          var donuts = new DonutsCollection();
 
-          list.init("y",PlusPageButtons,{w:479,h:96},5,dataSet);
+
+
+          for ( var i = 0; i < 20; i++) {
+              var m = new DonutModel();
+              donuts.add(m);
+              m.set({setLabel:""+i})
+          }
+
+
+
+  //        console.log("don",donuts, donuts.models);
+
+          list.init("y",PlusPageButtons,{w:479,h:93},5,donuts);
           list.y=170;
           list.x=80;
+
+          var m = new DonutModel();
+          m.set({setLabel:i+"!!!!"})
+  //        donuts.add(m);
+
 
       };
 
@@ -625,6 +643,8 @@ window.require.define({"classes/ScreenManager": function(exports, require, modul
                   } else {
                       this.pageArr[i].visible=true;
                   }
+
+
 
               }
 
@@ -1014,6 +1034,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
       initialize: function() {
 
           this.render = _.bind( this.render, this );
+
           console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
       },
@@ -1099,7 +1120,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Ticker.addListener(this);
           Ticker.setFPS(60);
 
-  //        this.stage.alpha=0.1;
+  //        this.stage.alpha=0.4;
 
       },
 

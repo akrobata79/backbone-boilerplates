@@ -18,16 +18,34 @@ require('classes/PlusPageButtons');
         var list = new RFScrollableList();
         this.addChild(list);
 
-        var dataSet = [
-            {setLabel:"BEDZIE DOBRZE"},
-            {setLabel:"BEDZIE MUSI BYC"},
-            {setLabel:"BEDZIE DOBRZE"},
-            {setLabel:"BEDZIE JUZ JEST"}
-        ];
+        var DonutModel = Backbone.Model.extend({
+            defaults: {setLabel:"BEDZIE OK"}
+        });
+        var DonutsCollection = Backbone.Collection.extend({
+            model : DonutModel
+        });
+        var donuts = new DonutsCollection();
 
-        list.init("y",PlusPageButtons,{w:479,h:96},5,dataSet);
+
+
+        for ( var i = 0; i < 20; i++) {
+            var m = new DonutModel();
+            donuts.add(m);
+            m.set({setLabel:""+i})
+        }
+
+
+
+//        console.log("don",donuts, donuts.models);
+
+        list.init("y",PlusPageButtons,{w:479,h:93},5,donuts);
         list.y=170;
         list.x=80;
+
+        var m = new DonutModel();
+        m.set({setLabel:i+"!!!!"})
+//        donuts.add(m);
+
 
     };
 
