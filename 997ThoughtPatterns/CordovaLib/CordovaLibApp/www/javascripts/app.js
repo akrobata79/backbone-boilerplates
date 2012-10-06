@@ -429,7 +429,7 @@ window.require.define({"classes/PlusPageButtons": function(exports, require, mod
           this.temp = _.bind( this.temp, this );
   //        _.bin
 
-          setTimeout(this.temp,1000);
+          //setTimeout(this.temp,1000);
 
 
 
@@ -1118,7 +1118,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           this.stage.addChild(top);
 
           Ticker.addListener(this);
-          Ticker.setFPS(60);
+          Ticker.setFPS(40);
 
   //        this.stage.alpha=0.4;
 

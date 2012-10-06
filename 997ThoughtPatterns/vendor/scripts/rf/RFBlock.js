@@ -35,7 +35,7 @@
     RFBlock.prototype.drawUI = function() {
 
         this.theShape.graphics.clear();
-        this.theShape.graphics.beginFill("rgba(255,0,0,0.75)");
+        this.theShape.graphics.beginFill("rgba(255,0,0,1)");
         this.theShape.graphics.lineTo(this.width, 0);
         this.theShape.graphics.lineTo(this.width, this.height);
         this.theShape.graphics.lineTo(0,this.height);

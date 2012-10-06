@@ -139,7 +139,7 @@ module.exports = View.extend({
         this.stage.addChild(top);
 
         Ticker.addListener(this);
-        Ticker.setFPS(60);
+        Ticker.setFPS(40);
 
 //        this.stage.alpha=0.4;
 

@@ -26,7 +26,7 @@
         this.temp = _.bind( this.temp, this );
 //        _.bin
 
-        setTimeout(this.temp,1000);
+        //setTimeout(this.temp,1000);
 
 
 
