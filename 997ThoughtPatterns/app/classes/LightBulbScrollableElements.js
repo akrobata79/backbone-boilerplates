@@ -1,8 +1,8 @@
 
 (function() {
 
-    var PlusPageButtons = function() {this.initialize();}
-    PlusPageButtons.prototype = p = new RFScrollableElement();
+    var LightBulbScrollableElements = function() {this.initialize();}
+    LightBulbScrollableElements.prototype = p = new RFScrollableElement();
 
     p.label;
     p.background;
@@ -14,47 +14,38 @@
     p.init = function() {
 
         var backButton = new RFButtonBitmap();
-        backButton.init("images/btnL1_def.png","images/btnL1_down.png");
+        backButton.init("images/smallBtnDef.jpg","images/smallBtnOver.jpg");
+
+        var backButton2 = new RFButtonBitmap();
+        backButton2.init("images/smallBtnDef.jpg","images/smallBtnOver.jpg");
 
 
         this.passInteraction  = _.bind(this.passInteraction, this );
         backButton.reportInteraction = this.passInteraction;
+        backButton2.reportInteraction = this.passInteraction;
 
+        this.addChild(backButton);
+        this.addChild(backButton2);
 
-            //backButton.on()
-
-
-        this.text = new createjs.Text("TEMP", "50px Arial", "#000");
-        this.text.textBaseline = "top";
-
-        this.text.x=10;
-        this.text.y=30;
-
-        this.addChild(backButton,this.text);
+        backButton2.x=100;
 
         this.temp = _.bind( this.temp, this );
-
-        console.log("MMM");
-
-        this.trigger("YO",1)
-
-
 
     };
 
     p.temp=function(){
 //        this.text.text=label;
-        this.cache(0,0,472,96);
+//        this.cache(0,0,472,96);
 
         console.log("temp");
     }
 
 
-    p.setLabel=function(label){
-        this.text.text=label;
-    }
 
-    window.PlusPageButtons = PlusPageButtons;
+
+
+
+    window.LightBulbScrollableElements = LightBulbScrollableElements;
 
 }());
 
@@ -95,4 +86,4 @@
 //    }
 //
 //    window.RFScrollableElement = RFScrollableElement;
-//}());
+//}());/**

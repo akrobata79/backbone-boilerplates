@@ -79,7 +79,6 @@ module.exports = View.extend({
     },
 
     yo:function (e) {
-
         console.log("asi",e);
     },
 
@@ -93,7 +92,6 @@ module.exports = View.extend({
         //BACKGROUND
         var bmp = new Bitmap("images/BACK.jpg");
         this.stage.addChild(bmp);
-
 
         //SCREENMANAGER
         var screenManager = new ScreenManager();
@@ -141,7 +139,7 @@ module.exports = View.extend({
         Ticker.addListener(this);
         Ticker.setFPS(40);
 
-//        this.stage.alpha=0.4;
+//        this.stage.alpha=0.1;
 
     },
 

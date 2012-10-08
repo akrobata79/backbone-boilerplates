@@ -20520,13 +20520,18 @@ var RF = {};;
     RFButtonBitmap.prototype.eventName;
     RFButtonBitmap.prototype.id;
 
+    RFButtonBitmap.prototype.dispatcher;
+
+    RFButtonBitmap.prototype.prevState;
+
+    RFButtonBitmap.prototype.justReverted;
+
 
     RFButtonBitmap.prototype.initialize = function() {
         this.Container_initialize();
     };
 
     RFButtonBitmap.prototype.init = function(img1,img2,toggleBtn) {
-
 
         if(toggleBtn) this.toggleBtn = toggleBtn;
 
@@ -20545,29 +20550,43 @@ var RF = {};;
 
     };
 
+    RFButtonBitmap.prototype.revert = function() {
+
+        console.log("revert",this);
+        this.justReverted=true;
+        this.setState(this.prevState);
+
+    }
+
+    RFButtonBitmap.prototype.reportInteraction = function(e) {
+
+        console.log("super");
+
+    }
+
     RFButtonBitmap.prototype.click = function(e) {
+
+        this.reportInteraction(e);
 
         if(!this.toggleBtn && this.radioBtn!=true) {
 
-            console.log("2");
-
-            if(e.type=='onClick') {
-                console.log("onclicking");
+            if(e.type=='onClick' && !this.justReverted) {
                 this.setState(1);
-               if(this.eventName) EventBus.dispatch(this.eventName,this);
+                if(this.eventName) EventBus.dispatch(this.eventName,this);
             };
 
             if(e.type=='onPress') {
-                console.log("onpressing");
+                console.log("onpress *");
                 this.setState(2);
             };
+
+            this.justReverted=false;
 
         };
 
         if(this.toggleBtn && !this.radioBtn) {
 
             if(e.type=='onPress') {
-                console.log("onclicking");
                 if(this.stateNo==1) {this.setState(2)} else {this.setState(1)};
                 if(this.eventName) EventBus.dispatch(this.eventName,this);
             };
@@ -20576,8 +20595,7 @@ var RF = {};;
 
         if(this.radioBtn==true) {
 
-
-            console.log("first here");
+            //console.log("first here");
             if(e.type=='onPress') {
 
                 if(this.stateNo==1) {
@@ -20585,20 +20603,15 @@ var RF = {};;
                     if(this.eventName) EventBus.dispatch(this.eventName,this);
                 }
 
-
-
             };
 
-
-
         }
-
-
 
     }
 
     RFButtonBitmap.prototype.setState = function(stateNo) {
 
+        this.prevState = this.stateNo;
         this.stateNo=stateNo;
 
         if(stateNo == 1) {
@@ -20610,6 +20623,7 @@ var RF = {};;
             this.img1.visible=false;
             this.img2.visible=true;
         }
+
 
     };
 
@@ -20644,6 +20658,10 @@ var RF = {};;
     p.Container_initialize = p.initialize;
     p.initialize = function() {
         this.Container_initialize();
+        _.extend(this, Backbone.Events);
+
+
+
     }
 
     p.setSetters = function(props) {
@@ -20663,6 +20681,19 @@ var RF = {};;
         this.data=data;
     }
 
+    p.enable = function(t) {
+
+        console.log("ttttt",t);
+
+    }
+
+    p.passInteraction = function(e) {
+
+        this.trigger("YOYO",e)
+
+
+    }
+
 
     window.RFScrollableElement = RFScrollableElement;
 }());;
@@ -20676,8 +20707,15 @@ var RF = {};;
 
     RFScrollableList.prototype = p = new Container();
 
-    p.background = new RFBlock();
+    p.Container_initialize = p.initialize;
 
+    p.initialize = function() {
+        this.Container_initialize();
+
+        this.indexArr= new Array()
+    };
+
+    p.background = new RFBlock();
 
     p.curVal=null;
     p.prevVal;
@@ -20697,7 +20735,6 @@ var RF = {};;
     p.height;
 
     p.theArr = [];
-
 
     p.currentX = 0;
     p.lastX = 0;
@@ -20722,18 +20759,19 @@ var RF = {};;
 
     p.prevIndex;
     p.index = 0;
-    p.indexArr = [];
+    p.indexArr ;
     p.allowJump = false
     p.allowScroll=true;
 
     p.speedCap;
 
+    p.mainContainer;
+
+    p.background;
+
+    p.currentRevert;
 
 
-    p.Container_initialize = p.initialize;
-    p.initialize = function() {
-        this.Container_initialize();
-    };
 
     p.init = function( targetProp,
                        targetClass,
@@ -20758,29 +20796,56 @@ var RF = {};;
         this.upperBorder = -size.h;
         this.lowerBorder = this.height;
 
+        //console.log("this.lowerBorder",this.lowerBorder);
+
         this.howMany=howMany
 
-        var mainContainer = new createjs.Container();
-        this.addChild(mainContainer);
+//        this.background = new RFBlock();
+//
+//        this.background.setSize(200,200)
+//        this.background.x=-20;
+
+
+        this.mainContainer = new createjs.Container();
+//        this.mainContainer.addChild(this.background);
+
+
+        this.addChild(this.mainContainer);
+
 
         this.theArr = []
 
         this.rail = new RFBlock();
         this.rail.setSize(100,this.dataSet.length*this.elementSize.h);
 
-        for ( var i = 0; i < this.dataSet.length; i++) {
-            this.indexArr.push(-i*this.elementSize.h);
+
+        //console.log("this.dataSet.length",this.dataSet.length);
+        var hm = this.dataSet.length;
+        for ( var i = 0; i < hm; i++) {
+            //console.log("o");
+            this.indexArr.push(-i*  size.h)//this.elementSize.h);
         }
+
+        //console.log("this.elementSize.h",this.elementSize.h);
+        //console.log("this.indexArr",this.indexArr);
 
         for ( var i = 0; i < howMany+1; i++) {
             var t = new targetClass();
-            mainContainer.addChild(t);
+            this.mainContainer.addChild(t);
             t.init();
             t.setSize(size.w,size.h)
             t.y=size.h*i;
             t.setSetters( this.dataSet.models[i].attributes )
             t.offset=0;
             this.theArr.push(t);
+
+            t.on("YOYO", function(e) {
+                    if(e.type=="onPress") {
+                        that.onPresso(e)
+                    }
+                }
+            )
+
         }
 
         this.theShape  = new createjs.Shape();
@@ -20793,35 +20858,64 @@ var RF = {};;
         this.theShape.graphics.closePath();
         this.theShape.graphics.endFill();
 
-        mainContainer.mask = this.theShape;
+        this.mainContainer.mask = this.theShape;
 
-        RF.stage.onMouseDown  = _.bind(this.onMouseDown, this );
-        RF.stage.onMouseMove  = _.bind(this.onMouseMove, this );
-
-        RF.stage.onMouseUp  = _.bind(this.onMouseUp, this );
+        RF.stage.onMouseMove = null;
+        RF.stage.onMouseUp= null;
 
         Ticker.addListener(this);
 
-        this.dataSet.on("add", function(msg) {
-            console.log(">>>>> got it ",this.dataSet.length);
+//        this.dataSet.on("add", function(msg) {
+//            //console.log(">>>>> got it ",this.dataSet.length);
+//
+//            this.theArr[0].setSetters( this.dataSet.models[10].attributes );
+//
+//        },this);
 
-            this.theArr[0].setSetters( this.dataSet.models[10].attributes );
+//        //console.log("this.height",this.height);
 
-        },this);
+
+
 
     };
 
+    p.setThisOne = function(e) {
+    }
 
-    p.onMouseDown = function(e) {
+    p.onPresso = function(e) {
+
+        console.log("onPresso",e, this);
+
+//        e.target.revert();
+
+        this.currentRevert = e.target;
+
+        RF.stage.onMouseMove  = _.bind(this.onMouseMove, this );
+        RF.stage.onMouseUp  = _.bind(this.onMouseUpo, this );
+
+
+
         this.isDragging = true;
         this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
     };
 
-    p.onMouseUp = function(e) {
+    p.onMouseUpo = function(e) {
+
         this.isDragging = false;
+
+        RF.stage.onMouseMove=null
+        RF.stage.onMouseUp=null
     }
 
     p.onMouseMove = function(e) {
+
+        //console.log("onMouseMove");
+
+        if(this.currentRevert) {
+            this.currentRevert.revert()
+            this.currentRevert=null;
+        }
+
         if(this.isDragging) {
             this.rail.y = this.globalToLocal(e.stageX,e.stageY).y - this.offset;
             this.handleMove();
@@ -20864,6 +20958,8 @@ var RF = {};;
 
     p.handleMove = function() {
 
+//        //console.log("this.elementSize.h",this.elementSize.h);
+
         if (this.rail.y > 0) {
             this.rail.y=0;
         }
@@ -20875,23 +20971,31 @@ var RF = {};;
         for ( var i = 0; i < this.theArr.length; i++) {
             var t = this.theArr[i];
 
-            if(this.allowScroll)   t.y = this.rail.y - this.indexArr[i] + (this.howMany+1)*this.elementSize.h* t.offset;
+            if (this.allowScroll) t.y = this.rail.y - this.indexArr[i] + (this.howMany+1)*this.elementSize.h* t.offset;
 
             if(t.y<this.upperBorder) {
                 t.offset++;
                 this.setIndex(this.index+1,this.upperBorder,t,i)
             }
             if(t.y>this.lowerBorder) {
+
                 t.offset--;
-                this.setIndex(this.index-1,this.lowerBorder,t,i)
+
+                this.setIndex(this.index-1 ,this.lowerBorder,t,i)
             }
         }
     }
 
     p.setIndex = function(inn,where,t,i) {
+
+        //   //console.log("this.dataSet.models[this.index]",this.dataSet,this.index);
+        //   //console.log("ZZZ",this.dataSet.models[this.index].attributes);
+
         this.index=inn;
         if(where==this.upperBorder) this.theArr[i].setSetters( this.dataSet.models[this.index+this.howMany].attributes );
-        if(where==this.lowerBorder) this.theArr[i].setSetters( this.dataSet.models[this.index].attributes ); 
+        if(where==this.lowerBorder) this.theArr[i].setSetters( this.dataSet.models[this.index].attributes );
+
+//        //console.log("end");
     }
 
     window.RFScrollableList = RFScrollableList;

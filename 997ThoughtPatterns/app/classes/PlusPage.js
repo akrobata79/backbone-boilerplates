@@ -26,8 +26,6 @@ require('classes/PlusPageButtons');
         });
         var donuts = new DonutsCollection();
 
-
-
         for ( var i = 0; i < 20; i++) {
             var m = new DonutModel();
             donuts.add(m);
@@ -42,8 +40,8 @@ require('classes/PlusPageButtons');
         list.y=170;
         list.x=80;
 
-        var m = new DonutModel();
-        m.set({setLabel:i+"!!!!"})
+//        var m = new DonutModel();
+//        m.set({setLabel:i+"!!!!"})
 //        donuts.add(m);
 
 

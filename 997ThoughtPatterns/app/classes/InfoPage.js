@@ -1,4 +1,6 @@
 
+require('classes/LightBulbScrollableElements');
+
 (function(window) {
 
     function InfoPage() {
@@ -12,11 +14,31 @@
 
         this.Container_initialize();
 
+        var list = new RFScrollableList();
+        this.addChild(list);
 
-        var btn = new RFButtonBitmap();
-        btn.init("images/btnL1_def.png","images/btnL1_down.png");
-        this.addChild(btn);
-        btn.y=430;
+        var DonutModel = Backbone.Model.extend({
+            defaults: {setLabel:"BEDZIE OK"}
+        });
+        var DonutsCollection = Backbone.Collection.extend({
+            model : DonutModel
+        });
+        var donuts = new DonutsCollection();
+
+        for ( var i = 0; i < 20; i++) {
+            var m = new DonutModel();
+            donuts.add(m);
+            m.set({setLabel:""+i})
+        }
+
+
+
+//        console.log("don",donuts, donuts.models);
+
+        list.init("y",PlusPageButtons,{w:479,h:93},5,donuts);
+        list.y=170;
+        list.x=80;
+
 
 
 

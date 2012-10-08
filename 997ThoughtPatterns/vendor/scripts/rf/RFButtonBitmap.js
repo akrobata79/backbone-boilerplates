@@ -19,13 +19,18 @@
     RFButtonBitmap.prototype.eventName;
     RFButtonBitmap.prototype.id;
 
+    RFButtonBitmap.prototype.dispatcher;
+
+    RFButtonBitmap.prototype.prevState;
+
+    RFButtonBitmap.prototype.justReverted;
+
 
     RFButtonBitmap.prototype.initialize = function() {
         this.Container_initialize();
     };
 
     RFButtonBitmap.prototype.init = function(img1,img2,toggleBtn) {
-
 
         if(toggleBtn) this.toggleBtn = toggleBtn;
 
@@ -44,29 +49,43 @@
 
     };
 
+    RFButtonBitmap.prototype.revert = function() {
+
+        console.log("revert",this);
+        this.justReverted=true;
+        this.setState(this.prevState);
+
+    }
+
+    RFButtonBitmap.prototype.reportInteraction = function(e) {
+
+        console.log("super");
+
+    }
+
     RFButtonBitmap.prototype.click = function(e) {
+
+        this.reportInteraction(e);
 
         if(!this.toggleBtn && this.radioBtn!=true) {
 
-            console.log("2");
-
-            if(e.type=='onClick') {
-                console.log("onclicking");
+            if(e.type=='onClick' && !this.justReverted) {
                 this.setState(1);
-               if(this.eventName) EventBus.dispatch(this.eventName,this);
+                if(this.eventName) EventBus.dispatch(this.eventName,this);
             };
 
             if(e.type=='onPress') {
-                console.log("onpressing");
+                console.log("onpress *");
                 this.setState(2);
             };
+
+            this.justReverted=false;
 
         };
 
         if(this.toggleBtn && !this.radioBtn) {
 
             if(e.type=='onPress') {
-                console.log("onclicking");
                 if(this.stateNo==1) {this.setState(2)} else {this.setState(1)};
                 if(this.eventName) EventBus.dispatch(this.eventName,this);
             };
@@ -75,8 +94,7 @@
 
         if(this.radioBtn==true) {
 
-
-            console.log("first here");
+            //console.log("first here");
             if(e.type=='onPress') {
 
                 if(this.stateNo==1) {
@@ -84,20 +102,15 @@
                     if(this.eventName) EventBus.dispatch(this.eventName,this);
                 }
 
-
-
             };
 
-
-
         }
-
-
 
     }
 
     RFButtonBitmap.prototype.setState = function(stateNo) {
 
+        this.prevState = this.stateNo;
         this.stateNo=stateNo;
 
         if(stateNo == 1) {
@@ -109,6 +122,7 @@
             this.img1.visible=false;
             this.img2.visible=true;
         }
+
 
     };
 

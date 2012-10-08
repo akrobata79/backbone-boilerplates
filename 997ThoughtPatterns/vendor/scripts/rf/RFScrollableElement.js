@@ -10,6 +10,10 @@
     p.Container_initialize = p.initialize;
     p.initialize = function() {
         this.Container_initialize();
+        _.extend(this, Backbone.Events);
+
+
+
     }
 
     p.setSetters = function(props) {
@@ -27,6 +31,19 @@
 
     p.setData = function(data) {
         this.data=data;
+    }
+
+    p.enable = function(t) {
+
+        console.log("ttttt",t);
+
+    }
+
+    p.passInteraction = function(e) {
+
+        this.trigger("YOYO",e)
+
+
     }
 
 

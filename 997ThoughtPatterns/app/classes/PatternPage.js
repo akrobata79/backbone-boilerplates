@@ -1,4 +1,6 @@
 
+require('classes/LightBulbScrollableElements');
+
 (function(window) {
 
     function PatternPage() {
@@ -12,10 +14,28 @@
 
         this.Container_initialize();
 
-        var btn = new RFButtonBitmap();
-        btn.init("images/btnL1_def.png","images/btnL1_down.png");
-        this.addChild(btn);
-        btn.y=230;
+
+        var list = new RFScrollableList();
+        this.addChild(list);
+
+        var DonutModel = Backbone.Model.extend({
+            defaults: {enable:"50,50"}
+        });
+        var DonutsCollection = Backbone.Collection.extend({
+            model : DonutModel
+        });
+        var donuts = new DonutsCollection();
+
+        for ( var i = 0; i < 20; i++) {
+            var m = new DonutModel();
+            donuts.add(m);
+           // m.set()
+            m.set({enable:"50,50"})
+        }
+
+        list.init("y",LightBulbScrollableElements,{w:260,h:60},5,donuts);
+        list.y=170;
+        list.x=80;
 
     };
 
