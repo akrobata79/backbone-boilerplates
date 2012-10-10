@@ -125,7 +125,284 @@ window.require.define({"Application": function(exports, require, module) {
   
 }});
 
-window.require.define({"classes/Curtain": function(exports, require, module) {
+window.require.define({"classes/Bulb": function(exports, require, module) {
+  
+
+  (function() {
+
+      var Bulb = function() {this.initialize();}
+
+      Bulb.prototype = p = new Container();
+
+      p.label;
+      p.background;
+      p.text;
+
+      p.width;
+      p.height;
+
+      p.top;
+      p.bottom;
+
+      p.gr;
+
+      p.init = function() {
+
+          this.bottom = new Bitmap("images/bulbBack.png");
+          this.addChild(this.bottom);
+
+          var txt = new createjs.Text("Hello CreateJS!", "15px Arial", "#FFF");
+          var to = new createjs.Container();
+
+          this.gr = new createjs.Graphics();
+          var color = Rnd.integer(0,360);
+
+          this.top = new createjs.Shape(this.gr);   // new Bitmap("images/bulbTop.png");
+
+          this.top.x = 37;
+          this.top.y = 38;
+
+          this.addChild(this.top);
+
+          this.gr.beginFill(Graphics.getHSL(0,100,5,0.85));
+          this.gr.drawCircle(0,0,47/2);
+
+      };
+
+      p.setColor = function(n) {
+
+          this.gr.clear()
+
+          this.gr.beginFill(Graphics.getHSL(211,100,50,0.45));
+          this.gr.drawCircle(0,0,47/2);
+
+
+      }
+
+
+
+
+
+
+      p.revert = function() {
+
+          console.log("revert",this);
+          this.justReverted=true;
+          // this.setState(this.prevState);
+
+      }
+
+      p.onClick = function(e) {
+
+          if(!this.justReverted) {
+              this.reportInteraction(e);
+              this.justReverted=false;
+          }
+
+      }
+
+
+      p.onPress = function(e) {
+          console.log("qqq");
+          this.reportInteraction(e);
+      }
+
+
+
+
+      window.Bulb = Bulb;
+
+  }());
+}});
+
+window.require.define({"classes/SElementBulbRow": function(exports, require, module) {
+  
+  require('classes/Bulb');
+
+  (function() {
+
+      var SElementBulbRow = function() {this.initialize();}
+      SElementBulbRow.prototype = p = new RFScrollableElement();
+
+      p.label;
+      p.background;
+      p.text;
+
+      p.width;
+      p.height;
+
+      p.init = function() {
+
+  //74x74
+
+          this.passInteraction  = _.bind(this.passInteraction, this );
+
+  //        var yi = new ColorFilter(0,1,1,1);
+
+          for ( var i = 0; i < 8; i++) {
+
+              var temp = new Bulb();
+              temp.init();
+              this.addChild(temp)
+
+              temp.x = 74*i;
+              temp.reportInteraction = this.passInteraction;
+
+          }
+
+  //        this.passInteraction  = _.bind(this.passInteraction, this );
+
+          // backButton.reportInteraction = this.passInteraction;
+          // backButton2.reportInteraction = this.passInteraction;
+
+      };
+
+
+
+      window.SElementBulbRow = SElementBulbRow;
+
+  }());
+
+
+  //example of how to override using super
+  //    p.sup_setSize = p.setSize;
+  //    p.setSize = function(w,h) {
+  //        this.sup_setSize(w,h);
+  //    };
+
+
+  // ---------------------------
+  //      ???
+  //      p.Container_initialize = p.initialize;
+  //      ???
+  //      this.Container_initialize();
+  // ---------------------------
+
+
+
+  //(function() {
+  //
+  //    var RFScrollableElement = function() {
+  //        this.initialize();
+  //    }
+  //    var p = RFScrollableElement.prototype = new createjs.Container(); // inherit from Container
+  //
+  //    p.label;
+  //    p.background;
+  //    p.count = 0;
+  //
+  //    p.Container_initialize = p.initialize;
+  //
+  //    p.initialize = function() {
+  //        this.Container_initialize();
+  //
+  //        console.log("RFScrollableElement");
+  //    }
+  //
+  //    window.RFScrollableElement = RFScrollableElement;
+  //}());/**
+  
+}});
+
+window.require.define({"classes/SElementMainBtn": function(exports, require, module) {
+  
+  (function() {
+
+      var SElementMainBtn = function() {this.initialize();}
+      SElementMainBtn.prototype = p = new RFScrollableElement();
+
+      p.label;
+      p.background;
+      p.text;
+
+      p.width;
+      p.height;
+
+      p.init = function() {
+
+          var backButton = new RFButtonBitmap();
+          backButton.init("images/btnL1_def.png","images/btnL1_down.png");
+
+
+          this.passInteraction  = _.bind(this.passInteraction, this );
+          backButton.reportInteraction = this.passInteraction;
+
+
+          this.text = new createjs.Text("TEMP", "50px Arial", "#000");
+          this.text.textBaseline = "top";
+
+          this.text.x=10;
+          this.text.y=30;
+
+          this.addChild(backButton,this.text);
+
+          this.temp = _.bind( this.temp, this );
+
+          console.log("MMM");
+
+
+
+
+
+      };
+
+      p.temp=function(){
+  //        this.text.text=label;
+          this.cache(0,0,472,96);
+
+          console.log("temp");
+      }
+
+
+      p.setLabel=function(label){
+          this.text.text=label;
+      }
+
+      window.SElementMainBtn = SElementMainBtn;
+
+  }());
+
+
+  //example of how to override using super
+  //    p.sup_setSize = p.setSize;
+  //    p.setSize = function(w,h) {
+  //        this.sup_setSize(w,h);
+  //    };
+
+
+  // ---------------------------
+  //      ???
+  //      p.Container_initialize = p.initialize;
+  //      ???
+  //      this.Container_initialize();
+  // ---------------------------
+
+
+
+  //(function() {
+  //
+  //    var RFScrollableElement = function() {
+  //        this.initialize();
+  //    }
+  //    var p = RFScrollableElement.prototype = new createjs.Container(); // inherit from Container
+  //
+  //    p.label;
+  //    p.background;
+  //    p.count = 0;
+  //
+  //    p.Container_initialize = p.initialize;
+  //
+  //    p.initialize = function() {
+  //        this.Container_initialize();
+  //
+  //        console.log("RFScrollableElement");
+  //    }
+  //
+  //    window.RFScrollableElement = RFScrollableElement;
+  //}());
+}});
+
+window.require.define({"classes/additional/Curtain": function(exports, require, module) {
   
   (function(window) {
 
@@ -187,446 +464,7 @@ window.require.define({"classes/Curtain": function(exports, require, module) {
   
 }});
 
-window.require.define({"classes/InfoPage": function(exports, require, module) {
-  
-  require('classes/LightBulbScrollableElements');
-
-  (function(window) {
-
-      function InfoPage() {
-          this.initialize();
-      }
-
-      InfoPage.prototype = new Container();
-      InfoPage.prototype.Container_initialize = InfoPage.prototype.initialize;
-
-      InfoPage.prototype.initialize = function() {
-
-          this.Container_initialize();
-
-          var list = new RFScrollableList();
-          this.addChild(list);
-
-          var DonutModel = Backbone.Model.extend({
-              defaults: {setLabel:"BEDZIE OK"}
-          });
-          var DonutsCollection = Backbone.Collection.extend({
-              model : DonutModel
-          });
-          var donuts = new DonutsCollection();
-
-          for ( var i = 0; i < 20; i++) {
-              var m = new DonutModel();
-              donuts.add(m);
-              m.set({setLabel:""+i})
-          }
-
-
-
-  //        console.log("don",donuts, donuts.models);
-
-          list.init("y",PlusPageButtons,{w:479,h:93},5,donuts);
-          list.y=170;
-          list.x=80;
-
-
-
-
-      };
-
-      window.InfoPage = InfoPage;
-
-  }(window));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-}});
-
-window.require.define({"classes/LightBulbScrollableElements": function(exports, require, module) {
-  
-  (function() {
-
-      var LightBulbScrollableElements = function() {this.initialize();}
-      LightBulbScrollableElements.prototype = p = new RFScrollableElement();
-
-      p.label;
-      p.background;
-      p.text;
-
-      p.width;
-      p.height;
-
-      p.init = function() {
-
-          var backButton = new RFButtonBitmap();
-          backButton.init("images/smallBtnDef.jpg","images/smallBtnOver.jpg");
-
-          this.passInteraction  = _.bind(this.passInteraction, this );
-          backButton.reportInteraction = this.passInteraction;
-
-          this.addChild(backButton);
-
-          this.temp = _.bind( this.temp, this );
-
-      };
-
-      p.temp=function(){
-  //        this.text.text=label;
-  //        this.cache(0,0,472,96);
-
-          console.log("temp");
-      }
-
-
-
-
-
-
-      window.LightBulbScrollableElements = LightBulbScrollableElements;
-
-  }());
-
-
-  //example of how to override using super
-  //    p.sup_setSize = p.setSize;
-  //    p.setSize = function(w,h) {
-  //        this.sup_setSize(w,h);
-  //    };
-
-
-  // ---------------------------
-  //      ???
-  //      p.Container_initialize = p.initialize;
-  //      ???
-  //      this.Container_initialize();
-  // ---------------------------
-
-
-
-  //(function() {
-  //
-  //    var RFScrollableElement = function() {
-  //        this.initialize();
-  //    }
-  //    var p = RFScrollableElement.prototype = new createjs.Container(); // inherit from Container
-  //
-  //    p.label;
-  //    p.background;
-  //    p.count = 0;
-  //
-  //    p.Container_initialize = p.initialize;
-  //
-  //    p.initialize = function() {
-  //        this.Container_initialize();
-  //
-  //        console.log("RFScrollableElement");
-  //    }
-  //
-  //    window.RFScrollableElement = RFScrollableElement;
-  //}());/**
-  
-}});
-
-window.require.define({"classes/MyClass": function(exports, require, module) {
-  // Example use of require; or how you 'import' files
-
-  //var SampleView = require('./views/SampleView');
-
-
-
-
-  // Class definition
-  MyClass = (function() {
-
-  // private vars
-      var _foo = 'bar';
-      var _show = false;
-  //    var _sampleView = new SampleView();
-
-  // self-instantiating "constructor" function
-      var initialize = (function() {
-          console.log('Initialized');
-      })();
-
-  // private functions
-      function show() {
-          // show view
-      };
-
-      function hide() {
-          // hide view
-      };
-
-  // public facing interface
-      return {
-
-          getFoo: function() {
-              return _foo;
-          },
-
-          setFoo: function( value ) {
-              if( value !== foo )
-                  foo = value;
-          },
-
-          showView: function( doShow ) {
-              ( doShow ) ?
-                  show() :
-                  hide();
-          }
-      };
-
-  }).call();
-
-  module.exports = MyClass;
-}});
-
-window.require.define({"classes/PatternPage": function(exports, require, module) {
-  
-  require('classes/LightBulbScrollableElements');
-
-  (function(window) {
-
-      function PatternPage() {
-          this.initialize();
-      }
-
-      PatternPage.prototype = new Container();
-      PatternPage.prototype.Container_initialize = PatternPage.prototype.initialize;
-
-      PatternPage.prototype.initialize = function() {
-
-          this.Container_initialize();
-
-
-          var list = new RFScrollableList();
-          this.addChild(list);
-
-          var DonutModel = Backbone.Model.extend({
-              defaults: {enable:"50,50"}
-          });
-          var DonutsCollection = Backbone.Collection.extend({
-              model : DonutModel
-          });
-          var donuts = new DonutsCollection();
-
-          for ( var i = 0; i < 20; i++) {
-              var m = new DonutModel();
-              donuts.add(m);
-             // m.set()
-              m.set({enable:"50,50"})
-          }
-
-          list.init("y",LightBulbScrollableElements,{w:60,h:60},5,donuts);
-          list.y=170;
-          list.x=80;
-
-      };
-
-      window.PatternPage = PatternPage;
-
-  }(window));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-}});
-
-window.require.define({"classes/PlusPage": function(exports, require, module) {
-  
-
-  require('classes/PlusPageButtons');
-
-  (function(window) {
-
-      function PlusPage() {
-          this.initialize();
-      }
-
-      PlusPage.prototype = new Container();
-
-      PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
-      PlusPage.prototype.initialize = function() {
-
-          this.Container_initialize();
-
-          var list = new RFScrollableList();
-          this.addChild(list);
-
-          var DonutModel = Backbone.Model.extend({
-              defaults: {setLabel:"BEDZIE OK"}
-          });
-          var DonutsCollection = Backbone.Collection.extend({
-              model : DonutModel
-          });
-          var donuts = new DonutsCollection();
-
-          for ( var i = 0; i < 20; i++) {
-              var m = new DonutModel();
-              donuts.add(m);
-              m.set({setLabel:""+i})
-          }
-
-
-
-  //        console.log("don",donuts, donuts.models);
-
-          list.init("y",PlusPageButtons,{w:479,h:93},5,donuts);
-          list.y=170;
-          list.x=80;
-
-  //        var m = new DonutModel();
-  //        m.set({setLabel:i+"!!!!"})
-  //        donuts.add(m);
-
-
-      };
-
-      window.PlusPage = PlusPage;
-
-  }(window));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-}});
-
-window.require.define({"classes/PlusPageButtons": function(exports, require, module) {
-  
-  (function() {
-
-      var PlusPageButtons = function() {this.initialize();}
-      PlusPageButtons.prototype = p = new RFScrollableElement();
-
-      p.label;
-      p.background;
-      p.text;
-
-      p.width;
-      p.height;
-
-      p.init = function() {
-
-          var backButton = new RFButtonBitmap();
-          backButton.init("images/btnL1_def.png","images/btnL1_down.png");
-
-
-          this.passInteraction  = _.bind(this.passInteraction, this );
-          backButton.reportInteraction = this.passInteraction;
-
-
-              //backButton.on()
-
-
-          this.text = new createjs.Text("TEMP", "50px Arial", "#000");
-          this.text.textBaseline = "top";
-
-          this.text.x=10;
-          this.text.y=30;
-
-          this.addChild(backButton,this.text);
-
-          this.temp = _.bind( this.temp, this );
-
-          console.log("MMM");
-
-          this.trigger("YO",1)
-
-
-
-      };
-
-      p.temp=function(){
-  //        this.text.text=label;
-          this.cache(0,0,472,96);
-
-          console.log("temp");
-      }
-
-
-      p.setLabel=function(label){
-          this.text.text=label;
-      }
-
-      window.PlusPageButtons = PlusPageButtons;
-
-  }());
-
-
-  //example of how to override using super
-  //    p.sup_setSize = p.setSize;
-  //    p.setSize = function(w,h) {
-  //        this.sup_setSize(w,h);
-  //    };
-
-
-  // ---------------------------
-  //      ???
-  //      p.Container_initialize = p.initialize;
-  //      ???
-  //      this.Container_initialize();
-  // ---------------------------
-
-
-
-  //(function() {
-  //
-  //    var RFScrollableElement = function() {
-  //        this.initialize();
-  //    }
-  //    var p = RFScrollableElement.prototype = new createjs.Container(); // inherit from Container
-  //
-  //    p.label;
-  //    p.background;
-  //    p.count = 0;
-  //
-  //    p.Container_initialize = p.initialize;
-  //
-  //    p.initialize = function() {
-  //        this.Container_initialize();
-  //
-  //        console.log("RFScrollableElement");
-  //    }
-  //
-  //    window.RFScrollableElement = RFScrollableElement;
-  //}());
-}});
-
-window.require.define({"classes/RFNav": function(exports, require, module) {
+window.require.define({"classes/nav/RFNav": function(exports, require, module) {
   
   RFNav = (function() {
 
@@ -719,7 +557,7 @@ window.require.define({"classes/RFNav": function(exports, require, module) {
   module.exports = RFNav;
 }});
 
-window.require.define({"classes/ScreenManager": function(exports, require, module) {
+window.require.define({"classes/nav/ScreenManager": function(exports, require, module) {
   
   (function(window) {
 
@@ -727,9 +565,9 @@ window.require.define({"classes/ScreenManager": function(exports, require, modul
           this.initialize();
       };
 
-      require('classes/PlusPage');
-      require('classes/InfoPage');
-      require('classes/PatternPage');
+      require('classes/pages/PlusPage');
+      require('classes/pages/InfoPage');
+      require('classes/pages/PatternPage');
 
       ScreenManager.prototype.plusPage;
       ScreenManager.prototype.patternPage;
@@ -760,7 +598,7 @@ window.require.define({"classes/ScreenManager": function(exports, require, modul
           this.pageArr = [this.plusPage,this.patternPage,this.infoPage]
 
           this.onNavEvent = _.bind( this.onNavEvent, this );
-          this.setPage(0)
+          this.setPage(1);
 
       };
 
@@ -813,6 +651,257 @@ window.require.define({"classes/ScreenManager": function(exports, require, modul
 
 
   
+}});
+
+window.require.define({"classes/pages/InfoPage": function(exports, require, module) {
+  
+
+
+  (function(window) {
+
+      function InfoPage() {
+          this.initialize();
+      }
+
+      InfoPage.prototype = new Container();
+      InfoPage.prototype.Container_initialize = InfoPage.prototype.initialize;
+
+      InfoPage.prototype.initialize = function() {
+
+          this.Container_initialize();
+
+          var list = new RFScrollableList();
+          this.addChild(list);
+
+          var DonutModel = Backbone.Model.extend({
+              defaults: {setLabel:"BEDZIE OK"}
+          });
+          var DonutsCollection = Backbone.Collection.extend({
+              model : DonutModel
+          });
+          var donuts = new DonutsCollection();
+
+          for ( var i = 0; i < 20; i++) {
+              var m = new DonutModel();
+              donuts.add(m);
+              m.set({setLabel:""+i})
+          }
+
+  //        console.log("don",donuts, donuts.models);
+
+          list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
+          list.y=170;
+          list.x=80;
+
+
+
+
+      };
+
+      window.InfoPage = InfoPage;
+
+  }(window));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+}});
+
+window.require.define({"classes/pages/PatternPage": function(exports, require, module) {
+  
+  require('classes/SElementBulbRow');
+
+  (function(window) {
+
+      function PatternPage() {
+          this.initialize();
+      }
+
+      PatternPage.prototype = new Container();
+      PatternPage.prototype.Container_initialize = PatternPage.prototype.initialize;
+
+      PatternPage.prototype.initialize = function() {
+
+          this.Container_initialize();
+
+
+          var list = new RFScrollableList();
+          this.addChild(list);
+
+          var DonutModel = Backbone.Model.extend({
+              defaults: {enable:"50,50"}
+          });
+          var DonutsCollection = Backbone.Collection.extend({
+              model : DonutModel
+          });
+          var donuts = new DonutsCollection();
+
+          for ( var i = 0; i < 20; i++) {
+              var m = new DonutModel();
+              donuts.add(m);
+             // m.set()
+              m.set({enable:"50,50"})
+          }
+
+          list.init("y",SElementBulbRow,{w:74*8,h:74},5,donuts);
+          list.y=170;
+          list.x=13;
+
+      };
+
+      window.PatternPage = PatternPage;
+
+  }(window));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+}});
+
+window.require.define({"classes/pages/PlusPage": function(exports, require, module) {
+  
+
+  require('classes/SElementMainBtn');
+
+  (function(window) {
+
+      function PlusPage() {
+          this.initialize();
+      }
+
+      PlusPage.prototype = new Container();
+
+      PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
+      PlusPage.prototype.initialize = function() {
+
+          this.Container_initialize();
+
+          var list = new RFScrollableList();
+          this.addChild(list);
+
+          var DonutModel = Backbone.Model.extend({
+              defaults: {setLabel:"BEDZIE OK"}
+          });
+          var DonutsCollection = Backbone.Collection.extend({
+              model : DonutModel
+          });
+          var donuts = new DonutsCollection();
+
+          for ( var i = 0; i < 20; i++) {
+              var m = new DonutModel();
+              donuts.add(m);
+              m.set({setLabel:""+i})
+          }
+
+
+
+  //        console.log("don",donuts, donuts.models);
+
+          list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
+          list.y=170;
+          list.x=80;
+
+  //        var m = new DonutModel();
+  //        m.set({setLabel:i+"!!!!"})
+  //        donuts.add(m);
+
+
+      };
+
+      window.PlusPage = PlusPage;
+
+  }(window));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+}});
+
+window.require.define({"classes/temp/MyClass": function(exports, require, module) {
+  // Example use of require; or how you 'import' files
+
+  //var SampleView = require('./views/SampleView');
+
+
+
+
+  // Class definition
+  MyClass = (function() {
+
+  // private vars
+      var _foo = 'bar';
+      var _show = false;
+  //    var _sampleView = new SampleView();
+
+  // self-instantiating "constructor" function
+      var initialize = (function() {
+          console.log('Initialized');
+      })();
+
+  // private functions
+      function show() {
+          // show view
+      };
+
+      function hide() {
+          // hide view
+      };
+
+  // public facing interface
+      return {
+
+          getFoo: function() {
+              return _foo;
+          },
+
+          setFoo: function( value ) {
+              if( value !== foo )
+                  foo = value;
+          },
+
+          showView: function( doShow ) {
+              ( doShow ) ?
+                  show() :
+                  hide();
+          }
+      };
+
+  }).call();
+
+  module.exports = MyClass;
 }});
 
 window.require.define({"config/ApplicationConfig": function(exports, require, module) {
@@ -1122,15 +1211,17 @@ window.require.define({"views/HomeView": function(exports, require, module) {
    * So, to pass params, all you need to do is save off the super initialize method, overwrite it, and then call it with the appropriate params. Similar to draw in all the DisplayObject subclasses. It's clearer in code:
    * https://groups.google.com/forum/#!topic/easeljs/qdK6VFSACQw
    * scrolling explained: http://stackoverflow.com/questions/2863547/javascript-scroll-event-for-iphone-ipad
+   *
+   * javascript frameworks http://www.remotesynthesis.com/post.cfm/50-javascript-html5-frameworks-and-related-tools
+   *
    */
 
   var View = require('./supers/View');
   var template = require('./templates/HomeViewTemplate');
 
+  require('classes/additional/Curtain');
+  require('classes/nav/ScreenManager');
 
-  require('classes/Curtain');
-  require('classes/ScreenManager');
-  require('classes/PlusPageButtons');
   //require('rf/RF');
 
 
@@ -1231,7 +1322,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           navBtn3.x=216+205;
           navBtn3.y=691;
 
-          var nav = require('classes/RFNav');
+          var nav = require('classes/nav/RFNav');
           nav.setup([navBtn1,navBtn2,navBtn3],curtain);
           nav.setPageEvent("PAGE_CHANGE_EVENT")
           //SCREENMANAGER
@@ -1251,14 +1342,13 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Ticker.addListener(this);
           Ticker.setFPS(40);
 
-  //        this.stage.alpha=0.1;
+  //        this.stage.alpha=0.3;
 
       },
 
       myFunction: function(e) {
           console.log("eee",e);
       },
-
 
       do:function() {
 

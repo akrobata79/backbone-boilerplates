@@ -140,9 +140,17 @@
             this.theArr.push(t);
 
             t.on("YOYO", function(e) {
+
+
                     if(e.type=="onPress") {
                         that.onPresso(e)
                     }
+
+                    if(e.type=="onClick") {
+                        console.log("klik!");
+                    }
+
+
                 }
             )
 
@@ -193,8 +201,6 @@
         RF.stage.onMouseMove  = _.bind(this.onMouseMove, this );
         RF.stage.onMouseUp  = _.bind(this.onMouseUpo, this );
 
-
-
         this.isDragging = true;
         this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
     };
@@ -212,7 +218,7 @@
         //console.log("onMouseMove");
 
         if(this.currentRevert) {
-            this.currentRevert.revert()
+            this.currentRevert.revert();
             this.currentRevert=null;
         }
 

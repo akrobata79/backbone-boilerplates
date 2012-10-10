@@ -12,8 +12,6 @@
         this.Container_initialize();
         _.extend(this, Backbone.Events);
 
-
-
     }
 
     p.setSetters = function(props) {
@@ -41,6 +39,7 @@
 
     p.passInteraction = function(e) {
 
+        console.log("passInteraction >> ",e);
         this.trigger("YOYO",e)
 
 

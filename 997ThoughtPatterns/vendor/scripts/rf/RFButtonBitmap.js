@@ -65,21 +65,25 @@
 
     RFButtonBitmap.prototype.click = function(e) {
 
-        this.reportInteraction(e);
-
         if(!this.toggleBtn && this.radioBtn!=true) {
 
             if(e.type=='onClick' && !this.justReverted) {
+
+                this.reportInteraction(e);
+
+                this.justReverted=false;
                 this.setState(1);
                 if(this.eventName) EventBus.dispatch(this.eventName,this);
+
             };
 
             if(e.type=='onPress') {
                 console.log("onpress *");
                 this.setState(2);
+                this.reportInteraction(e);
             };
 
-            this.justReverted=false;
+
 
         };
 

@@ -10,15 +10,21 @@
  * So, to pass params, all you need to do is save off the super initialize method, overwrite it, and then call it with the appropriate params. Similar to draw in all the DisplayObject subclasses. It's clearer in code:
  * https://groups.google.com/forum/#!topic/easeljs/qdK6VFSACQw
  * scrolling explained: http://stackoverflow.com/questions/2863547/javascript-scroll-event-for-iphone-ipad
+ *
+ * javascript frameworks http://www.remotesynthesis.com/post.cfm/50-javascript-html5-frameworks-and-related-tools
+ *
  */
 
 var View = require('./supers/View');
 var template = require('./templates/HomeViewTemplate');
 
+require('classes/additional/Curtain');
+require('classes/nav/ScreenManager');
 
-require('classes/Curtain');
-require('classes/ScreenManager');
-require('classes/PlusPageButtons');
+require('classes/pages/PlusPage');
+require('classes/pages/InfoPage');
+require('classes/pages/PatternPage');
+
 //require('rf/RF');
 
 
@@ -94,7 +100,55 @@ module.exports = View.extend({
         this.stage.addChild(bmp);
 
         //SCREENMANAGER
+
+
+        var MainBtnModel = Backbone.Model.extend({
+            defaults: {setLabel:"BEDZIE OK"}
+        });
+
+        var MainBtnCollection = Backbone.Collection.extend({
+            model : MainBtnModel
+        });
+
+        var mainBtnCollection = new MainBtnCollection();
+
+        for ( var i = 0; i < 20; i++) {
+            var m = new MainBtnModel();
+            mainBtnCollection.add(m);
+            m.set({setLabel:""+i})
+        }
+
+        var plusPage = new PlusPage();
+
+
+
+        var PatternRowModel = Backbone.Model.extend({
+            defaults: {enable:"50,50"}
+        });
+        var PatternRowCollection = Backbone.Collection.extend({
+            model : PatternRowModel
+        });
+        var patternRowCollection = new PatternRowCollection();
+
+        for ( var i = 0; i < 20; i++) {
+            var m = new PatternRowModel();
+            patternRowCollection.add(m);
+            // m.set()
+            m.set({enable:"50,50"})
+        }
+
+        var patternPage = new PatternPage();
+        patternPage.init(patternRowCollection);
+
+
+        // passing 2 datasets
+        plusPage.init(mainBtnCollection,patternRowCollection)
+
+
+        var infoPage = new InfoPage();
+
         var screenManager = new ScreenManager();
+        screenManager.init([plusPage,patternPage,infoPage]);
         this.stage.addChild(screenManager);
 
         //CURTAIN
@@ -119,7 +173,7 @@ module.exports = View.extend({
         navBtn3.x=216+205;
         navBtn3.y=691;
 
-        var nav = require('classes/RFNav');
+        var nav = require('classes/nav/RFNav');
         nav.setup([navBtn1,navBtn2,navBtn3],curtain);
         nav.setPageEvent("PAGE_CHANGE_EVENT")
         //SCREENMANAGER
@@ -139,14 +193,13 @@ module.exports = View.extend({
         Ticker.addListener(this);
         Ticker.setFPS(40);
 
-//        this.stage.alpha=0.1;
+//        this.stage.alpha=0.3;
 
     },
 
     myFunction: function(e) {
         console.log("eee",e);
     },
-
 
     do:function() {
 
