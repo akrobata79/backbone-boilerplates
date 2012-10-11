@@ -231,15 +231,17 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
       p.width;
       p.height;
 
+      p.color;
+
       p.init = function() {
 
   //74x74
 
           this.passInteraction  = _.bind(this.passInteraction, this );
 
-  //        var yi = new ColorFilter(0,1,1,1);
-
           for ( var i = 0; i < 8; i++) {
+
+              console.log("9");
 
               var temp = new Bulb();
               temp.init();
@@ -250,10 +252,6 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           }
 
-  //        this.passInteraction  = _.bind(this.passInteraction, this );
-
-          // backButton.reportInteraction = this.passInteraction;
-          // backButton2.reportInteraction = this.passInteraction;
 
       };
 
@@ -350,6 +348,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
           this.sup_passInteraction(e);
 
           if (e.type=="onClick") {
+
               console.log("new shit");
 
               //update the other collection
@@ -740,8 +739,6 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
       PatternPage.prototype.initialize = function() {
 
-
-
       };
 
       PatternPage.prototype.init = function(dataSet) {
@@ -751,12 +748,42 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
           var list = new RFScrollableList();
           this.addChild(list);
 
-          list.init("y",SElementBulbRow,{w:74*8,h:74},5,dataSet);
+
+          var PatternRowModel = Backbone.Model.extend({
+
+          });
+
+          var PatternRowCollection = Backbone.Collection.extend({
+              model : PatternRowModel
+          });
+
+          console.log("6");
+
+          var patternRowCollection = new PatternRowCollection();
+
+          for ( var i = 0; i < 20; i++) {
+              var m = new PatternRowModel();
+              patternRowCollection.add(m);
+              // m.set()
+              m.set({})
+          }
+
+
+          console.log("8");
+          list.init("y",SElementBulbRow,{w:74*8,h:74},9,patternRowCollection);
           list.y=170;
           list.x=13;
 
 
       }
+
+      PatternPage.prototype.add = function(t) {
+
+          console.log("PatternPage add",t);
+
+      }
+
+
 
       window.PatternPage = PatternPage;
 
@@ -792,19 +819,18 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
       PlusPage.prototype = new Container();
 
       PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
+
+      PlusPage.prototype.mezzData;
+
+
       PlusPage.prototype.initialize = function() {
-
           this.Container_initialize();
-
-
-  //    this.init()
-
-
-
       };
 
 
-      PlusPage.prototype.init = function(dataSet,patternDataSet) {
+      PlusPage.prototype.init = function(dataSet,mezzData) {
+
+          this.mezzData=mezzData;
 
           var list = new RFScrollableList();
           this.addChild(list);
@@ -813,7 +839,30 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
           list.y=170;
           list.x=80;
 
+
+          //this.trigger("YOYO",e)
+
+          //p.theArr = [];
+
+
+          for ( var i = 0; i < list.theArr.length; i++) {
+
+              var t = list.theArr[i]
+              t.on("YOYO", function(e) {
+
+                  console.log("xx", e.target.parent);
+
+              })
+
+          }
+
+
+
+
       }
+
+
+
 
 
       window.PlusPage = PlusPage;
@@ -1287,7 +1336,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Touch.enable ( this.stage , true , false );
           RF.stage=this.stage;
 
-  //Stage
+          //Stage
           //BACKGROUND
           var bmp = new Bitmap("images/BACK.jpg");
           this.stage.addChild(bmp);
@@ -1296,7 +1345,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
 
           var MainBtnModel = Backbone.Model.extend({
-              defaults: {setLabel:"BEDZIE OK"}
+              defaults: {setLabel:"BEDZIE OK",setColor:11}
           });
 
           var MainBtnCollection = Backbone.Collection.extend({
@@ -1311,31 +1360,17 @@ window.require.define({"views/HomeView": function(exports, require, module) {
               m.set({setLabel:""+i})
           }
 
-          var plusPage = new PlusPage();
-
-
-
-          var PatternRowModel = Backbone.Model.extend({
-              defaults: {enable:"50,50"}
+          var MezzData = Backbone.Collection.extend({
+              model : MainBtnModel
           });
-          var PatternRowCollection = Backbone.Collection.extend({
-              model : PatternRowModel
-          });
-          var patternRowCollection = new PatternRowCollection();
-
-          for ( var i = 0; i < 20; i++) {
-              var m = new PatternRowModel();
-              patternRowCollection.add(m);
-              // m.set()
-              m.set({enable:"50,50"})
-          }
+          var mezzData = new MezzData();
 
           var patternPage = new PatternPage();
-          patternPage.init(patternRowCollection);
-
+          patternPage.init(mezzData);
 
           // passing 2 datasets
-          plusPage.init(mainBtnCollection,patternRowCollection)
+          var plusPage = new PlusPage();
+          plusPage.init(mainBtnCollection,mezzData);
 
 
           var infoPage = new InfoPage();

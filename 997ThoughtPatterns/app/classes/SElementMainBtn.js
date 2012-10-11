@@ -43,6 +43,7 @@
         this.sup_passInteraction(e);
 
         if (e.type=="onClick") {
+
             console.log("new shit");
 
             //update the other collection

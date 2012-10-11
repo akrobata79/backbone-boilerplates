@@ -13,15 +13,17 @@ require('classes/Bulb');
     p.width;
     p.height;
 
+    p.color;
+
     p.init = function() {
 
 //74x74
 
         this.passInteraction  = _.bind(this.passInteraction, this );
 
-//        var yi = new ColorFilter(0,1,1,1);
-
         for ( var i = 0; i < 8; i++) {
+
+            console.log("9");
 
             var temp = new Bulb();
             temp.init();
@@ -32,10 +34,6 @@ require('classes/Bulb');
 
         }
 
-//        this.passInteraction  = _.bind(this.passInteraction, this );
-
-        // backButton.reportInteraction = this.passInteraction;
-        // backButton2.reportInteraction = this.passInteraction;
 
     };
 

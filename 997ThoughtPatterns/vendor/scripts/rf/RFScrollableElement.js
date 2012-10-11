@@ -1,20 +1,28 @@
 (function() {
 
-    var RFScrollableElement = function() {this.initialize();}
-    var p = RFScrollableElement.prototype = new createjs.Container();
+    var RFScrollableElement = function() {
+        this.initialize();
+        _.extend(this, Backbone.Events);
+    }
+    RFScrollableElement.prototype = p = new createjs.Container();
+   // p.Container_initialize = p.initialize;
 
     p.width;
     p.height;
     p.data;
 
-    p.Container_initialize = p.initialize;
-    p.initialize = function() {
-        this.Container_initialize();
-        _.extend(this, Backbone.Events);
-
-    }
+//
+//    p.initialize = function() {
+////        this.Container_initialize();
+//        _.extend(this, Backbone.Events);
+//
+//    }
 
     p.setSetters = function(props) {
+
+
+//        console.log("props",props);
+
         _.each(
             props,
             function(val, key){
@@ -28,6 +36,8 @@
     }
 
     p.setData = function(data) {
+
+        console.log("data",data);
         this.data=data;
     }
 
@@ -41,7 +51,6 @@
 
         console.log("passInteraction >> ",e);
         this.trigger("YOYO",e)
-
 
     }
 

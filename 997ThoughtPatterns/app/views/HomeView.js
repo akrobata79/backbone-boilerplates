@@ -94,7 +94,7 @@ module.exports = View.extend({
         Touch.enable ( this.stage , true , false );
         RF.stage=this.stage;
 
-//Stage
+        //Stage
         //BACKGROUND
         var bmp = new Bitmap("images/BACK.jpg");
         this.stage.addChild(bmp);
@@ -103,7 +103,7 @@ module.exports = View.extend({
 
 
         var MainBtnModel = Backbone.Model.extend({
-            defaults: {setLabel:"BEDZIE OK"}
+            defaults: {setLabel:"BEDZIE OK",setColor:11}
         });
 
         var MainBtnCollection = Backbone.Collection.extend({
@@ -118,31 +118,17 @@ module.exports = View.extend({
             m.set({setLabel:""+i})
         }
 
-        var plusPage = new PlusPage();
-
-
-
-        var PatternRowModel = Backbone.Model.extend({
-            defaults: {enable:"50,50"}
+        var MezzData = Backbone.Collection.extend({
+            model : MainBtnModel
         });
-        var PatternRowCollection = Backbone.Collection.extend({
-            model : PatternRowModel
-        });
-        var patternRowCollection = new PatternRowCollection();
-
-        for ( var i = 0; i < 20; i++) {
-            var m = new PatternRowModel();
-            patternRowCollection.add(m);
-            // m.set()
-            m.set({enable:"50,50"})
-        }
+        var mezzData = new MezzData();
 
         var patternPage = new PatternPage();
-        patternPage.init(patternRowCollection);
-
+        patternPage.init(mezzData);
 
         // passing 2 datasets
-        plusPage.init(mainBtnCollection,patternRowCollection)
+        var plusPage = new PlusPage();
+        plusPage.init(mainBtnCollection,mezzData);
 
 
         var infoPage = new InfoPage();
