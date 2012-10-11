@@ -186,7 +186,7 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.revert = function() {
 
-          console.log("revert",this);
+          ////console.log("revert",this);
           this.justReverted=true;
           // this.setState(this.prevState);
 
@@ -203,7 +203,7 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
 
       p.onPress = function(e) {
-          console.log("qqq");
+          ////console.log("qqq");
           this.reportInteraction(e);
       }
 
@@ -233,7 +233,11 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
       p.color;
 
+      p.dataSet
+
       p.init = function() {
+
+          this.dataSet=[]
 
   //74x74
 
@@ -241,14 +245,16 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           for ( var i = 0; i < 8; i++) {
 
-              console.log("9");
-
               var temp = new Bulb();
               temp.init();
               this.addChild(temp)
 
               temp.x = 74*i;
               temp.reportInteraction = this.passInteraction;
+
+              this.dataSet.push(temp);
+
+  //            console.log("this.dataSet",this.dataSet.length);
 
           }
 
@@ -294,7 +300,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        console.log("RFScrollableElement");
+  //        //console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -349,7 +355,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
 
           if (e.type=="onClick") {
 
-              console.log("new shit");
+              //console.log("new shit");
 
               //update the other collection
 
@@ -386,7 +392,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   ////        this.text.text=label;
   //        this.cache(0,0,472,96);
   //
-  //        console.log("temp");
+  //        //console.log("temp");
   //    }
 
 
@@ -407,7 +413,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        console.log("RFScrollableElement");
+  //        //console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -490,16 +496,16 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
       var _currSelected;
 
       var initialize = (function() {
-          console.log('Initialized');
+          //console.log('Initialized');
       })();
 
       function show() {
-          console.log("show");
+          //console.log("show");
           // show view
       };
 
       function hide() {
-          console.log("hide");
+          //console.log("hide");
           // hide view
       };
 
@@ -545,7 +551,7 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
 
               _curtain.do();
 
-              console.log("_pageEvent",_pageEvent);
+              //console.log("_pageEvent",_pageEvent);
               EventBus.dispatch(_pageEvent,this);
 
           },
@@ -638,7 +644,7 @@ window.require.define({"classes/nav/ScreenManager": function(exports, require, m
       }
 
       ScreenManager.prototype.onNavEvent = function(e) {
-          console.log("onNavEvent", e.target.getCurrSelected(),this);
+          //console.log("onNavEvent", e.target.getCurrSelected(),this);
           this.setPage(e.target.getCurrSelected())
       }
 
@@ -696,7 +702,7 @@ window.require.define({"classes/pages/InfoPage": function(exports, require, modu
   //            m.set({setLabel:""+i, setColor:11})
   //        }
   //
-  ////        console.log("don",donuts, donuts.models);
+  ////        //console.log("don",donuts, donuts.models);
   //
   //        list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
   //        list.y=170;
@@ -737,19 +743,38 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
       PatternPage.prototype = new Container();
       PatternPage.prototype.Container_initialize = PatternPage.prototype.initialize;
 
+
+
+
       PatternPage.prototype.initialize = function() {
+          this.Container_initialize();
 
       };
 
+      PatternPage.prototype.patternRowCollection;
+      PatternPage.prototype.mezzData;
+
+
       PatternPage.prototype.init = function(dataSet) {
 
-          this.Container_initialize();
+          this.mezzData=dataSet;
 
           var list = new RFScrollableList();
           this.addChild(list);
 
+          var BulbModel = Backbone.Model.extend({
+              defaults: {setLabel:"NONE",setColor:0}
+          });
+
+          var BulbCollection = Backbone.Collection.extend({
+              model : BulbModel
+          });
 
           var PatternRowModel = Backbone.Model.extend({
+
+              initialize : function() {
+                  this.bulbCollection = new BulbCollection;
+              }
 
           });
 
@@ -757,32 +782,38 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
               model : PatternRowModel
           });
 
-          console.log("6");
+          this.patternRowCollection = new PatternRowCollection();
 
-          var patternRowCollection = new PatternRowCollection();
-
-          for ( var i = 0; i < 20; i++) {
+          for ( var i = 0; i < 7; i++) {
               var m = new PatternRowModel();
-              patternRowCollection.add(m);
-              // m.set()
-              m.set({})
+              this.patternRowCollection.add(m);
+
+
+              for ( var j = 0; j < 8; j++) {
+                  var mB = new BulbModel();
+                  m.bulbCollection.add(mB);
+              }
+
+              console.log(">>",this.patternRowCollection.models);
+
           }
 
-
-          console.log("8");
-          list.init("y",SElementBulbRow,{w:74*8,h:74},9,patternRowCollection);
+          list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection);
           list.y=170;
           list.x=13;
 
+          var that=this
+
+          this.mezzData.on("add", function(ship) {
+
+             // console.log("ship",ship);
+             // console.log(that.mezzData);
+
+              console.log("that.patternRowCollection[0]",that.patternRowCollection.models);
+
+          });
 
       }
-
-      PatternPage.prototype.add = function(t) {
-
-          console.log("PatternPage add",t);
-
-      }
-
 
 
       window.PatternPage = PatternPage;
@@ -820,14 +851,14 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
       PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
 
-      PlusPage.prototype.mezzData;
+
 
 
       PlusPage.prototype.initialize = function() {
           this.Container_initialize();
       };
 
-
+      PlusPage.prototype.mezzData;
       PlusPage.prototype.init = function(dataSet,mezzData) {
 
           this.mezzData=mezzData;
@@ -839,24 +870,27 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
           list.y=170;
           list.x=80;
 
+          this.addToMezz = _.bind( this.addToMezz, this );
 
-          //this.trigger("YOYO",e)
-
-          //p.theArr = [];
+          var that=this
 
 
           for ( var i = 0; i < list.theArr.length; i++) {
 
-              var t = list.theArr[i]
-              t.on("YOYO", function(e) {
+              var t = list.theArr[i];
 
-                  console.log("xx", e.target.parent);
-
+              t.on("YOYO", function(e){
+                  that.addToMezz(e.target.parent.data);
               })
 
           }
 
+      }
 
+      PlusPage.prototype.addToMezz = function(data) {
+          console.log("xx", data);
+
+          this.mezzData.add(data)
 
 
       }
@@ -909,7 +943,7 @@ window.require.define({"classes/temp/MyClass": function(exports, require, module
 
   // self-instantiating "constructor" function
       var initialize = (function() {
-          console.log('Initialized');
+          //console.log('Initialized');
       })();
 
   // private functions
@@ -1357,7 +1391,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           for ( var i = 0; i < 20; i++) {
               var m = new MainBtnModel();
               mainBtnCollection.add(m);
-              m.set({setLabel:""+i})
+              m.set({setLabel:""+i, setColor:i*10})
           }
 
           var MezzData = Backbone.Collection.extend({
@@ -1421,7 +1455,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Ticker.addListener(this);
           Ticker.setFPS(40);
 
-  //        this.stage.alpha=0.3;
+          this.stage.alpha=0.3;
 
       },
 

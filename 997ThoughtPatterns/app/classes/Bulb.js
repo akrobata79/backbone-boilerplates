@@ -58,7 +58,7 @@
 
     p.revert = function() {
 
-        console.log("revert",this);
+        ////console.log("revert",this);
         this.justReverted=true;
         // this.setState(this.prevState);
 
@@ -75,7 +75,7 @@
 
 
     p.onPress = function(e) {
-        console.log("qqq");
+        ////console.log("qqq");
         this.reportInteraction(e);
     }
 

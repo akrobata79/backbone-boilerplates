@@ -10,19 +10,38 @@ require('classes/SElementBulbRow');
     PatternPage.prototype = new Container();
     PatternPage.prototype.Container_initialize = PatternPage.prototype.initialize;
 
+
+
+
     PatternPage.prototype.initialize = function() {
+        this.Container_initialize();
 
     };
 
+    PatternPage.prototype.patternRowCollection;
+    PatternPage.prototype.mezzData;
+
+
     PatternPage.prototype.init = function(dataSet) {
 
-        this.Container_initialize();
+        this.mezzData=dataSet;
 
         var list = new RFScrollableList();
         this.addChild(list);
 
+        var BulbModel = Backbone.Model.extend({
+            defaults: {setLabel:"NONE",setColor:0}
+        });
+
+        var BulbCollection = Backbone.Collection.extend({
+            model : BulbModel
+        });
 
         var PatternRowModel = Backbone.Model.extend({
+
+            initialize : function() {
+                this.bulbCollection = new BulbCollection;
+            }
 
         });
 
@@ -30,32 +49,38 @@ require('classes/SElementBulbRow');
             model : PatternRowModel
         });
 
-        console.log("6");
+        this.patternRowCollection = new PatternRowCollection();
 
-        var patternRowCollection = new PatternRowCollection();
-
-        for ( var i = 0; i < 20; i++) {
+        for ( var i = 0; i < 7; i++) {
             var m = new PatternRowModel();
-            patternRowCollection.add(m);
-            // m.set()
-            m.set({})
+            this.patternRowCollection.add(m);
+
+
+            for ( var j = 0; j < 8; j++) {
+                var mB = new BulbModel();
+                m.bulbCollection.add(mB);
+            }
+
+            console.log(">>",this.patternRowCollection.models);
+
         }
 
-
-        console.log("8");
-        list.init("y",SElementBulbRow,{w:74*8,h:74},9,patternRowCollection);
+        list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection);
         list.y=170;
         list.x=13;
 
+        var that=this
+
+        this.mezzData.on("add", function(ship) {
+
+           // console.log("ship",ship);
+           // console.log(that.mezzData);
+
+            console.log("that.patternRowCollection[0]",that.patternRowCollection.models);
+
+        });
 
     }
-
-    PatternPage.prototype.add = function(t) {
-
-        console.log("PatternPage add",t);
-
-    }
-
 
 
     window.PatternPage = PatternPage;

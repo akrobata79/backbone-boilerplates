@@ -44,7 +44,7 @@
 
         if (e.type=="onClick") {
 
-            console.log("new shit");
+            //console.log("new shit");
 
             //update the other collection
 
@@ -81,7 +81,7 @@
 ////        this.text.text=label;
 //        this.cache(0,0,472,96);
 //
-//        console.log("temp");
+//        //console.log("temp");
 //    }
 
 
@@ -102,7 +102,7 @@
 //    p.initialize = function() {
 //        this.Container_initialize();
 //
-//        console.log("RFScrollableElement");
+//        //console.log("RFScrollableElement");
 //    }
 //
 //    window.RFScrollableElement = RFScrollableElement;

@@ -37,13 +37,13 @@
 
     p.setData = function(data) {
 
-        console.log("data",data);
+      //  console.log("data",data);
         this.data=data;
     }
 
     p.enable = function(t) {
 
-        console.log("ttttt",t);
+     //   console.log("ttttt",t);
 
     }
 

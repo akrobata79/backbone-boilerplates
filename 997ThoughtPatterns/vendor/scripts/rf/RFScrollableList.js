@@ -64,13 +64,9 @@
     p.allowScroll=true;
 
     p.speedCap;
-
     p.mainContainer;
-
     p.background;
-
     p.currentRevert;
-
 
 
     p.init = function( targetProp,
@@ -96,7 +92,7 @@
         this.upperBorder = -size.h;
         this.lowerBorder = this.height;
 
-        ////console.log("this.lowerBorder",this.lowerBorder);
+        //////console.log("this.lowerBorder",this.lowerBorder);
 
         this.howMany=howMany
 
@@ -119,15 +115,15 @@
         this.rail.setSize(100,this.dataSet.length*this.elementSize.h);
 
 
-        ////console.log("this.dataSet.length",this.dataSet.length);
+        //////console.log("this.dataSet.length",this.dataSet.length);
         var hm = this.dataSet.length;
         for ( var i = 0; i < hm; i++) {
-            ////console.log("o");
+            //////console.log("o");
             this.indexArr.push(-i*  size.h)//this.elementSize.h);
         }
 
-        ////console.log("this.elementSize.h",this.elementSize.h);
-        ////console.log("this.indexArr",this.indexArr);
+        //////console.log("this.elementSize.h",this.elementSize.h);
+        //////console.log("this.indexArr",this.indexArr);
 
         for ( var i = 0; i < howMany+1; i++) {
             var t = new targetClass();
@@ -136,12 +132,12 @@
             t.setSize(size.w,size.h)
             t.y=size.h*i;
 
-//console.log("2");
+////console.log("2");
 
             t.setSetters( this.dataSet.models[i].attributes );
             t.setData(this.dataSet.models[i])
 
-            console.log("3",this.dataSet.models[i]);
+            //console.log("3",this.dataSet.models[i]);
 
             t.offset=0;
             this.theArr.push(t);

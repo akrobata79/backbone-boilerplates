@@ -11,16 +11,16 @@ RFNav = (function() {
     var _currSelected;
 
     var initialize = (function() {
-        console.log('Initialized');
+        //console.log('Initialized');
     })();
 
     function show() {
-        console.log("show");
+        //console.log("show");
         // show view
     };
 
     function hide() {
-        console.log("hide");
+        //console.log("hide");
         // hide view
     };
 
@@ -66,7 +66,7 @@ RFNav = (function() {
 
             _curtain.do();
 
-            console.log("_pageEvent",_pageEvent);
+            //console.log("_pageEvent",_pageEvent);
             EventBus.dispatch(_pageEvent,this);
 
         },

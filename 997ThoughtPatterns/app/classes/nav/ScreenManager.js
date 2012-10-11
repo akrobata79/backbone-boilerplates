@@ -66,7 +66,7 @@
     }
 
     ScreenManager.prototype.onNavEvent = function(e) {
-        console.log("onNavEvent", e.target.getCurrSelected(),this);
+        //console.log("onNavEvent", e.target.getCurrSelected(),this);
         this.setPage(e.target.getCurrSelected())
     }
 

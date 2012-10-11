@@ -115,7 +115,7 @@ module.exports = View.extend({
         for ( var i = 0; i < 20; i++) {
             var m = new MainBtnModel();
             mainBtnCollection.add(m);
-            m.set({setLabel:""+i})
+            m.set({setLabel:""+i, setColor:i*10})
         }
 
         var MezzData = Backbone.Collection.extend({
@@ -179,7 +179,7 @@ module.exports = View.extend({
         Ticker.addListener(this);
         Ticker.setFPS(40);
 
-//        this.stage.alpha=0.3;
+        this.stage.alpha=0.3;
 
     },
 

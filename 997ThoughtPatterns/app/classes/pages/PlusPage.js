@@ -12,14 +12,14 @@ require('classes/SElementMainBtn');
 
     PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
 
-    PlusPage.prototype.mezzData;
+
 
 
     PlusPage.prototype.initialize = function() {
         this.Container_initialize();
     };
 
-
+    PlusPage.prototype.mezzData;
     PlusPage.prototype.init = function(dataSet,mezzData) {
 
         this.mezzData=mezzData;
@@ -31,24 +31,27 @@ require('classes/SElementMainBtn');
         list.y=170;
         list.x=80;
 
+        this.addToMezz = _.bind( this.addToMezz, this );
 
-        //this.trigger("YOYO",e)
-
-        //p.theArr = [];
+        var that=this
 
 
         for ( var i = 0; i < list.theArr.length; i++) {
 
-            var t = list.theArr[i]
-            t.on("YOYO", function(e) {
+            var t = list.theArr[i];
 
-                console.log("xx", e.target.parent);
-
+            t.on("YOYO", function(e){
+                that.addToMezz(e.target.parent.data);
             })
 
         }
 
+    }
 
+    PlusPage.prototype.addToMezz = function(data) {
+        console.log("xx", data);
+
+        this.mezzData.add(data)
 
 
     }

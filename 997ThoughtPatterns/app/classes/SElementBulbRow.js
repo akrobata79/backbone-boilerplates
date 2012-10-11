@@ -15,7 +15,11 @@ require('classes/Bulb');
 
     p.color;
 
+    p.dataSet
+
     p.init = function() {
+
+        this.dataSet=[]
 
 //74x74
 
@@ -23,14 +27,16 @@ require('classes/Bulb');
 
         for ( var i = 0; i < 8; i++) {
 
-            console.log("9");
-
             var temp = new Bulb();
             temp.init();
             this.addChild(temp)
 
             temp.x = 74*i;
             temp.reportInteraction = this.passInteraction;
+
+            this.dataSet.push(temp);
+
+//            console.log("this.dataSet",this.dataSet.length);
 
         }
 
@@ -76,7 +82,7 @@ require('classes/Bulb');
 //    p.initialize = function() {
 //        this.Container_initialize();
 //
-//        console.log("RFScrollableElement");
+//        //console.log("RFScrollableElement");
 //    }
 //
 //    window.RFScrollableElement = RFScrollableElement;
