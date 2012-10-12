@@ -103,7 +103,7 @@ module.exports = View.extend({
 
 
         var MainBtnModel = Backbone.Model.extend({
-            defaults: {setLabel:"BEDZIE OK",setColor:11}
+            defaults: {setLabel:"BEDZIE OK",setColor:111}
         });
 
         var MainBtnCollection = Backbone.Collection.extend({

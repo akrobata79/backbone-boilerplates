@@ -146,6 +146,8 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.gr;
 
+      p.data
+
       p.init = function() {
 
           this.bottom = new Bitmap("images/bulbBack.png");
@@ -173,16 +175,30 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
           this.gr.clear()
 
-          this.gr.beginFill(Graphics.getHSL(211,100,50,0.45));
+          this.gr.beginFill(Graphics.getHSL(n,100,50,0.45));
           this.gr.drawCircle(0,0,47/2);
 
 
       }
 
+      p.setData = function (data) {
+          this.data=data;
+          console.log("bulb setData should change view",data.attributes.setColor);
 
 
 
 
+          this.data.bind('change', this.updateView, this);
+          // on change should change kuzwa
+          //this.data
+
+      }
+
+
+      p.updateView = function() {
+          this.setColor(this.data.attributes.setColor);
+          console.log("caught");
+      }
 
       p.revert = function() {
 
@@ -197,6 +213,8 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
           if(!this.justReverted) {
               this.reportInteraction(e);
               this.justReverted=false;
+
+              console.log("important bulb clicked");
           }
 
       }
@@ -233,11 +251,11 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
       p.color;
 
-      p.dataSet
+      p.bulbSet;
 
       p.init = function() {
 
-          this.dataSet=[]
+          this.bulbSet=[];
 
   //74x74
 
@@ -247,17 +265,38 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
               var temp = new Bulb();
               temp.init();
-              this.addChild(temp)
+              this.addChild(temp);
 
               temp.x = 74*i;
               temp.reportInteraction = this.passInteraction;
 
-              this.dataSet.push(temp);
+              this.bulbSet.push(temp);
 
   //            console.log("this.dataSet",this.dataSet.length);
 
           }
 
+  //            console.log("this.dataSet",this.dataSet);
+      };
+
+      p.populateRow = function() {
+
+          console.log("should populate row",this.data);
+
+          for ( var i = 0; i < 8; i++) {
+              var t = this.bulbSet[i];
+              t.setData(this.data.bulbCollection.models[i])
+          }
+
+      }
+
+  //    example of how to override using super
+
+      p.sup_setData = p.setData;
+      p.setData = function(data) {
+          this.sup_setData(data);
+          console.log("setData");
+          this.populateRow();
 
       };
 
@@ -743,17 +782,12 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
       PatternPage.prototype = new Container();
       PatternPage.prototype.Container_initialize = PatternPage.prototype.initialize;
 
-
-
-
       PatternPage.prototype.initialize = function() {
           this.Container_initialize();
-
       };
 
       PatternPage.prototype.patternRowCollection;
       PatternPage.prototype.mezzData;
-
 
       PatternPage.prototype.init = function(dataSet) {
 
@@ -763,7 +797,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
           this.addChild(list);
 
           var BulbModel = Backbone.Model.extend({
-              defaults: {setLabel:"NONE",setColor:0}
+              defaults: {setLabel:"NONE",setColor:10}
           });
 
           var BulbCollection = Backbone.Collection.extend({
@@ -771,11 +805,9 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
           });
 
           var PatternRowModel = Backbone.Model.extend({
-
               initialize : function() {
                   this.bulbCollection = new BulbCollection;
               }
-
           });
 
           var PatternRowCollection = Backbone.Collection.extend({
@@ -784,10 +816,10 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           this.patternRowCollection = new PatternRowCollection();
 
-          for ( var i = 0; i < 7; i++) {
+          for ( var i = 0; i < 10; i++) {
+
               var m = new PatternRowModel();
               this.patternRowCollection.add(m);
-
 
               for ( var j = 0; j < 8; j++) {
                   var mB = new BulbModel();
@@ -798,20 +830,31 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           }
 
-          list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection);
+          list.init("y",SElementBulbRow,{w:74*8,h:74},5,this.patternRowCollection);
           list.y=170;
           list.x=13;
 
-          var that=this
+          var that=this;
 
           this.mezzData.on("add", function(ship) {
 
-             // console.log("ship",ship);
-             // console.log(that.mezzData);
+              console.log("ship",ship);
+              // console.log(that.mezzData);
 
-              console.log("that.patternRowCollection[0]",that.patternRowCollection.models);
+  //            collection.at(index)
+
+              var t = that.patternRowCollection.at(0).bulbCollection.at(0)
+              t.set({color:0});
+
+              console.log("that.patternRowCollection[0] #",t);
+
+
+              //znajdz ktora lampka
+              //przekaz jej ship
 
           });
+
+
 
       }
 
@@ -1379,7 +1422,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
 
           var MainBtnModel = Backbone.Model.extend({
-              defaults: {setLabel:"BEDZIE OK",setColor:11}
+              defaults: {setLabel:"BEDZIE OK",setColor:111}
           });
 
           var MainBtnCollection = Backbone.Collection.extend({

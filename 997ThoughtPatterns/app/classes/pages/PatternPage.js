@@ -10,17 +10,12 @@ require('classes/SElementBulbRow');
     PatternPage.prototype = new Container();
     PatternPage.prototype.Container_initialize = PatternPage.prototype.initialize;
 
-
-
-
     PatternPage.prototype.initialize = function() {
         this.Container_initialize();
-
     };
 
     PatternPage.prototype.patternRowCollection;
     PatternPage.prototype.mezzData;
-
 
     PatternPage.prototype.init = function(dataSet) {
 
@@ -30,7 +25,7 @@ require('classes/SElementBulbRow');
         this.addChild(list);
 
         var BulbModel = Backbone.Model.extend({
-            defaults: {setLabel:"NONE",setColor:0}
+            defaults: {setLabel:"NONE",setColor:10}
         });
 
         var BulbCollection = Backbone.Collection.extend({
@@ -38,11 +33,9 @@ require('classes/SElementBulbRow');
         });
 
         var PatternRowModel = Backbone.Model.extend({
-
             initialize : function() {
                 this.bulbCollection = new BulbCollection;
             }
-
         });
 
         var PatternRowCollection = Backbone.Collection.extend({
@@ -51,10 +44,10 @@ require('classes/SElementBulbRow');
 
         this.patternRowCollection = new PatternRowCollection();
 
-        for ( var i = 0; i < 7; i++) {
+        for ( var i = 0; i < 10; i++) {
+
             var m = new PatternRowModel();
             this.patternRowCollection.add(m);
-
 
             for ( var j = 0; j < 8; j++) {
                 var mB = new BulbModel();
@@ -65,20 +58,31 @@ require('classes/SElementBulbRow');
 
         }
 
-        list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection);
+        list.init("y",SElementBulbRow,{w:74*8,h:74},5,this.patternRowCollection);
         list.y=170;
         list.x=13;
 
-        var that=this
+        var that=this;
 
         this.mezzData.on("add", function(ship) {
 
-           // console.log("ship",ship);
-           // console.log(that.mezzData);
+            console.log("ship",ship);
+            // console.log(that.mezzData);
 
-            console.log("that.patternRowCollection[0]",that.patternRowCollection.models);
+//            collection.at(index)
+
+            var t = that.patternRowCollection.at(0).bulbCollection.at(0)
+            t.set({color:0});
+
+            console.log("that.patternRowCollection[0] #",t);
+
+
+            //znajdz ktora lampka
+            //przekaz jej ship
 
         });
+
+
 
     }
 

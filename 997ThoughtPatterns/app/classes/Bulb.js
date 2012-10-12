@@ -18,6 +18,8 @@
 
     p.gr;
 
+    p.data
+
     p.init = function() {
 
         this.bottom = new Bitmap("images/bulbBack.png");
@@ -45,16 +47,30 @@
 
         this.gr.clear()
 
-        this.gr.beginFill(Graphics.getHSL(211,100,50,0.45));
+        this.gr.beginFill(Graphics.getHSL(n,100,50,0.45));
         this.gr.drawCircle(0,0,47/2);
 
 
     }
 
+    p.setData = function (data) {
+        this.data=data;
+        console.log("bulb setData should change view",data.attributes.setColor);
 
 
 
 
+        this.data.bind('change', this.updateView, this);
+        // on change should change kuzwa
+        //this.data
+
+    }
+
+
+    p.updateView = function() {
+        this.setColor(this.data.attributes.setColor);
+        console.log("caught");
+    }
 
     p.revert = function() {
 
@@ -69,6 +85,8 @@
         if(!this.justReverted) {
             this.reportInteraction(e);
             this.justReverted=false;
+
+            console.log("important bulb clicked");
         }
 
     }

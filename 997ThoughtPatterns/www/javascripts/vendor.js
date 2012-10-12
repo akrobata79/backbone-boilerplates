@@ -20972,7 +20972,7 @@ var RF = {};;
             t.setSize(size.w,size.h)
             t.y=size.h*i;
 
-////console.log("2");
+
 
             t.setSetters( this.dataSet.models[i].attributes );
             t.setData(this.dataSet.models[i])

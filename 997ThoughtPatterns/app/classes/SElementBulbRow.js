@@ -15,11 +15,11 @@ require('classes/Bulb');
 
     p.color;
 
-    p.dataSet
+    p.bulbSet;
 
     p.init = function() {
 
-        this.dataSet=[]
+        this.bulbSet=[];
 
 //74x74
 
@@ -29,17 +29,38 @@ require('classes/Bulb');
 
             var temp = new Bulb();
             temp.init();
-            this.addChild(temp)
+            this.addChild(temp);
 
             temp.x = 74*i;
             temp.reportInteraction = this.passInteraction;
 
-            this.dataSet.push(temp);
+            this.bulbSet.push(temp);
 
 //            console.log("this.dataSet",this.dataSet.length);
 
         }
 
+//            console.log("this.dataSet",this.dataSet);
+    };
+
+    p.populateRow = function() {
+
+        console.log("should populate row",this.data);
+
+        for ( var i = 0; i < 8; i++) {
+            var t = this.bulbSet[i];
+            t.setData(this.data.bulbCollection.models[i])
+        }
+
+    }
+
+//    example of how to override using super
+
+    p.sup_setData = p.setData;
+    p.setData = function(data) {
+        this.sup_setData(data);
+        console.log("setData");
+        this.populateRow();
 
     };
 
