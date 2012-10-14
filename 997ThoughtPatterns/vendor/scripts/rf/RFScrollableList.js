@@ -171,7 +171,7 @@
         this.theShape.graphics.closePath();
         this.theShape.graphics.endFill();
 
-//        this.mainContainer.mask = this.theShape;
+        this.mainContainer.mask = this.theShape;
 
         RF.stage.onMouseMove = null;
         RF.stage.onMouseUp= null;
@@ -197,9 +197,7 @@
 
     p.onPresso = function(e) {
 
-        ////console.log("onPresso",e, this);
-
-//        e.target.revert();
+        console.log("onPresso",e, this);
 
         this.currentRevert = e.target;
 
@@ -208,6 +206,8 @@
 
         this.isDragging = true;
         this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
+
+//        e.target.revert();
     };
 
     p.onMouseUpo = function(e) {
@@ -216,6 +216,10 @@
 
         RF.stage.onMouseMove=null
         RF.stage.onMouseUp=null
+
+        this.currentRevert = e.target;
+
+
     }
 
     p.onMouseMove = function(e) {
@@ -225,6 +229,7 @@
         if(this.currentRevert) {
             this.currentRevert.revert();
             this.currentRevert=null;
+
         }
 
         if(this.isDragging) {

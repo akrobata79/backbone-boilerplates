@@ -51,8 +51,12 @@
 
     RFButtonBitmap.prototype.revert = function() {
 
-        //console.log("revert",this);
+        console.log("revert",this);
         this.justReverted=true;
+
+
+//        this.setState(this.prevState);
+
         this.setState(this.prevState);
 
     }
@@ -65,6 +69,8 @@
 
     RFButtonBitmap.prototype.click = function(e) {
 
+        console.log("click>this.justReverted",this.justReverted);
+
         if(!this.toggleBtn && this.radioBtn!=true) {
 
             if(e.type=='onClick' && !this.justReverted) {
@@ -75,12 +81,16 @@
                 this.setState(1);
                 if(this.eventName) EventBus.dispatch(this.eventName,this);
 
+                console.log("inside");
+
             };
 
             if(e.type=='onPress') {
-                //console.log("onpress *");
+                console.log("onpress *");
                 this.setState(2);
                 this.reportInteraction(e);
+
+                this.justReverted=false;
             };
 
 
@@ -113,6 +123,8 @@
     }
 
     RFButtonBitmap.prototype.setState = function(stateNo) {
+
+
 
         this.prevState = this.stateNo;
         this.stateNo=stateNo;

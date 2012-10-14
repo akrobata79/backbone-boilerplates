@@ -20680,8 +20680,12 @@ var RF = {};;
 
     RFButtonBitmap.prototype.revert = function() {
 
-        //console.log("revert",this);
+        console.log("revert",this);
         this.justReverted=true;
+
+
+//        this.setState(this.prevState);
+
         this.setState(this.prevState);
 
     }
@@ -20694,6 +20698,8 @@ var RF = {};;
 
     RFButtonBitmap.prototype.click = function(e) {
 
+        console.log("click>this.justReverted",this.justReverted);
+
         if(!this.toggleBtn && this.radioBtn!=true) {
 
             if(e.type=='onClick' && !this.justReverted) {
@@ -20704,12 +20710,16 @@ var RF = {};;
                 this.setState(1);
                 if(this.eventName) EventBus.dispatch(this.eventName,this);
 
+                console.log("inside");
+
             };
 
             if(e.type=='onPress') {
-                //console.log("onpress *");
+                console.log("onpress *");
                 this.setState(2);
                 this.reportInteraction(e);
+
+                this.justReverted=false;
             };
 
 
@@ -20742,6 +20752,8 @@ var RF = {};;
     }
 
     RFButtonBitmap.prototype.setState = function(stateNo) {
+
+
 
         this.prevState = this.stateNo;
         this.stateNo=stateNo;
@@ -21011,7 +21023,7 @@ var RF = {};;
         this.theShape.graphics.closePath();
         this.theShape.graphics.endFill();
 
-//        this.mainContainer.mask = this.theShape;
+        this.mainContainer.mask = this.theShape;
 
         RF.stage.onMouseMove = null;
         RF.stage.onMouseUp= null;
@@ -21037,9 +21049,7 @@ var RF = {};;
 
     p.onPresso = function(e) {
 
-        ////console.log("onPresso",e, this);
-
-//        e.target.revert();
+        console.log("onPresso",e, this);
 
         this.currentRevert = e.target;
 
@@ -21048,6 +21058,8 @@ var RF = {};;
 
         this.isDragging = true;
         this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
+
+//        e.target.revert();
     };
 
     p.onMouseUpo = function(e) {
@@ -21056,6 +21068,10 @@ var RF = {};;
 
         RF.stage.onMouseMove=null
         RF.stage.onMouseUp=null
+
+        this.currentRevert = e.target;
+
+
     }
 
     p.onMouseMove = function(e) {
@@ -21065,6 +21081,7 @@ var RF = {};;
         if(this.currentRevert) {
             this.currentRevert.revert();
             this.currentRevert=null;
+
         }
 
         if(this.isDragging) {

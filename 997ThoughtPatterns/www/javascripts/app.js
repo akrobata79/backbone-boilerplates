@@ -394,7 +394,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
 
       };
 
-      p.setLabel=function(label){
+      p.setLabel=function(label) {
           this.text.text=label;
       }
 
