@@ -51,7 +51,7 @@
 
     RFButtonBitmap.prototype.revert = function() {
 
-        console.log("revert",this);
+        //console.log("revert",this);
         this.justReverted=true;
         this.setState(this.prevState);
 
@@ -59,7 +59,7 @@
 
     RFButtonBitmap.prototype.reportInteraction = function(e) {
 
-        console.log("super");
+        //console.log("super");
 
     }
 
@@ -78,7 +78,7 @@
             };
 
             if(e.type=='onPress') {
-                console.log("onpress *");
+                //console.log("onpress *");
                 this.setState(2);
                 this.reportInteraction(e);
             };
@@ -98,7 +98,7 @@
 
         if(this.radioBtn==true) {
 
-            //console.log("first here");
+            ////console.log("first here");
             if(e.type=='onPress') {
 
                 if(this.stateNo==1) {

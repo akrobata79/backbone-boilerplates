@@ -54,7 +54,7 @@ require('classes/SElementBulbRow');
                 m.bulbCollection.add(mB);
             }
 
-            console.log(">>",this.patternRowCollection.models);
+            ////console.log(">>",this.patternRowCollection.models);
 
         }
 
@@ -66,22 +66,20 @@ require('classes/SElementBulbRow');
 
         this.mezzData.on("add", function(ship) {
 
-            console.log("ship",ship);
-            // console.log(that.mezzData);
+            var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length)
 
-//            collection.at(index)
+            t.set({setColor:ship.get('setColor')});
 
-            var t = that.patternRowCollection.at(0).bulbCollection.at(0)
-            t.set({color:0});
-
-            console.log("that.patternRowCollection[0] #",t);
-
+            console.log("!", that.patternRowCollection.at(0).cid);
 
             //znajdz ktora lampka
             //przekaz jej ship
 
         });
 
+        PatternPage.prototype.updateView2 =function(e) {
+            ////console.log("!!!!!!!!!!");
+        }
 
 
     }

@@ -36,21 +36,33 @@ require('classes/Bulb');
 
             this.bulbSet.push(temp);
 
-//            console.log("this.dataSet",this.dataSet.length);
+//            ////console.log("this.dataSet",this.dataSet.length);
 
         }
 
-//            console.log("this.dataSet",this.dataSet);
+        // this.data.bind('change', this.updateView, this);
+
+//            ////console.log("this.dataSet",this.dataSet);
     };
 
     p.populateRow = function() {
 
-        console.log("should populate row",this.data);
+
+        ////console.log("should populate row",this.data);
+
+//        console.log("",);
+
+        var printRow=new Array()
 
         for ( var i = 0; i < 8; i++) {
             var t = this.bulbSet[i];
-            t.setData(this.data.bulbCollection.models[i])
+            var g = this.data.bulbCollection.models[i]
+            t.setData(g);
+            printRow.push(g.get("setColor"))
+
         }
+
+        console.log("populating",printRow,this.data.cid );
 
     }
 
@@ -58,11 +70,20 @@ require('classes/Bulb');
 
     p.sup_setData = p.setData;
     p.setData = function(data) {
+
         this.sup_setData(data);
-        console.log("setData");
-        this.populateRow();
+        this.data.bulbCollection.bind('change', this.updateView, this);
+       this.populateRow();
+
+        console.log("data",this.data.cid,this.data.bulbCollection);
 
     };
+
+    p.updateView = function(e) {
+        //this.setColor(this.data.attributes.setColor);
+        ////console.log("caught 2!",e);
+       // this.populateRow();
+    }
 
 
 
@@ -103,7 +124,7 @@ require('classes/Bulb');
 //    p.initialize = function() {
 //        this.Container_initialize();
 //
-//        //console.log("RFScrollableElement");
+//        //////console.log("RFScrollableElement");
 //    }
 //
 //    window.RFScrollableElement = RFScrollableElement;

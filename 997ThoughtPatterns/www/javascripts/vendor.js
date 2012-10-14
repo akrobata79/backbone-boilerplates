@@ -20680,7 +20680,7 @@ var RF = {};;
 
     RFButtonBitmap.prototype.revert = function() {
 
-        console.log("revert",this);
+        //console.log("revert",this);
         this.justReverted=true;
         this.setState(this.prevState);
 
@@ -20688,7 +20688,7 @@ var RF = {};;
 
     RFButtonBitmap.prototype.reportInteraction = function(e) {
 
-        console.log("super");
+        //console.log("super");
 
     }
 
@@ -20707,7 +20707,7 @@ var RF = {};;
             };
 
             if(e.type=='onPress') {
-                console.log("onpress *");
+                //console.log("onpress *");
                 this.setState(2);
                 this.reportInteraction(e);
             };
@@ -20727,7 +20727,7 @@ var RF = {};;
 
         if(this.radioBtn==true) {
 
-            //console.log("first here");
+            ////console.log("first here");
             if(e.type=='onPress') {
 
                 if(this.stateNo==1) {
@@ -20801,7 +20801,7 @@ var RF = {};;
     p.setSetters = function(props) {
 
 
-//        console.log("props",props);
+//        //console.log("props",props);
 
         _.each(
             props,
@@ -20817,19 +20817,19 @@ var RF = {};;
 
     p.setData = function(data) {
 
-      //  console.log("data",data);
+      //  //console.log("data",data);
         this.data=data;
     }
 
     p.enable = function(t) {
 
-     //   console.log("ttttt",t);
+     //   //console.log("ttttt",t);
 
     }
 
     p.passInteraction = function(e) {
 
-        console.log("passInteraction >> ",e);
+        //console.log("passInteraction >> ",e);
         this.trigger("YOYO",e)
 
     }
@@ -20932,7 +20932,7 @@ var RF = {};;
         this.upperBorder = -size.h;
         this.lowerBorder = this.height;
 
-        //////console.log("this.lowerBorder",this.lowerBorder);
+        ////////console.log("this.lowerBorder",this.lowerBorder);
 
         this.howMany=howMany
 
@@ -20955,15 +20955,15 @@ var RF = {};;
         this.rail.setSize(100,this.dataSet.length*this.elementSize.h);
 
 
-        //////console.log("this.dataSet.length",this.dataSet.length);
+        ////////console.log("this.dataSet.length",this.dataSet.length);
         var hm = this.dataSet.length;
         for ( var i = 0; i < hm; i++) {
-            //////console.log("o");
+            ////////console.log("o");
             this.indexArr.push(-i*  size.h)//this.elementSize.h);
         }
 
-        //////console.log("this.elementSize.h",this.elementSize.h);
-        //////console.log("this.indexArr",this.indexArr);
+        ////////console.log("this.elementSize.h",this.elementSize.h);
+        ////////console.log("this.indexArr",this.indexArr);
 
         for ( var i = 0; i < howMany+1; i++) {
             var t = new targetClass();
@@ -20977,7 +20977,7 @@ var RF = {};;
             t.setSetters( this.dataSet.models[i].attributes );
             t.setData(this.dataSet.models[i])
 
-            //console.log("3",this.dataSet.models[i]);
+            ////console.log("3",this.dataSet.models[i]);
 
             t.offset=0;
             this.theArr.push(t);
@@ -20990,7 +20990,7 @@ var RF = {};;
                     }
 
                     if(e.type=="onClick") {
-                        //console.log("klik!");
+                        ////console.log("klik!");
                     }
 
 
@@ -20999,7 +20999,7 @@ var RF = {};;
 
         }
 
-        //console.log("4");
+        ////console.log("4");
 
         this.theShape  = new createjs.Shape();
         this.theShape.graphics.clear();
@@ -21011,7 +21011,7 @@ var RF = {};;
         this.theShape.graphics.closePath();
         this.theShape.graphics.endFill();
 
-        this.mainContainer.mask = this.theShape;
+//        this.mainContainer.mask = this.theShape;
 
         RF.stage.onMouseMove = null;
         RF.stage.onMouseUp= null;
@@ -21019,13 +21019,13 @@ var RF = {};;
         Ticker.addListener(this);
 
 //        this.dataSet.on("add", function(msg) {
-//            ////console.log(">>>>> got it ",this.dataSet.length);
+//            //////console.log(">>>>> got it ",this.dataSet.length);
 //
 //            this.theArr[0].setSetters( this.dataSet.models[10].attributes );
 //
 //        },this);
 
-//        ////console.log("this.height",this.height);
+//        //////console.log("this.height",this.height);
 
 
 
@@ -21037,7 +21037,7 @@ var RF = {};;
 
     p.onPresso = function(e) {
 
-        //console.log("onPresso",e, this);
+        ////console.log("onPresso",e, this);
 
 //        e.target.revert();
 
@@ -21060,7 +21060,7 @@ var RF = {};;
 
     p.onMouseMove = function(e) {
 
-        ////console.log("onMouseMove");
+        //////console.log("onMouseMove");
 
         if(this.currentRevert) {
             this.currentRevert.revert();
@@ -21109,7 +21109,7 @@ var RF = {};;
 
     p.handleMove = function() {
 
-//        ////console.log("this.elementSize.h",this.elementSize.h);
+//        //////console.log("this.elementSize.h",this.elementSize.h);
 
         if (this.rail.y > 0) {
             this.rail.y=0;
@@ -21139,10 +21139,10 @@ var RF = {};;
 
     p.setIndex = function(inn,where,t,i) {
 
-        //console.log("1");
+        //console.log("###",this.index+this.howMany);
 
-        //   ////console.log("this.dataSet.models[this.index]",this.dataSet,this.index);
-        //   ////console.log("ZZZ",this.dataSet.models[this.index].attributes);
+        //   //////console.log("this.dataSet.models[this.index]",this.dataSet,this.index);
+        //   //////console.log("ZZZ",this.dataSet.models[this.index].attributes);
 
         this.index=inn;
         if(where==this.upperBorder) {
@@ -21155,7 +21155,7 @@ var RF = {};;
            this.theArr[i].setData(this.dataSet.models[this.index])
         }
 
-//        ////console.log("end");
+//        //////console.log("end");
     }
 
     window.RFScrollableList = RFScrollableList;

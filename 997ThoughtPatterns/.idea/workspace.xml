@@ -17,25 +17,6 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Bulb.js" pinned="false" current="true" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/app/classes/Bulb.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state line="67" column="0" selection-start="1265" selection-end="1265" vertical-scroll-proportion="0.55831265">
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="app">
@@ -47,13 +28,13 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4153515">
+    <splitter split-orientation="horizontal" split-proportion="0.46210876">
       <split-first>
         <leaf>
           <file leaf-file-name="HomeView.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/HomeView.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="98" column="48" selection-start="2260" selection-end="2260" vertical-scroll-proportion="32.423077">
+                <state line="102" column="0" selection-start="2320" selection-end="2320" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -62,7 +43,7 @@
           <file leaf-file-name="PlusPage.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/classes/pages/PlusPage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="0" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
+                <state line="57" column="8" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -71,7 +52,25 @@
           <file leaf-file-name="SElementBulbRow.js" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/classes/SElementBulbRow.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="53" column="0" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.56802243">
+                <state line="76" column="0" selection-start="1545" selection-end="1545" vertical-scroll-proportion="0.77729255">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RFScrollableList.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="174" column="0" selection-start="3819" selection-end="3819" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RFButtonBitmap.js" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="72" column="0" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -80,7 +79,7 @@
           <file leaf-file-name="SElementMainBtn.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/classes/SElementMainBtn.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="61" column="0" selection-start="1130" selection-end="1279" vertical-scroll-proportion="0.0">
+                <state line="46" column="14" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -90,10 +89,19 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="PatternPage.js" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="Bulb.js" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/classes/Bulb.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="72" column="27" selection-start="1417" selection-end="1417" vertical-scroll-proportion="1.7166901">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PatternPage.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/classes/pages/PatternPage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="74" column="14" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.70285714">
+                <state line="72" column="60" selection-start="1916" selection-end="1916" vertical-scroll-proportion="-13.384615">
                   <folding />
                 </state>
               </provider>
@@ -102,16 +110,7 @@
           <file leaf-file-name="RFScrollableElement.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableElement.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="RFScrollableList.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="134" column="0" selection-start="2733" selection-end="2733" vertical-scroll-proportion="0.0">
+                <state line="23" column="10" selection-start="466" selection-end="466" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -129,21 +128,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/classes/PatternPage.js" />
         <option value="$PROJECT_DIR$/app/classes/LightBulbScrollableElements.js" />
         <option value="$PROJECT_DIR$/app/classes/ScreenManager.js" />
         <option value="$PROJECT_DIR$/app/classes/PlusPageButtons.js" />
-        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js" />
         <option value="$PROJECT_DIR$/app/assets/index.html" />
-        <option value="$PROJECT_DIR$/app/classes/pages/InfoPage.js" />
-        <option value="$PROJECT_DIR$/app/classes/nav/ScreenManager.js" />
-        <option value="$PROJECT_DIR$/app/classes/SElementMainBtn.js" />
-        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFScrollableElement.js" />
-        <option value="$PROJECT_DIR$/app/classes/pages/PlusPage.js" />
-        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js" />
         <option value="$PROJECT_DIR$/app/views/HomeView.js" />
-        <option value="$PROJECT_DIR$/app/classes/SElementBulbRow.js" />
+        <option value="$PROJECT_DIR$/app/classes/SElementMainBtn.js" />
+        <option value="$PROJECT_DIR$/app/classes/nav/RFNav.js" />
+        <option value="$PROJECT_DIR$/app/classes/nav/ScreenManager.js" />
+        <option value="$PROJECT_DIR$/app/classes/pages/InfoPage.js" />
+        <option value="$PROJECT_DIR$/app/classes/pages/PlusPage.js" />
+        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js" />
+        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFScrollableElement.js" />
         <option value="$PROJECT_DIR$/app/classes/pages/PatternPage.js" />
+        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js" />
+        <option value="$PROJECT_DIR$/app/classes/SElementBulbRow.js" />
         <option value="$PROJECT_DIR$/app/classes/Bulb.js" />
       </list>
     </option>
@@ -195,6 +194,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -210,56 +210,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="easeljs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -331,92 +281,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="997ThoughtPatterns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="editor.preferences.tabs" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../XUMO_CONTENT/41_Autozone" />
     <property name="FullScreen" value="false" />
@@ -510,7 +383,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12266858" sideWeight="0.6002656" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12912482" sideWeight="0.6706507" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12912482" sideWeight="0.6706507" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997344" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1743185" sideWeight="0.5498008" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -578,11 +451,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="50" selection-start="1239" selection-end="1239" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/scripts/easeljs-0.5.0.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -595,91 +463,94 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CordovaLib/CordovaLibApp/www/cordova-2.0.0.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="257" column="20" selection-start="7937" selection-end="7937" vertical-scroll-proportion="0.30142567">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/nav/RFNav.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="257" column="20" selection-start="7937" selection-end="7937" vertical-scroll-proportion="0.30142567" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="53" selection-start="987" selection-end="987" vertical-scroll-proportion="0.43356642">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/pages/InfoPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="21" selection-start="976" selection-end="976" vertical-scroll-proportion="0.4316644">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/nav/ScreenManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="829" selection-end="829" vertical-scroll-proportion="0.020297699">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="0" selection-start="2733" selection-end="2733" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/SElementMainBtn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="1130" selection-end="1279" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="28" column="53" selection-start="987" selection-end="987" vertical-scroll-proportion="0.43356642" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/HomeView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="48" selection-start="2260" selection-end="2260" vertical-scroll-proportion="32.423077">
+        <state line="102" column="0" selection-start="2320" selection-end="2320" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/classes/pages/PlusPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="463" selection-end="463" vertical-scroll-proportion="0.0">
+        <state line="57" column="8" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/classes/nav/ScreenManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="59" selection-start="1491" selection-end="1491" vertical-scroll-proportion="0.35624123">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/classes/nav/RFNav.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="10" selection-start="210" selection-end="210" vertical-scroll-proportion="0.30995792">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableElement.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+        <state line="23" column="10" selection-start="466" selection-end="466" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/SElementBulbRow.js">
+    <entry file="file://$PROJECT_DIR$/app/classes/pages/InfoPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.56802243">
+        <state line="33" column="14" selection-start="846" selection-end="846" vertical-scroll-proportion="0.6914446">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="0" selection-start="1670" selection-end="1670" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/classes/SElementMainBtn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="14" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/classes/pages/PatternPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="14" selection-start="1911" selection-end="1911" vertical-scroll-proportion="0.70285714">
+        <state line="72" column="60" selection-start="1916" selection-end="1916" vertical-scroll-proportion="-13.384615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="174" column="0" selection-start="3819" selection-end="3819" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/classes/SElementBulbRow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="0" selection-start="1545" selection-end="1545" vertical-scroll-proportion="0.77729255">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/classes/Bulb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="1265" selection-end="1265" vertical-scroll-proportion="0.55831265">
+        <state line="72" column="27" selection-start="1417" selection-end="1417" vertical-scroll-proportion="1.7166901">
           <folding />
         </state>
       </provider>

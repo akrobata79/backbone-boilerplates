@@ -55,29 +55,23 @@
 
     p.setData = function (data) {
         this.data=data;
-        console.log("bulb setData should change view",data.attributes.setColor);
-
-
-
+        ////console.log("bulb setData should change view",data.attributes.setColor);
 
         this.data.bind('change', this.updateView, this);
+
+        this.updateView();
         // on change should change kuzwa
         //this.data
 
     }
 
 
-    p.updateView = function() {
+    p.updateView = function(e) {
         this.setColor(this.data.attributes.setColor);
-        console.log("caught");
     }
 
     p.revert = function() {
-
-        ////console.log("revert",this);
         this.justReverted=true;
-        // this.setState(this.prevState);
-
     }
 
     p.onClick = function(e) {
@@ -86,14 +80,14 @@
             this.reportInteraction(e);
             this.justReverted=false;
 
-            console.log("important bulb clicked");
+            ////console.log("important bulb clicked");
         }
 
     }
 
 
     p.onPress = function(e) {
-        ////console.log("qqq");
+        ////////console.log("qqq");
         this.reportInteraction(e);
     }
 

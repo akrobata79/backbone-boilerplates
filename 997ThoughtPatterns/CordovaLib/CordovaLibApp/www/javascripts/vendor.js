@@ -20780,21 +20780,29 @@ var RF = {};;
 
 (function() {
 
-    var RFScrollableElement = function() {this.initialize();}
-    var p = RFScrollableElement.prototype = new createjs.Container();
+    var RFScrollableElement = function() {
+        this.initialize();
+        _.extend(this, Backbone.Events);
+    }
+    RFScrollableElement.prototype = p = new createjs.Container();
+   // p.Container_initialize = p.initialize;
 
     p.width;
     p.height;
     p.data;
 
-    p.Container_initialize = p.initialize;
-    p.initialize = function() {
-        this.Container_initialize();
-        _.extend(this, Backbone.Events);
-
-    }
+//
+//    p.initialize = function() {
+////        this.Container_initialize();
+//        _.extend(this, Backbone.Events);
+//
+//    }
 
     p.setSetters = function(props) {
+
+
+//        console.log("props",props);
+
         _.each(
             props,
             function(val, key){
@@ -20808,20 +20816,21 @@ var RF = {};;
     }
 
     p.setData = function(data) {
+
+      //  console.log("data",data);
         this.data=data;
     }
 
     p.enable = function(t) {
 
-        console.log("ttttt",t);
+     //   console.log("ttttt",t);
 
     }
 
     p.passInteraction = function(e) {
 
-        console.log("passed",e);
+        console.log("passInteraction >> ",e);
         this.trigger("YOYO",e)
-
 
     }
 
@@ -20895,13 +20904,9 @@ var RF = {};;
     p.allowScroll=true;
 
     p.speedCap;
-
     p.mainContainer;
-
     p.background;
-
     p.currentRevert;
-
 
 
     p.init = function( targetProp,
@@ -20927,7 +20932,7 @@ var RF = {};;
         this.upperBorder = -size.h;
         this.lowerBorder = this.height;
 
-        //console.log("this.lowerBorder",this.lowerBorder);
+        //////console.log("this.lowerBorder",this.lowerBorder);
 
         this.howMany=howMany
 
@@ -20944,21 +20949,21 @@ var RF = {};;
         this.addChild(this.mainContainer);
 
 
-        this.theArr = []
+        this.theArr = [];
 
         this.rail = new RFBlock();
         this.rail.setSize(100,this.dataSet.length*this.elementSize.h);
 
 
-        //console.log("this.dataSet.length",this.dataSet.length);
+        //////console.log("this.dataSet.length",this.dataSet.length);
         var hm = this.dataSet.length;
         for ( var i = 0; i < hm; i++) {
-            //console.log("o");
+            //////console.log("o");
             this.indexArr.push(-i*  size.h)//this.elementSize.h);
         }
 
-        //console.log("this.elementSize.h",this.elementSize.h);
-        //console.log("this.indexArr",this.indexArr);
+        //////console.log("this.elementSize.h",this.elementSize.h);
+        //////console.log("this.indexArr",this.indexArr);
 
         for ( var i = 0; i < howMany+1; i++) {
             var t = new targetClass();
@@ -20966,7 +20971,14 @@ var RF = {};;
             t.init();
             t.setSize(size.w,size.h)
             t.y=size.h*i;
-            t.setSetters( this.dataSet.models[i].attributes )
+
+
+
+            t.setSetters( this.dataSet.models[i].attributes );
+            t.setData(this.dataSet.models[i])
+
+            //console.log("3",this.dataSet.models[i]);
+
             t.offset=0;
             this.theArr.push(t);
 
@@ -20978,7 +20990,7 @@ var RF = {};;
                     }
 
                     if(e.type=="onClick") {
-                        console.log("klik!");
+                        //console.log("klik!");
                     }
 
 
@@ -20986,6 +20998,8 @@ var RF = {};;
             )
 
         }
+
+        //console.log("4");
 
         this.theShape  = new createjs.Shape();
         this.theShape.graphics.clear();
@@ -21005,13 +21019,13 @@ var RF = {};;
         Ticker.addListener(this);
 
 //        this.dataSet.on("add", function(msg) {
-//            //console.log(">>>>> got it ",this.dataSet.length);
+//            ////console.log(">>>>> got it ",this.dataSet.length);
 //
 //            this.theArr[0].setSetters( this.dataSet.models[10].attributes );
 //
 //        },this);
 
-//        //console.log("this.height",this.height);
+//        ////console.log("this.height",this.height);
 
 
 
@@ -21023,7 +21037,7 @@ var RF = {};;
 
     p.onPresso = function(e) {
 
-        console.log("onPresso",e, this);
+        //console.log("onPresso",e, this);
 
 //        e.target.revert();
 
@@ -21046,7 +21060,7 @@ var RF = {};;
 
     p.onMouseMove = function(e) {
 
-        //console.log("onMouseMove");
+        ////console.log("onMouseMove");
 
         if(this.currentRevert) {
             this.currentRevert.revert();
@@ -21095,7 +21109,7 @@ var RF = {};;
 
     p.handleMove = function() {
 
-//        //console.log("this.elementSize.h",this.elementSize.h);
+//        ////console.log("this.elementSize.h",this.elementSize.h);
 
         if (this.rail.y > 0) {
             this.rail.y=0;
@@ -21125,14 +21139,23 @@ var RF = {};;
 
     p.setIndex = function(inn,where,t,i) {
 
-        //   //console.log("this.dataSet.models[this.index]",this.dataSet,this.index);
-        //   //console.log("ZZZ",this.dataSet.models[this.index].attributes);
+        //console.log("1");
+
+        //   ////console.log("this.dataSet.models[this.index]",this.dataSet,this.index);
+        //   ////console.log("ZZZ",this.dataSet.models[this.index].attributes);
 
         this.index=inn;
-        if(where==this.upperBorder) this.theArr[i].setSetters( this.dataSet.models[this.index+this.howMany].attributes );
-        if(where==this.lowerBorder) this.theArr[i].setSetters( this.dataSet.models[this.index].attributes );
+        if(where==this.upperBorder) {
+            this.theArr[i].setSetters( this.dataSet.models[this.index+this.howMany].attributes );
+            this.theArr[i].setData( this.dataSet.models[this.index+this.howMany])
+        }
 
-//        //console.log("end");
+        if(where==this.lowerBorder) {
+            this.theArr[i].setSetters( this.dataSet.models[this.index].attributes );
+           this.theArr[i].setData(this.dataSet.models[this.index])
+        }
+
+//        ////console.log("end");
     }
 
     window.RFScrollableList = RFScrollableList;

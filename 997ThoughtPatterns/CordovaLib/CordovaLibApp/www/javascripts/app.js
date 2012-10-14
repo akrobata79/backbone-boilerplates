@@ -146,6 +146,8 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.gr;
 
+      p.data
+
       p.init = function() {
 
           this.bottom = new Bitmap("images/bulbBack.png");
@@ -173,20 +175,34 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
           this.gr.clear()
 
-          this.gr.beginFill(Graphics.getHSL(211,100,50,0.45));
+          this.gr.beginFill(Graphics.getHSL(n,100,50,0.45));
           this.gr.drawCircle(0,0,47/2);
 
 
       }
 
+      p.setData = function (data) {
+          this.data=data;
+          console.log("bulb setData should change view",data.attributes.setColor);
 
 
 
 
+          this.data.bind('change', this.updateView, this);
+          // on change should change kuzwa
+          //this.data
+
+      }
+
+
+      p.updateView = function() {
+          this.setColor(this.data.attributes.setColor);
+          console.log("caught");
+      }
 
       p.revert = function() {
 
-          console.log("revert",this);
+          ////console.log("revert",this);
           this.justReverted=true;
           // this.setState(this.prevState);
 
@@ -197,13 +213,15 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
           if(!this.justReverted) {
               this.reportInteraction(e);
               this.justReverted=false;
+
+              console.log("important bulb clicked");
           }
 
       }
 
 
       p.onPress = function(e) {
-          console.log("qqq");
+          ////console.log("qqq");
           this.reportInteraction(e);
       }
 
@@ -231,29 +249,54 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
       p.width;
       p.height;
 
+      p.color;
+
+      p.bulbSet;
+
       p.init = function() {
+
+          this.bulbSet=[];
 
   //74x74
 
           this.passInteraction  = _.bind(this.passInteraction, this );
 
-  //        var yi = new ColorFilter(0,1,1,1);
-
           for ( var i = 0; i < 8; i++) {
 
               var temp = new Bulb();
               temp.init();
-              this.addChild(temp)
+              this.addChild(temp);
 
               temp.x = 74*i;
               temp.reportInteraction = this.passInteraction;
 
+              this.bulbSet.push(temp);
+
+  //            console.log("this.dataSet",this.dataSet.length);
+
           }
 
-  //        this.passInteraction  = _.bind(this.passInteraction, this );
+  //            console.log("this.dataSet",this.dataSet);
+      };
 
-          // backButton.reportInteraction = this.passInteraction;
-          // backButton2.reportInteraction = this.passInteraction;
+      p.populateRow = function() {
+
+          console.log("should populate row",this.data);
+
+          for ( var i = 0; i < 8; i++) {
+              var t = this.bulbSet[i];
+              t.setData(this.data.bulbCollection.models[i])
+          }
+
+      }
+
+  //    example of how to override using super
+
+      p.sup_setData = p.setData;
+      p.setData = function(data) {
+          this.sup_setData(data);
+          console.log("setData");
+          this.populateRow();
 
       };
 
@@ -296,7 +339,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        console.log("RFScrollableElement");
+  //        //console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -318,15 +361,13 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
       p.width;
       p.height;
 
-      p.init = function() {
+      p.init = function(patternData) {
 
-          var backButton = new RFButtonBitmap();
-          backButton.init("images/btnL1_def.png","images/btnL1_down.png");
-
+          var mainBtn = new RFButtonBitmap();
+          mainBtn.init("images/btnL1_def.png","images/btnL1_down.png");
 
           this.passInteraction  = _.bind(this.passInteraction, this );
-          backButton.reportInteraction = this.passInteraction;
-
+          mainBtn.reportInteraction = this.passInteraction;
 
           this.text = new createjs.Text("TEMP", "50px Arial", "#000");
           this.text.textBaseline = "top";
@@ -334,29 +375,34 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
           this.text.x=10;
           this.text.y=30;
 
-          this.addChild(backButton,this.text);
-
-          this.temp = _.bind( this.temp, this );
-
-          console.log("MMM");
-
-
-
-
+          this.addChild(mainBtn,this.text);
 
       };
-
-      p.temp=function(){
-  //        this.text.text=label;
-          this.cache(0,0,472,96);
-
-          console.log("temp");
-      }
-
 
       p.setLabel=function(label){
           this.text.text=label;
       }
+
+      p.setColor = function(color) {
+
+      }
+
+      p.sup_passInteraction = p.passInteraction;
+
+      p.passInteraction = function(e) {
+          this.sup_passInteraction(e);
+
+          if (e.type=="onClick") {
+
+              //console.log("new shit");
+
+              //update the other collection
+
+
+
+
+          }
+      };
 
       window.SElementMainBtn = SElementMainBtn;
 
@@ -379,6 +425,17 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
 
 
 
+  //        this.temp = _.bind( this.temp, this );
+
+  //    p.temp=function(){
+  ////        this.text.text=label;
+  //        this.cache(0,0,472,96);
+  //
+  //        //console.log("temp");
+  //    }
+
+
+
   //(function() {
   //
   //    var RFScrollableElement = function() {
@@ -395,7 +452,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        console.log("RFScrollableElement");
+  //        //console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -478,16 +535,16 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
       var _currSelected;
 
       var initialize = (function() {
-          console.log('Initialized');
+          //console.log('Initialized');
       })();
 
       function show() {
-          console.log("show");
+          //console.log("show");
           // show view
       };
 
       function hide() {
-          console.log("hide");
+          //console.log("hide");
           // hide view
       };
 
@@ -533,7 +590,7 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
 
               _curtain.do();
 
-              console.log("_pageEvent",_pageEvent);
+              //console.log("_pageEvent",_pageEvent);
               EventBus.dispatch(_pageEvent,this);
 
           },
@@ -565,9 +622,7 @@ window.require.define({"classes/nav/ScreenManager": function(exports, require, m
           this.initialize();
       };
 
-      require('classes/pages/PlusPage');
-      require('classes/pages/InfoPage');
-      require('classes/pages/PatternPage');
+
 
       ScreenManager.prototype.plusPage;
       ScreenManager.prototype.patternPage;
@@ -586,21 +641,20 @@ window.require.define({"classes/nav/ScreenManager": function(exports, require, m
 
           this.Container_initialize();
 
-          this.plusPage = new PlusPage();
-          this.addChild(this.plusPage);
+      };
 
-          this.patternPage = new PatternPage();
-          this.addChild(this.patternPage);
+      ScreenManager.prototype.init = function(pages) {
 
-          this.infoPage = new InfoPage();
-          this.addChild(this.infoPage);
+          this.addChild(pages[0]);
+          this.addChild(pages[1]);
+          this.addChild(pages[2]);
 
-          this.pageArr = [this.plusPage,this.patternPage,this.infoPage]
+          this.pageArr = pages;
 
           this.onNavEvent = _.bind( this.onNavEvent, this );
-          this.setPage(1);
+          this.setPage(0);
 
-      };
+      }
 
       ScreenManager.prototype.setPage = function(num) {
 
@@ -629,7 +683,7 @@ window.require.define({"classes/nav/ScreenManager": function(exports, require, m
       }
 
       ScreenManager.prototype.onNavEvent = function(e) {
-          console.log("onNavEvent", e.target.getCurrSelected(),this);
+          //console.log("onNavEvent", e.target.getCurrSelected(),this);
           this.setPage(e.target.getCurrSelected())
       }
 
@@ -669,32 +723,29 @@ window.require.define({"classes/pages/InfoPage": function(exports, require, modu
       InfoPage.prototype.initialize = function() {
 
           this.Container_initialize();
-
-          var list = new RFScrollableList();
-          this.addChild(list);
-
-          var DonutModel = Backbone.Model.extend({
-              defaults: {setLabel:"BEDZIE OK"}
-          });
-          var DonutsCollection = Backbone.Collection.extend({
-              model : DonutModel
-          });
-          var donuts = new DonutsCollection();
-
-          for ( var i = 0; i < 20; i++) {
-              var m = new DonutModel();
-              donuts.add(m);
-              m.set({setLabel:""+i})
-          }
-
-  //        console.log("don",donuts, donuts.models);
-
-          list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
-          list.y=170;
-          list.x=80;
-
-
-
+  //
+  //        var list = new RFScrollableList();
+  //        this.addChild(list);
+  //
+  //        var DonutModel = Backbone.Model.extend({
+  //            defaults: {setLabel:"BEDZIE OK", setColor:0}
+  //        });
+  //        var DonutsCollection = Backbone.Collection.extend({
+  //            model : DonutModel
+  //        });
+  //        var donuts = new DonutsCollection();
+  //
+  //        for ( var i = 0; i < 20; i++) {
+  //            var m = new DonutModel();
+  //            donuts.add(m);
+  //            m.set({setLabel:""+i, setColor:11})
+  //        }
+  //
+  ////        //console.log("don",donuts, donuts.models);
+  //
+  //        list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
+  //        list.y=170;
+  //        list.x=80;
 
       };
 
@@ -732,33 +783,84 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
       PatternPage.prototype.Container_initialize = PatternPage.prototype.initialize;
 
       PatternPage.prototype.initialize = function() {
-
           this.Container_initialize();
+      };
 
+      PatternPage.prototype.patternRowCollection;
+      PatternPage.prototype.mezzData;
+
+      PatternPage.prototype.init = function(dataSet) {
+
+          this.mezzData=dataSet;
 
           var list = new RFScrollableList();
           this.addChild(list);
 
-          var DonutModel = Backbone.Model.extend({
-              defaults: {enable:"50,50"}
+          var BulbModel = Backbone.Model.extend({
+              defaults: {setLabel:"NONE",setColor:10}
           });
-          var DonutsCollection = Backbone.Collection.extend({
-              model : DonutModel
-          });
-          var donuts = new DonutsCollection();
 
-          for ( var i = 0; i < 20; i++) {
-              var m = new DonutModel();
-              donuts.add(m);
-             // m.set()
-              m.set({enable:"50,50"})
+          var BulbCollection = Backbone.Collection.extend({
+              model : BulbModel
+          });
+
+          var PatternRowModel = Backbone.Model.extend({
+              initialize : function() {
+                  this.bulbCollection = new BulbCollection;
+              }
+          });
+
+          var PatternRowCollection = Backbone.Collection.extend({
+              model : PatternRowModel
+          });
+
+          this.patternRowCollection = new PatternRowCollection();
+
+          for ( var i = 0; i < 10; i++) {
+
+              var m = new PatternRowModel();
+              this.patternRowCollection.add(m);
+
+              for ( var j = 0; j < 8; j++) {
+                  var mB = new BulbModel();
+                  m.bulbCollection.add(mB);
+              }
+
+              console.log(">>",this.patternRowCollection.models);
+
           }
 
-          list.init("y",SElementBulbRow,{w:74*8,h:74},5,donuts);
+          list.init("y",SElementBulbRow,{w:74*8,h:74},5,this.patternRowCollection);
           list.y=170;
           list.x=13;
 
-      };
+          var that=this;
+
+          this.mezzData.on("add", function(ship) {
+
+            //  console.log("ship",ship,that.mezzData);
+              // console.log(that.mezzData);
+
+  //            collection.at(index)
+
+              var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length)
+
+             // console.log("$$$", );
+
+              t.set({setColor:ship.get('setColor')});
+
+             // console.log("that.patternRowCollection[0] #",t);
+
+
+              //znajdz ktora lampka
+              //przekaz jej ship
+
+          });
+
+
+
+      }
+
 
       window.PatternPage = PatternPage;
 
@@ -794,45 +896,74 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
       PlusPage.prototype = new Container();
 
       PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
-      PlusPage.prototype.initialize = function() {
 
+
+
+
+      PlusPage.prototype.initialize = function() {
           this.Container_initialize();
+      };
+
+      PlusPage.prototype.mezzData;
+      PlusPage.prototype.init = function(dataSet,mezzData) {
+
+          this.mezzData=mezzData;
 
           var list = new RFScrollableList();
           this.addChild(list);
 
-          var DonutModel = Backbone.Model.extend({
-              defaults: {setLabel:"BEDZIE OK"}
-          });
-          var DonutsCollection = Backbone.Collection.extend({
-              model : DonutModel
-          });
-          var donuts = new DonutsCollection();
-
-          for ( var i = 0; i < 20; i++) {
-              var m = new DonutModel();
-              donuts.add(m);
-              m.set({setLabel:""+i})
-          }
-
-
-
-  //        console.log("don",donuts, donuts.models);
-
-          list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
+          list.init("y",SElementMainBtn,{w:479,h:93},5,dataSet);
           list.y=170;
           list.x=80;
+
+          this.addToMezz = _.bind( this.addToMezz, this );
+
+          var that=this
+
+
+          for ( var i = 0; i < list.theArr.length; i++) {
+
+              var t = list.theArr[i];
+
+              t.on("YOYO", function(e){
+
+                  if(e.type=="onClick") {
+
+                      that.addToMezz(e.target.parent.data);
+                  }
+
+              })
+
+          }
+
+      }
+
+      PlusPage.prototype.addToMezz = function(data) {
+
+          console.log("xx", data);
+
+          var t = data.clone()
+
+          this.mezzData.add(t);
+
+          console.log("666 ",this.mezzData.length, t);
+
+
+      }
+
+
+
+
+
+      window.PlusPage = PlusPage;
+
+  }(window));
+
 
   //        var m = new DonutModel();
   //        m.set({setLabel:i+"!!!!"})
   //        donuts.add(m);
 
-
-      };
-
-      window.PlusPage = PlusPage;
-
-  }(window));
 
 
 
@@ -868,7 +999,7 @@ window.require.define({"classes/temp/MyClass": function(exports, require, module
 
   // self-instantiating "constructor" function
       var initialize = (function() {
-          console.log('Initialized');
+          //console.log('Initialized');
       })();
 
   // private functions
@@ -1222,6 +1353,10 @@ window.require.define({"views/HomeView": function(exports, require, module) {
   require('classes/additional/Curtain');
   require('classes/nav/ScreenManager');
 
+  require('classes/pages/PlusPage');
+  require('classes/pages/InfoPage');
+  require('classes/pages/PatternPage');
+
   //require('rf/RF');
 
 
@@ -1291,13 +1426,47 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Touch.enable ( this.stage , true , false );
           RF.stage=this.stage;
 
-  //Stage
+          //Stage
           //BACKGROUND
           var bmp = new Bitmap("images/BACK.jpg");
           this.stage.addChild(bmp);
 
           //SCREENMANAGER
+
+
+          var MainBtnModel = Backbone.Model.extend({
+              defaults: {setLabel:"BEDZIE OK",setColor:111}
+          });
+
+          var MainBtnCollection = Backbone.Collection.extend({
+              model : MainBtnModel
+          });
+
+          var mainBtnCollection = new MainBtnCollection();
+
+          for ( var i = 0; i < 20; i++) {
+              var m = new MainBtnModel();
+              mainBtnCollection.add(m);
+              m.set({setLabel:""+i, setColor:i*10})
+          }
+
+          var MezzData = Backbone.Collection.extend({
+              model : MainBtnModel
+          });
+          var mezzData = new MezzData();
+
+          var patternPage = new PatternPage();
+          patternPage.init(mezzData);
+
+          // passing 2 datasets
+          var plusPage = new PlusPage();
+          plusPage.init(mainBtnCollection,mezzData);
+
+
+          var infoPage = new InfoPage();
+
           var screenManager = new ScreenManager();
+          screenManager.init([plusPage,patternPage,infoPage]);
           this.stage.addChild(screenManager);
 
           //CURTAIN

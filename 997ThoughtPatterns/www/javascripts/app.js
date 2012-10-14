@@ -183,29 +183,23 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.setData = function (data) {
           this.data=data;
-          console.log("bulb setData should change view",data.attributes.setColor);
-
-
-
+          ////console.log("bulb setData should change view",data.attributes.setColor);
 
           this.data.bind('change', this.updateView, this);
+
+          this.updateView();
           // on change should change kuzwa
           //this.data
 
       }
 
 
-      p.updateView = function() {
+      p.updateView = function(e) {
           this.setColor(this.data.attributes.setColor);
-          console.log("caught");
       }
 
       p.revert = function() {
-
-          ////console.log("revert",this);
           this.justReverted=true;
-          // this.setState(this.prevState);
-
       }
 
       p.onClick = function(e) {
@@ -214,14 +208,14 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
               this.reportInteraction(e);
               this.justReverted=false;
 
-              console.log("important bulb clicked");
+              ////console.log("important bulb clicked");
           }
 
       }
 
 
       p.onPress = function(e) {
-          ////console.log("qqq");
+          ////////console.log("qqq");
           this.reportInteraction(e);
       }
 
@@ -272,21 +266,33 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
               this.bulbSet.push(temp);
 
-  //            console.log("this.dataSet",this.dataSet.length);
+  //            ////console.log("this.dataSet",this.dataSet.length);
 
           }
 
-  //            console.log("this.dataSet",this.dataSet);
+          // this.data.bind('change', this.updateView, this);
+
+  //            ////console.log("this.dataSet",this.dataSet);
       };
 
       p.populateRow = function() {
 
-          console.log("should populate row",this.data);
+
+          ////console.log("should populate row",this.data);
+
+  //        console.log("",);
+
+          var printRow=new Array()
 
           for ( var i = 0; i < 8; i++) {
               var t = this.bulbSet[i];
-              t.setData(this.data.bulbCollection.models[i])
+              var g = this.data.bulbCollection.models[i]
+              t.setData(g);
+              printRow.push(g.get("setColor"))
+
           }
+
+          console.log("populating",printRow,this.data.cid );
 
       }
 
@@ -294,11 +300,20 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
       p.sup_setData = p.setData;
       p.setData = function(data) {
+
           this.sup_setData(data);
-          console.log("setData");
-          this.populateRow();
+          this.data.bulbCollection.bind('change', this.updateView, this);
+         this.populateRow();
+
+          console.log("data",this.data.cid,this.data.bulbCollection);
 
       };
+
+      p.updateView = function(e) {
+          //this.setColor(this.data.attributes.setColor);
+          ////console.log("caught 2!",e);
+         // this.populateRow();
+      }
 
 
 
@@ -339,7 +354,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        //console.log("RFScrollableElement");
+  //        //////console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -394,7 +409,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
 
           if (e.type=="onClick") {
 
-              //console.log("new shit");
+              //////console.log("new shit");
 
               //update the other collection
 
@@ -431,7 +446,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   ////        this.text.text=label;
   //        this.cache(0,0,472,96);
   //
-  //        //console.log("temp");
+  //        //////console.log("temp");
   //    }
 
 
@@ -452,7 +467,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        //console.log("RFScrollableElement");
+  //        //////console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -535,16 +550,16 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
       var _currSelected;
 
       var initialize = (function() {
-          //console.log('Initialized');
+          //////console.log('Initialized');
       })();
 
       function show() {
-          //console.log("show");
+          //////console.log("show");
           // show view
       };
 
       function hide() {
-          //console.log("hide");
+          //////console.log("hide");
           // hide view
       };
 
@@ -590,7 +605,7 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
 
               _curtain.do();
 
-              //console.log("_pageEvent",_pageEvent);
+              //////console.log("_pageEvent",_pageEvent);
               EventBus.dispatch(_pageEvent,this);
 
           },
@@ -683,7 +698,7 @@ window.require.define({"classes/nav/ScreenManager": function(exports, require, m
       }
 
       ScreenManager.prototype.onNavEvent = function(e) {
-          //console.log("onNavEvent", e.target.getCurrSelected(),this);
+          //////console.log("onNavEvent", e.target.getCurrSelected(),this);
           this.setPage(e.target.getCurrSelected())
       }
 
@@ -741,7 +756,7 @@ window.require.define({"classes/pages/InfoPage": function(exports, require, modu
   //            m.set({setLabel:""+i, setColor:11})
   //        }
   //
-  ////        //console.log("don",donuts, donuts.models);
+  ////        //////console.log("don",donuts, donuts.models);
   //
   //        list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
   //        list.y=170;
@@ -826,7 +841,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
                   m.bulbCollection.add(mB);
               }
 
-              console.log(">>",this.patternRowCollection.models);
+              ////console.log(">>",this.patternRowCollection.models);
 
           }
 
@@ -838,22 +853,20 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           this.mezzData.on("add", function(ship) {
 
-              console.log("ship",ship);
-              // console.log(that.mezzData);
+              var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length)
 
-  //            collection.at(index)
+              t.set({setColor:ship.get('setColor')});
 
-              var t = that.patternRowCollection.at(0).bulbCollection.at(0)
-              t.set({color:0});
-
-              console.log("that.patternRowCollection[0] #",t);
-
+              console.log("!", that.patternRowCollection.at(0).cid);
 
               //znajdz ktora lampka
               //przekaz jej ship
 
           });
 
+          PatternPage.prototype.updateView2 =function(e) {
+              ////console.log("!!!!!!!!!!");
+          }
 
 
       }
@@ -923,7 +936,12 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
               var t = list.theArr[i];
 
               t.on("YOYO", function(e){
-                  that.addToMezz(e.target.parent.data);
+
+                  if(e.type=="onClick") {
+
+                      that.addToMezz(e.target.parent.data);
+                  }
+
               })
 
           }
@@ -931,9 +949,14 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
       }
 
       PlusPage.prototype.addToMezz = function(data) {
-          console.log("xx", data);
 
-          this.mezzData.add(data)
+          //console.log("xx", data);
+
+          var t = data.clone()
+
+          this.mezzData.add(t);
+
+          //console.log("666 ",this.mezzData.length, t);
 
 
       }
@@ -986,7 +1009,7 @@ window.require.define({"classes/temp/MyClass": function(exports, require, module
 
   // self-instantiating "constructor" function
       var initialize = (function() {
-          //console.log('Initialized');
+          ////console.log('Initialized');
       })();
 
   // private functions
@@ -1498,7 +1521,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Ticker.addListener(this);
           Ticker.setFPS(40);
 
-          this.stage.alpha=0.3;
+  //        this.stage.alpha=0.3;
 
       },
 

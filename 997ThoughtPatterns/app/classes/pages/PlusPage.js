@@ -41,7 +41,12 @@ require('classes/SElementMainBtn');
             var t = list.theArr[i];
 
             t.on("YOYO", function(e){
-                that.addToMezz(e.target.parent.data);
+
+                if(e.type=="onClick") {
+
+                    that.addToMezz(e.target.parent.data);
+                }
+
             })
 
         }
@@ -49,9 +54,14 @@ require('classes/SElementMainBtn');
     }
 
     PlusPage.prototype.addToMezz = function(data) {
-        console.log("xx", data);
 
-        this.mezzData.add(data)
+        //console.log("xx", data);
+
+        var t = data.clone()
+
+        this.mezzData.add(t);
+
+        //console.log("666 ",this.mezzData.length, t);
 
 
     }

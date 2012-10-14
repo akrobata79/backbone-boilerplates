@@ -21,7 +21,7 @@
     p.setSetters = function(props) {
 
 
-//        console.log("props",props);
+//        //console.log("props",props);
 
         _.each(
             props,
@@ -37,19 +37,19 @@
 
     p.setData = function(data) {
 
-      //  console.log("data",data);
+      //  //console.log("data",data);
         this.data=data;
     }
 
     p.enable = function(t) {
 
-     //   console.log("ttttt",t);
+     //   //console.log("ttttt",t);
 
     }
 
     p.passInteraction = function(e) {
 
-        console.log("passInteraction >> ",e);
+        //console.log("passInteraction >> ",e);
         this.trigger("YOYO",e)
 
     }

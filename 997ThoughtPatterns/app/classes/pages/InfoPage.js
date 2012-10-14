@@ -31,7 +31,7 @@
 //            m.set({setLabel:""+i, setColor:11})
 //        }
 //
-////        //console.log("don",donuts, donuts.models);
+////        //////console.log("don",donuts, donuts.models);
 //
 //        list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
 //        list.y=170;
