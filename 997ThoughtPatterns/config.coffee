@@ -1,8 +1,8 @@
 exports.config =
-  # See docs at http://brunch.readthedocs.org/en/latest/config.html.
+# See docs at http://brunch.readthedocs.org/en/latest/config.html.
 
-  # Application build path.  Default is public
-  #buildPath: ''   CordovaLib/CordovaLibApp/
+# Application build path.  Default is public
+#buildPath: ''   CordovaLib/CordovaLibApp/
   buildPath:'www'
   files:
     javascripts:
@@ -24,7 +24,12 @@ exports.config =
       defaultExtension: 'styl'
       joinTo: 'stylesheets/app.css'
       order:
-        before: ['vendor/styles/normalize.css']
+        before: ['vendor/styles/normalize.css',
+          'vendor/styles/jquery.mobile-1.2.0.css',
+          'vendor/styles/jquery.mobile.structure-1.2.0.css',
+          'vendor/styles/jquery.mobile.theme-1.2.0.css',
+          'vendor/styles/thoughtpatterns.css'
+        ]
         after: ['vendor/styles/helpers.css']
 
     templates:

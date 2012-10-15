@@ -62,7 +62,7 @@ module.exports = View.extend({
 
         this.render = _.bind( this.render, this );
 
-        console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
+        //   console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
     },
 
@@ -71,15 +71,17 @@ module.exports = View.extend({
      */
     render: function() {
 
-        var canvas = document.createElement("canvas");
-        this.el=canvas;
 
-        $('body').append(this.el);
 
-        this.el.width=640;
-        this.el.height=920;
+//        this.stage.alpha=0.1;
+
 
         this.updateView();
+
+
+
+
+//        this.updateView();
         return this;
 
     },
@@ -90,9 +92,65 @@ module.exports = View.extend({
 
     updateView: function() {
 
-        this.stage = new Stage(this.el);
+
+
+        //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
+
+
+
+        var canvas = document.createElement("canvas");
+//        this.el=canvas;
+        $(this.el).width(640);
+        $(this.el).height(920);
+
+//       $(this.el).append('<div>sdsdd</div>');
+
+
+
+        console.log("dd");
+
+
+//        $('#pageId').trigger('create');
+
+
+
+
+
+
+//       $(this.el).append(' <a href="#popupPadded" data-rel="popup" data-role="button">Popup with padding</a>');
+
+
+
+        $(this.el).append(canvas);
+
+        $(this.el).append('<div id="dialogBox" class="tha">' +
+            '</br>' +
+            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
+            '</div>');
+
+
+//        console.log("t",t);
+//        t.getElementById('dialogBox');
+
+
+
+
+//console.log("t",t);
+
+
+//        $(t).hide();
+//        $("#home-view").hide();
+//       $('dialogBox').append('');
+
+
+        canvas.width=640;
+        canvas.height=920;
+
+        this.stage = new Stage(canvas);
         Touch.enable ( this.stage , true , false );
         RF.stage=this.stage;
+
+
 
         //Stage
         //BACKGROUND
@@ -139,7 +197,7 @@ module.exports = View.extend({
 
         //CURTAIN
         curtain = new Curtain();
-//        this.stage.addChild(curtain);
+        //        this.stage.addChild(curtain);
 
         //NAV
         var navBtn1 = new RFButtonBitmap();
@@ -179,8 +237,21 @@ module.exports = View.extend({
         Ticker.addListener(this);
         Ticker.setFPS(40);
 
-//        this.stage.alpha=0.3;
+        setTimeout(this.getcarter,2500)
 
+//        console.log("el",this.body,$('body'));
+
+
+
+    },
+
+
+    getcarter: function() {
+
+        console.log("this.el",$(this.el));
+//        $(".tha").hide()
+
+//        $(".tha").append(' <a href="index.html" data-role="button">Link button</a>');
     },
 
     myFunction: function(e) {

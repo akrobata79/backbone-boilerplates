@@ -15,7 +15,7 @@ MyClass = (function() {
 
 // self-instantiating "constructor" function
     var initialize = (function() {
-        ////console.log('Initialized');
+        //////console.log('Initialized');
     })();
 
 // private functions

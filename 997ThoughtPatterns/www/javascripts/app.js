@@ -150,11 +150,14 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.init = function() {
 
+
+          var sqback =new  RFBlock();
+          sqback.setSize(74,74);
+          this.addChild(sqback)
+          sqback.alpha=0;
+
           this.bottom = new Bitmap("images/bulbBack.png");
           this.addChild(this.bottom);
-
-          var txt = new createjs.Text("Hello CreateJS!", "15px Arial", "#FFF");
-          var to = new createjs.Container();
 
           this.gr = new createjs.Graphics();
           var color = Rnd.integer(0,360);
@@ -169,7 +172,30 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
           this.gr.beginFill(Graphics.getHSL(0,100,5,0.85));
           this.gr.drawCircle(0,0,47/2);
 
+
+
+          this.temp2 = _.bind( this.temp2, this );
+          setTimeout(this.temp2,1500);
+
+
       };
+
+
+      p.temp2=function(){
+
+          this.cache(0,0,74,74);
+
+
+      }
+
+
+
+
+
+
+
+
+
 
       p.setColor = function(n) {
 
@@ -179,11 +205,13 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
           this.gr.drawCircle(0,0,47/2);
 
 
+
+
       }
 
       p.setData = function (data) {
           this.data=data;
-          ////console.log("bulb setData should change view",data.attributes.setColor);
+          //////console.log("bulb setData should change view",data.attributes.setColor);
 
           this.data.bind('change', this.updateView, this);
 
@@ -208,14 +236,14 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
               this.reportInteraction(e);
               this.justReverted=false;
 
-              ////console.log("important bulb clicked");
+              //////console.log("important bulb clicked");
           }
 
       }
 
 
       p.onPress = function(e) {
-          ////////console.log("qqq");
+          //////////console.log("qqq");
           this.reportInteraction(e);
       }
 
@@ -266,21 +294,34 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
               this.bulbSet.push(temp);
 
-  //            ////console.log("this.dataSet",this.dataSet.length);
+  //            //////console.log("this.dataSet",this.dataSet.length);
 
           }
 
+
+
+
+
+
           // this.data.bind('change', this.updateView, this);
 
-  //            ////console.log("this.dataSet",this.dataSet);
+  //            //////console.log("this.dataSet",this.dataSet);
+
+
       };
+
+
+
+
+
+
 
       p.populateRow = function() {
 
 
-          ////console.log("should populate row",this.data);
+          //////console.log("should populate row",this.data);
 
-  //        console.log("",);
+  //        //console.log("",);
 
           var printRow=new Array()
 
@@ -292,7 +333,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           }
 
-          console.log("populating",printRow,this.data.cid );
+          //console.log("populating",printRow,this.data.cid );
 
       }
 
@@ -303,16 +344,16 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           this.sup_setData(data);
           this.data.bulbCollection.bind('change', this.updateView, this);
-         this.populateRow();
+          this.populateRow();
 
-          console.log("data",this.data.cid,this.data.bulbCollection);
+          //console.log("data",this.data.cid,this.data.bulbCollection);
 
       };
 
       p.updateView = function(e) {
           //this.setColor(this.data.attributes.setColor);
-          ////console.log("caught 2!",e);
-         // this.populateRow();
+          //////console.log("caught 2!",e);
+          // this.populateRow();
       }
 
 
@@ -354,7 +395,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        //////console.log("RFScrollableElement");
+  //        ////////console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -409,7 +450,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
 
           if (e.type=="onClick") {
 
-              //////console.log("new shit");
+              ////////console.log("new shit");
 
               //update the other collection
 
@@ -446,7 +487,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   ////        this.text.text=label;
   //        this.cache(0,0,472,96);
   //
-  //        //////console.log("temp");
+  //        ////////console.log("temp");
   //    }
 
 
@@ -467,7 +508,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   //    p.initialize = function() {
   //        this.Container_initialize();
   //
-  //        //////console.log("RFScrollableElement");
+  //        ////////console.log("RFScrollableElement");
   //    }
   //
   //    window.RFScrollableElement = RFScrollableElement;
@@ -550,16 +591,16 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
       var _currSelected;
 
       var initialize = (function() {
-          //////console.log('Initialized');
+          ////////console.log('Initialized');
       })();
 
       function show() {
-          //////console.log("show");
+          ////////console.log("show");
           // show view
       };
 
       function hide() {
-          //////console.log("hide");
+          ////////console.log("hide");
           // hide view
       };
 
@@ -605,7 +646,7 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
 
               _curtain.do();
 
-              //////console.log("_pageEvent",_pageEvent);
+              ////////console.log("_pageEvent",_pageEvent);
               EventBus.dispatch(_pageEvent,this);
 
           },
@@ -698,7 +739,7 @@ window.require.define({"classes/nav/ScreenManager": function(exports, require, m
       }
 
       ScreenManager.prototype.onNavEvent = function(e) {
-          //////console.log("onNavEvent", e.target.getCurrSelected(),this);
+          ////////console.log("onNavEvent", e.target.getCurrSelected(),this);
           this.setPage(e.target.getCurrSelected())
       }
 
@@ -756,7 +797,7 @@ window.require.define({"classes/pages/InfoPage": function(exports, require, modu
   //            m.set({setLabel:""+i, setColor:11})
   //        }
   //
-  ////        //////console.log("don",donuts, donuts.models);
+  ////        ////////console.log("don",donuts, donuts.models);
   //
   //        list.init("y",SElementMainBtn,{w:479,h:93},5,donuts);
   //        list.y=170;
@@ -831,7 +872,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           this.patternRowCollection = new PatternRowCollection();
 
-          for ( var i = 0; i < 10; i++) {
+          for ( var i = 0; i < 31; i++) {
 
               var m = new PatternRowModel();
               this.patternRowCollection.add(m);
@@ -841,11 +882,11 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
                   m.bulbCollection.add(mB);
               }
 
-              ////console.log(">>",this.patternRowCollection.models);
+              //////console.log(">>",this.patternRowCollection.models);
 
           }
 
-          list.init("y",SElementBulbRow,{w:74*8,h:74},5,this.patternRowCollection);
+          list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection,30);
           list.y=170;
           list.x=13;
 
@@ -853,19 +894,19 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           this.mezzData.on("add", function(ship) {
 
-              var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length)
-
+              var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1)
               t.set({setColor:ship.get('setColor')});
 
-              console.log("!", that.patternRowCollection.at(0).cid);
 
-              //znajdz ktora lampka
-              //przekaz jej ship
+
 
           });
 
+
+
+
           PatternPage.prototype.updateView2 =function(e) {
-              ////console.log("!!!!!!!!!!");
+              //////console.log("!!!!!!!!!!");
           }
 
 
@@ -922,8 +963,8 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
           var list = new RFScrollableList();
           this.addChild(list);
 
-          list.init("y",SElementMainBtn,{w:479,h:93},5,dataSet);
-          list.y=170;
+          list.init("y",SElementMainBtn,{w:479,h:93},5,dataSet,20);
+          list.y=220;
           list.x=80;
 
           this.addToMezz = _.bind( this.addToMezz, this );
@@ -950,13 +991,13 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
       PlusPage.prototype.addToMezz = function(data) {
 
-          //console.log("xx", data);
+          ////console.log("xx", data);
 
           var t = data.clone()
 
           this.mezzData.add(t);
 
-          //console.log("666 ",this.mezzData.length, t);
+          ////console.log("666 ",this.mezzData.length, t);
 
 
       }
@@ -1009,7 +1050,7 @@ window.require.define({"classes/temp/MyClass": function(exports, require, module
 
   // self-instantiating "constructor" function
       var initialize = (function() {
-          ////console.log('Initialized');
+          //////console.log('Initialized');
       })();
 
   // private functions
@@ -1404,7 +1445,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           this.render = _.bind( this.render, this );
 
-          console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
+          //   console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
       },
 
@@ -1413,15 +1454,17 @@ window.require.define({"views/HomeView": function(exports, require, module) {
        */
       render: function() {
 
-          var canvas = document.createElement("canvas");
-          this.el=canvas;
 
-          $('body').append(this.el);
 
-          this.el.width=640;
-          this.el.height=920;
+  //        this.stage.alpha=0.1;
+
 
           this.updateView();
+
+
+
+
+  //        this.updateView();
           return this;
 
       },
@@ -1432,9 +1475,65 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
       updateView: function() {
 
-          this.stage = new Stage(this.el);
+
+
+          //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
+
+
+
+          var canvas = document.createElement("canvas");
+  //        this.el=canvas;
+          $(this.el).width(640);
+          $(this.el).height(920);
+
+  //       $(this.el).append('<div>sdsdd</div>');
+
+
+
+          console.log("dd");
+
+
+  //        $('#pageId').trigger('create');
+
+
+
+
+
+
+  //       $(this.el).append(' <a href="#popupPadded" data-rel="popup" data-role="button">Popup with padding</a>');
+
+
+
+          $(this.el).append(canvas);
+
+          $(this.el).append('<div id="dialogBox" class="tha">' +
+              '</br>' +
+              '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
+              '</div>');
+
+
+  //        console.log("t",t);
+  //        t.getElementById('dialogBox');
+
+
+
+
+  //console.log("t",t);
+
+
+  //        $(t).hide();
+  //        $("#home-view").hide();
+  //       $('dialogBox').append('');
+
+
+          canvas.width=640;
+          canvas.height=920;
+
+          this.stage = new Stage(canvas);
           Touch.enable ( this.stage , true , false );
           RF.stage=this.stage;
+
+
 
           //Stage
           //BACKGROUND
@@ -1481,7 +1580,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           //CURTAIN
           curtain = new Curtain();
-  //        this.stage.addChild(curtain);
+          //        this.stage.addChild(curtain);
 
           //NAV
           var navBtn1 = new RFButtonBitmap();
@@ -1521,8 +1620,21 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Ticker.addListener(this);
           Ticker.setFPS(40);
 
-  //        this.stage.alpha=0.3;
+          setTimeout(this.getcarter,2500)
 
+  //        console.log("el",this.body,$('body'));
+
+
+
+      },
+
+
+      getcarter: function() {
+
+          console.log("this.el",$(this.el));
+  //        $(".tha").hide()
+
+  //        $(".tha").append(' <a href="index.html" data-role="button">Link button</a>');
       },
 
       myFunction: function(e) {

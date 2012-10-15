@@ -44,7 +44,7 @@ require('classes/SElementBulbRow');
 
         this.patternRowCollection = new PatternRowCollection();
 
-        for ( var i = 0; i < 10; i++) {
+        for ( var i = 0; i < 31; i++) {
 
             var m = new PatternRowModel();
             this.patternRowCollection.add(m);
@@ -54,11 +54,11 @@ require('classes/SElementBulbRow');
                 m.bulbCollection.add(mB);
             }
 
-            ////console.log(">>",this.patternRowCollection.models);
+            //////console.log(">>",this.patternRowCollection.models);
 
         }
 
-        list.init("y",SElementBulbRow,{w:74*8,h:74},5,this.patternRowCollection);
+        list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection,30);
         list.y=170;
         list.x=13;
 
@@ -66,19 +66,19 @@ require('classes/SElementBulbRow');
 
         this.mezzData.on("add", function(ship) {
 
-            var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length)
-
+            var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1)
             t.set({setColor:ship.get('setColor')});
 
-            console.log("!", that.patternRowCollection.at(0).cid);
 
-            //znajdz ktora lampka
-            //przekaz jej ship
+
 
         });
 
+
+
+
         PatternPage.prototype.updateView2 =function(e) {
-            ////console.log("!!!!!!!!!!");
+            //////console.log("!!!!!!!!!!");
         }
 
 

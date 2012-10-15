@@ -36,21 +36,34 @@ require('classes/Bulb');
 
             this.bulbSet.push(temp);
 
-//            ////console.log("this.dataSet",this.dataSet.length);
+//            //////console.log("this.dataSet",this.dataSet.length);
 
         }
 
+
+
+
+
+
         // this.data.bind('change', this.updateView, this);
 
-//            ////console.log("this.dataSet",this.dataSet);
+//            //////console.log("this.dataSet",this.dataSet);
+
+
     };
+
+
+
+
+
+
 
     p.populateRow = function() {
 
 
-        ////console.log("should populate row",this.data);
+        //////console.log("should populate row",this.data);
 
-//        console.log("",);
+//        //console.log("",);
 
         var printRow=new Array()
 
@@ -62,7 +75,7 @@ require('classes/Bulb');
 
         }
 
-        console.log("populating",printRow,this.data.cid );
+        //console.log("populating",printRow,this.data.cid );
 
     }
 
@@ -73,16 +86,16 @@ require('classes/Bulb');
 
         this.sup_setData(data);
         this.data.bulbCollection.bind('change', this.updateView, this);
-       this.populateRow();
+        this.populateRow();
 
-        console.log("data",this.data.cid,this.data.bulbCollection);
+        //console.log("data",this.data.cid,this.data.bulbCollection);
 
     };
 
     p.updateView = function(e) {
         //this.setColor(this.data.attributes.setColor);
-        ////console.log("caught 2!",e);
-       // this.populateRow();
+        //////console.log("caught 2!",e);
+        // this.populateRow();
     }
 
 
@@ -124,7 +137,7 @@ require('classes/Bulb');
 //    p.initialize = function() {
 //        this.Container_initialize();
 //
-//        //////console.log("RFScrollableElement");
+//        ////////console.log("RFScrollableElement");
 //    }
 //
 //    window.RFScrollableElement = RFScrollableElement;

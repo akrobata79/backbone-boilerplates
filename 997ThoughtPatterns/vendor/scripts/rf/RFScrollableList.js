@@ -79,7 +79,10 @@
 
         var that=this;
 
-        if(!speedCap){this.speedCap=25} else {this.speedCap=speedCap};
+        if(!speedCap){this.speedCap=5} else {this.speedCap=speedCap};
+
+
+        //console.log("this.speedCap",this.speedCap);
 
         this.elementSize = size;
         this.targetProp = targetProp;
@@ -92,7 +95,7 @@
         this.upperBorder = -size.h;
         this.lowerBorder = this.height;
 
-        ////////console.log("this.lowerBorder",this.lowerBorder);
+        //////////console.log("this.lowerBorder",this.lowerBorder);
 
         this.howMany=howMany
 
@@ -115,15 +118,15 @@
         this.rail.setSize(100,this.dataSet.length*this.elementSize.h);
 
 
-        ////////console.log("this.dataSet.length",this.dataSet.length);
+        //////////console.log("this.dataSet.length",this.dataSet.length);
         var hm = this.dataSet.length;
         for ( var i = 0; i < hm; i++) {
-            ////////console.log("o");
+            //////////console.log("o");
             this.indexArr.push(-i*  size.h)//this.elementSize.h);
         }
 
-        ////////console.log("this.elementSize.h",this.elementSize.h);
-        ////////console.log("this.indexArr",this.indexArr);
+        //////////console.log("this.elementSize.h",this.elementSize.h);
+        //////////console.log("this.indexArr",this.indexArr);
 
         for ( var i = 0; i < howMany+1; i++) {
             var t = new targetClass();
@@ -137,7 +140,7 @@
             t.setSetters( this.dataSet.models[i].attributes );
             t.setData(this.dataSet.models[i])
 
-            ////console.log("3",this.dataSet.models[i]);
+            //////console.log("3",this.dataSet.models[i]);
 
             t.offset=0;
             this.theArr.push(t);
@@ -150,7 +153,7 @@
                     }
 
                     if(e.type=="onClick") {
-                        ////console.log("klik!");
+                        //////console.log("klik!");
                     }
 
 
@@ -159,7 +162,7 @@
 
         }
 
-        ////console.log("4");
+        //////console.log("4");
 
         this.theShape  = new createjs.Shape();
         this.theShape.graphics.clear();
@@ -179,13 +182,13 @@
         Ticker.addListener(this);
 
 //        this.dataSet.on("add", function(msg) {
-//            //////console.log(">>>>> got it ",this.dataSet.length);
+//            ////////console.log(">>>>> got it ",this.dataSet.length);
 //
 //            this.theArr[0].setSetters( this.dataSet.models[10].attributes );
 //
 //        },this);
 
-//        //////console.log("this.height",this.height);
+//        ////////console.log("this.height",this.height);
 
 
 
@@ -197,7 +200,7 @@
 
     p.onPresso = function(e) {
 
-        console.log("onPresso",e, this);
+        //console.log("onPresso",e, this);
 
         this.currentRevert = e.target;
 
@@ -224,7 +227,7 @@
 
     p.onMouseMove = function(e) {
 
-        //////console.log("onMouseMove");
+        ////////console.log("onMouseMove");
 
         if(this.currentRevert) {
             this.currentRevert.revert();
@@ -241,6 +244,7 @@
     p.tick = function() {
 
         if( Math.abs(this.vx) < 0.5) this.vx = 0;
+
         if( Math.abs(this.vx) > this.speedCap) {
 
             if(this.vx>0) { this.vx=this.speedCap}
@@ -261,6 +265,8 @@
 
 
         if( Math.abs(this.vx) < 0.5) this.vx = 0;
+
+
         if( Math.abs(this.vx) > this.speedCap) {
 
             if(this.vx>0) { this.vx=this.speedCap}
@@ -274,7 +280,7 @@
 
     p.handleMove = function() {
 
-//        //////console.log("this.elementSize.h",this.elementSize.h);
+//        ////////console.log("this.elementSize.h",this.elementSize.h);
 
         if (this.rail.y > 0) {
             this.rail.y=0;
@@ -304,10 +310,10 @@
 
     p.setIndex = function(inn,where,t,i) {
 
-        //console.log("###",this.index+this.howMany);
+        ////console.log("###",this.index+this.howMany);
 
-        //   //////console.log("this.dataSet.models[this.index]",this.dataSet,this.index);
-        //   //////console.log("ZZZ",this.dataSet.models[this.index].attributes);
+        //   ////////console.log("this.dataSet.models[this.index]",this.dataSet,this.index);
+        //   ////////console.log("ZZZ",this.dataSet.models[this.index].attributes);
 
         this.index=inn;
         if(where==this.upperBorder) {
@@ -320,7 +326,7 @@
            this.theArr[i].setData(this.dataSet.models[this.index])
         }
 
-//        //////console.log("end");
+//        ////////console.log("end");
     }
 
     window.RFScrollableList = RFScrollableList;

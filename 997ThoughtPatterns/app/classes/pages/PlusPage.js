@@ -27,8 +27,8 @@ require('classes/SElementMainBtn');
         var list = new RFScrollableList();
         this.addChild(list);
 
-        list.init("y",SElementMainBtn,{w:479,h:93},5,dataSet);
-        list.y=170;
+        list.init("y",SElementMainBtn,{w:479,h:93},5,dataSet,20);
+        list.y=220;
         list.x=80;
 
         this.addToMezz = _.bind( this.addToMezz, this );
@@ -55,13 +55,13 @@ require('classes/SElementMainBtn');
 
     PlusPage.prototype.addToMezz = function(data) {
 
-        //console.log("xx", data);
+        ////console.log("xx", data);
 
         var t = data.clone()
 
         this.mezzData.add(t);
 
-        //console.log("666 ",this.mezzData.length, t);
+        ////console.log("666 ",this.mezzData.length, t);
 
 
     }
