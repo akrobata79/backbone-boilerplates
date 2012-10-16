@@ -14,7 +14,7 @@
     p.init = function(patternData) {
 
         var mainBtn = new RFButtonBitmap();
-        mainBtn.init("images/btnL1_def.png","images/btnL1_down.png");
+        mainBtn.init("images/mainBtn.png","images/mainBtn.png");
 
         this.passInteraction  = _.bind(this.passInteraction, this );
         mainBtn.reportInteraction = this.passInteraction;
@@ -22,8 +22,8 @@
         this.text = new createjs.Text("TEMP", "50px Arial", "#000");
         this.text.textBaseline = "top";
 
-        this.text.x=10;
-        this.text.y=30;
+        this.text.x=40;
+        this.text.y=17;
 
         this.addChild(mainBtn,this.text);
 

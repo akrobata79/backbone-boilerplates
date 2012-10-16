@@ -152,9 +152,11 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
 
           var sqback =new  RFBlock();
-          sqback.setSize(74,74);
-          this.addChild(sqback)
-          sqback.alpha=0;
+          sqback.setSize(82,78);
+
+  //        ,{w:82*7,h:78}
+          this.addChild(sqback);
+          sqback.alpha=0.01;
 
           this.bottom = new Bitmap("images/bulbBack.png");
           this.addChild(this.bottom);
@@ -183,7 +185,7 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.temp2=function(){
 
-          this.cache(0,0,74,74);
+  //        this.cache(0,0,74,74);
 
 
       }
@@ -255,6 +257,150 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
   }());
 }});
 
+window.require.define({"classes/PopUp": function(exports, require, module) {
+  
+
+
+  (function() {
+
+      var PopUp = function() {this.initialize();}
+      PopUp.prototype = p = new Container();
+
+      p.controller;
+      p.back;
+
+      p.init = function(controller) {
+
+          _.extend(this, Backbone.Events);
+
+          this.controller=controller;
+
+          this.back = new RFBlock();
+          this.back.setSize(640,920)
+  //        this.addChild(this.back);
+          this.back.alpha=0.9
+
+          this.back.onClick = null;
+          this.back.onPress = null;
+
+
+          console.log("789");
+          var pop = new Bitmap("images/popUp.png");
+          this.addChild(pop)
+          pop.x=56
+          pop.y=150
+
+          this.hide();
+          var offset=130
+
+          var deleteBtn = new RFButtonBitmap2();
+          deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",false, "CANCEL");
+          this.addChild(deleteBtn)
+          deleteBtn.y=530;
+          deleteBtn.x=0+offset;
+
+          var addBtn = new RFButtonBitmap2();
+          addBtn.init("images/addBtnDef.png","images/addBtnDown.png",false, "CONFIRM");
+          this.addChild(addBtn);
+          addBtn.y=530;
+          addBtn.x=200+offset;
+
+          var that=this;
+
+          deleteBtn.on("CANCEL", function(msg) {
+              that.clicked(msg)
+          });
+
+          addBtn.on("CONFIRM", function(msg) {
+              that.clicked(msg)
+          });
+
+
+
+  //        controller
+
+      };
+
+
+      p.clicked = function(e) {
+
+          console.log("clicked !");
+
+          this.hide()
+
+
+      }
+
+
+
+
+      p.show = function() {
+
+          this.visible=true;
+          this.trigger("SHOW_POPUP");
+
+      }
+
+      p.hide = function() {
+
+          this.visible=false;
+
+          this.trigger("HIDE_POPUP");
+
+
+      }
+
+
+
+
+
+
+
+      window.PopUp = PopUp;
+
+  }());
+
+
+  //example of how to override using super
+  //    p.sup_setSize = p.setSize;
+  //    p.setSize = function(w,h) {
+  //        this.sup_setSize(w,h);
+  //    };
+
+
+  // ---------------------------
+  //      ???
+  //      p.Container_initialize = p.initialize;
+  //      ???
+  //      this.Container_initialize();
+  // ---------------------------
+
+
+
+  //(function() {
+  //
+  //    var RFScrollableElement = function() {
+  //        this.initialize();
+  //    }
+  //    var p = RFScrollableElement.prototype = new createjs.Container(); // inherit from Container
+  //
+  //    p.label;
+  //    p.background;
+  //    p.count = 0;
+  //
+  //    p.Container_initialize = p.initialize;
+  //
+  //    p.initialize = function() {
+  //        this.Container_initialize();
+  //
+  //        ////////console.log("RFScrollableElement");
+  //    }
+  //
+  //    window.RFScrollableElement = RFScrollableElement;
+  //}());/**
+  
+}});
+
 window.require.define({"classes/SElementBulbRow": function(exports, require, module) {
   
   require('classes/Bulb');
@@ -283,7 +429,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           this.passInteraction  = _.bind(this.passInteraction, this );
 
-          for ( var i = 0; i < 8; i++) {
+          for ( var i = 0; i < 7; i++) {
 
               var temp = new Bulb();
               temp.init();
@@ -325,7 +471,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           var printRow=new Array()
 
-          for ( var i = 0; i < 8; i++) {
+          for ( var i = 0; i < 7; i++) {
               var t = this.bulbSet[i];
               var g = this.data.bulbCollection.models[i]
               t.setData(g);
@@ -420,7 +566,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
       p.init = function(patternData) {
 
           var mainBtn = new RFButtonBitmap();
-          mainBtn.init("images/btnL1_def.png","images/btnL1_down.png");
+          mainBtn.init("images/mainBtn.png","images/mainBtn.png");
 
           this.passInteraction  = _.bind(this.passInteraction, this );
           mainBtn.reportInteraction = this.passInteraction;
@@ -428,8 +574,8 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
           this.text = new createjs.Text("TEMP", "50px Arial", "#000");
           this.text.textBaseline = "top";
 
-          this.text.x=10;
-          this.text.y=30;
+          this.text.x=40;
+          this.text.y=17;
 
           this.addChild(mainBtn,this.text);
 
@@ -877,7 +1023,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
               var m = new PatternRowModel();
               this.patternRowCollection.add(m);
 
-              for ( var j = 0; j < 8; j++) {
+              for ( var j = 0; j < 7; j++) {
                   var mB = new BulbModel();
                   m.bulbCollection.add(mB);
               }
@@ -886,9 +1032,9 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           }
 
-          list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection,30);
-          list.y=170;
-          list.x=13;
+          list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
+          list.y=150;
+          list.x=60;
 
           var that=this;
 
@@ -948,29 +1094,29 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
       PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
 
+      PlusPage.prototype.popUp;
 
-
+      PlusPage.prototype.addBtn;
 
       PlusPage.prototype.initialize = function() {
           this.Container_initialize();
       };
 
       PlusPage.prototype.mezzData;
-      PlusPage.prototype.init = function(dataSet,mezzData) {
+      PlusPage.prototype.init = function(dataSet,mezzData,popUp) {
 
           this.mezzData=mezzData;
 
           var list = new RFScrollableList();
           this.addChild(list);
 
-          list.init("y",SElementMainBtn,{w:479,h:93},5,dataSet,20);
-          list.y=220;
-          list.x=80;
+          list.init("y",SElementMainBtn,{w:535,h:90},5,dataSet,20);
+          list.y=160;
+          list.x=52;
 
           this.addToMezz = _.bind( this.addToMezz, this );
 
-          var that=this
-
+          var that=this;
 
           for ( var i = 0; i < list.theArr.length; i++) {
 
@@ -986,6 +1132,37 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
               })
 
           }
+
+          var offset=130;
+
+          var deleteBtn = new RFButtonBitmap2();
+          deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",true);
+          this.addChild(deleteBtn)
+          deleteBtn.y=674
+          deleteBtn.x=0+offset;
+
+          this.addBtn = new RFButtonBitmap2();
+          this.addBtn.init("images/addBtnDef.png","images/addBtnDown.png",true, "ADDBTN");
+          this.addChild(this.addBtn);
+          this.addBtn.y=674
+          this.addBtn.x=200+offset;
+
+
+
+
+          this.addBtn.on("ADDBTN", function(msg) {
+  //            alert("Triggered " + msg);
+
+              that.popUp.show();
+          });
+
+
+
+
+
+          this.popUp=popUp;
+
+
 
       }
 
@@ -1407,6 +1584,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
   require('classes/pages/PlusPage');
   require('classes/pages/InfoPage');
   require('classes/pages/PatternPage');
+  require('classes/PopUp');
 
   //require('rf/RF');
 
@@ -1454,77 +1632,39 @@ window.require.define({"views/HomeView": function(exports, require, module) {
        */
       render: function() {
 
-
-
-  //        this.stage.alpha=0.1;
-
-
           this.updateView();
 
-
-
-
-  //        this.updateView();
           return this;
 
       },
 
       yo:function (e) {
-          console.log("asi",e);
+
       },
 
       updateView: function() {
-
-
-
           //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
-
-
           var canvas = document.createElement("canvas");
-  //        this.el=canvas;
           $(this.el).width(640);
           $(this.el).height(920);
 
-  //       $(this.el).append('<div>sdsdd</div>');
-
-
-
-          console.log("dd");
-
-
-  //        $('#pageId').trigger('create');
-
-
-
-
-
-
-  //       $(this.el).append(' <a href="#popupPadded" data-rel="popup" data-role="button">Popup with padding</a>');
-
-
+  //        addBtnDef.png
+  //        addBtnDown.png
+  //        box.png
+  //        deleteBtnDef.png
+  //        deleteBtnDown.png
+  //        mainBtn.png
+  //        mainMessage.png
+  //        popUp.png
+  //        stitch.png
 
           $(this.el).append(canvas);
 
-          $(this.el).append('<div id="dialogBox" class="tha">' +
-              '</br>' +
-              '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
-              '</div>');
-
-
-  //        console.log("t",t);
-  //        t.getElementById('dialogBox');
-
-
-
-
-  //console.log("t",t);
-
-
-  //        $(t).hide();
-  //        $("#home-view").hide();
-  //       $('dialogBox').append('');
-
+  //        $(this.el).append('<div id="dialogBox" class="tha">' +
+  //            '</br>' +
+  //            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
+  //            '</div>');
 
           canvas.width=640;
           canvas.height=920;
@@ -1533,15 +1673,12 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           Touch.enable ( this.stage , true , false );
           RF.stage=this.stage;
 
-
-
           //Stage
           //BACKGROUND
           var bmp = new Bitmap("images/BACK.jpg");
           this.stage.addChild(bmp);
 
           //SCREENMANAGER
-
 
           var MainBtnModel = Backbone.Model.extend({
               defaults: {setLabel:"BEDZIE OK",setColor:111}
@@ -1567,10 +1704,13 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           var patternPage = new PatternPage();
           patternPage.init(mezzData);
 
+          var popUp = new PopUp();
+
+
+
           // passing 2 datasets
           var plusPage = new PlusPage();
-          plusPage.init(mainBtnCollection,mezzData);
-
+          plusPage.init(mainBtnCollection,mezzData,popUp);
 
           var infoPage = new InfoPage();
 
@@ -1586,19 +1726,19 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           var navBtn1 = new RFButtonBitmap();
           navBtn1.init("images/Navigation_def_01.png","images/Navigation_down_01.png");
           this.stage.addChild(navBtn1);
-          navBtn1.y=691;
+          navBtn1.y=774;
 
           var navBtn2 = new RFButtonBitmap();
           navBtn2.init("images/Navigation_def_02.png","images/Navigation_down_02.png");
           this.stage.addChild(navBtn2);
           navBtn2.x=216;
-          navBtn2.y=691;
+          navBtn2.y=774;
 
           var navBtn3 = new RFButtonBitmap();
           navBtn3.init("images/Navigation_def_04.png","images/Navigation_down_04.png");
           this.stage.addChild(navBtn3);
           navBtn3.x=216+205;
-          navBtn3.y=691;
+          navBtn3.y=774;
 
           var nav = require('classes/nav/RFNav');
           nav.setup([navBtn1,navBtn2,navBtn3],curtain);
@@ -1610,43 +1750,61 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           //FOOTER
           var f = new Bitmap("images/footer.png");
-          this.stage.addChild(f);
+  //        this.stage.addChild(f);
           f.y=833;
 
           //TOP
           var top = new Bitmap("images/top.png");
           this.stage.addChild(top);
 
+          var box = new  Bitmap("images/box.png");
+          this.stage.addChild(box);
+          box.x=30;
+          box.y=120;
+
           Ticker.addListener(this);
           Ticker.setFPS(40);
 
-          setTimeout(this.getcarter,2500)
+  //        setTimeout(this.getcarter,2500);
 
-  //        console.log("el",this.body,$('body'));
+          popUp.init(plusPage);
+
+          var that=this;
+
+          $(this.el).append('<input id="dialogBox" value="Tap here" type="text" name="firstname" >');
+
+          popUp.on("SHOW_POPUP", function(msg) {
+
+              $("#dialogBox").val("TAP HERE")
+
+              $("#dialogBox").css("height","50px");
+              $("#dialogBox").css("display","inline");
+
+
+              $('#dialogBox').focus(function() {$("#dialogBox").val("")})
 
 
 
-      },
+  //            document.getElementbyId('dialogBox').value="sksk "
+
+          });
+
+          popUp.on("HIDE_POPUP", function(msg) {
+              $("#dialogBox").css("height","0px");
+              $("#dialogBox").css("display","none");
+
+  //            height: 150px;
+          });
+
+          this.stage.addChild(popUp);
 
 
-      getcarter: function() {
 
-          console.log("this.el",$(this.el));
-  //        $(".tha").hide()
-
-  //        $(".tha").append(' <a href="index.html" data-role="button">Link button</a>');
       },
 
       myFunction: function(e) {
           console.log("eee",e);
       },
-
-      do:function() {
-
-          curtain.do();
-
-      },
-
 
       tick: function() {
           this.stage.update();
@@ -1701,6 +1859,28 @@ window.require.define({"views/HomeView": function(exports, require, module) {
   //        canvas.height = "920"; // allow 40 pixels for status bar on iOS
   //        canvas.style.width = "320px";
   //        canvas.style.height = "460px";
+
+
+
+  //        console.log("t",t);
+  //        t.getElementById('dialogBox');
+
+
+
+
+  //console.log("t",t);
+
+
+  //        $(t).hide();
+  //        $("#home-view").hide();
+  //       $('dialogBox').append('');
+
+  //       $(this.el).append('<div>sdsdd</div>');
+
+
+  //       $(this.el).append(' <a href="#popupPadded" data-rel="popup" data-role="button">Popup with padding</a>');
+
+  
 }});
 
 window.require.define({"views/supers/View": function(exports, require, module) {

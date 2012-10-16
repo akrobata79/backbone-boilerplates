@@ -25,7 +25,7 @@ require('classes/Bulb');
 
         this.passInteraction  = _.bind(this.passInteraction, this );
 
-        for ( var i = 0; i < 8; i++) {
+        for ( var i = 0; i < 7; i++) {
 
             var temp = new Bulb();
             temp.init();
@@ -67,7 +67,7 @@ require('classes/Bulb');
 
         var printRow=new Array()
 
-        for ( var i = 0; i < 8; i++) {
+        for ( var i = 0; i < 7; i++) {
             var t = this.bulbSet[i];
             var g = this.data.bulbCollection.models[i]
             t.setData(g);

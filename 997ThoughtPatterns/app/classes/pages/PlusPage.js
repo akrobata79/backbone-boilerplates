@@ -12,29 +12,29 @@ require('classes/SElementMainBtn');
 
     PlusPage.prototype.Container_initialize = PlusPage.prototype.initialize;
 
+    PlusPage.prototype.popUp;
 
-
+    PlusPage.prototype.addBtn;
 
     PlusPage.prototype.initialize = function() {
         this.Container_initialize();
     };
 
     PlusPage.prototype.mezzData;
-    PlusPage.prototype.init = function(dataSet,mezzData) {
+    PlusPage.prototype.init = function(dataSet,mezzData,popUp) {
 
         this.mezzData=mezzData;
 
         var list = new RFScrollableList();
         this.addChild(list);
 
-        list.init("y",SElementMainBtn,{w:479,h:93},5,dataSet,20);
-        list.y=220;
-        list.x=80;
+        list.init("y",SElementMainBtn,{w:535,h:90},5,dataSet,20);
+        list.y=160;
+        list.x=52;
 
         this.addToMezz = _.bind( this.addToMezz, this );
 
-        var that=this
-
+        var that=this;
 
         for ( var i = 0; i < list.theArr.length; i++) {
 
@@ -50,6 +50,37 @@ require('classes/SElementMainBtn');
             })
 
         }
+
+        var offset=130;
+
+        var deleteBtn = new RFButtonBitmap2();
+        deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",true);
+        this.addChild(deleteBtn)
+        deleteBtn.y=674
+        deleteBtn.x=0+offset;
+
+        this.addBtn = new RFButtonBitmap2();
+        this.addBtn.init("images/addBtnDef.png","images/addBtnDown.png",true, "ADDBTN");
+        this.addChild(this.addBtn);
+        this.addBtn.y=674
+        this.addBtn.x=200+offset;
+
+
+
+
+        this.addBtn.on("ADDBTN", function(msg) {
+//            alert("Triggered " + msg);
+
+            that.popUp.show();
+        });
+
+
+
+
+
+        this.popUp=popUp;
+
+
 
     }
 

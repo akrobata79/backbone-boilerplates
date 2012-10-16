@@ -24,6 +24,7 @@ require('classes/nav/ScreenManager');
 require('classes/pages/PlusPage');
 require('classes/pages/InfoPage');
 require('classes/pages/PatternPage');
+require('classes/PopUp');
 
 //require('rf/RF');
 
@@ -71,77 +72,39 @@ module.exports = View.extend({
      */
     render: function() {
 
-
-
-//        this.stage.alpha=0.1;
-
-
         this.updateView();
 
-
-
-
-//        this.updateView();
         return this;
 
     },
 
     yo:function (e) {
-        console.log("asi",e);
+
     },
 
     updateView: function() {
-
-
-
         //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
-
-
         var canvas = document.createElement("canvas");
-//        this.el=canvas;
         $(this.el).width(640);
         $(this.el).height(920);
 
-//       $(this.el).append('<div>sdsdd</div>');
-
-
-
-        console.log("dd");
-
-
-//        $('#pageId').trigger('create');
-
-
-
-
-
-
-//       $(this.el).append(' <a href="#popupPadded" data-rel="popup" data-role="button">Popup with padding</a>');
-
-
+//        addBtnDef.png
+//        addBtnDown.png
+//        box.png
+//        deleteBtnDef.png
+//        deleteBtnDown.png
+//        mainBtn.png
+//        mainMessage.png
+//        popUp.png
+//        stitch.png
 
         $(this.el).append(canvas);
 
-        $(this.el).append('<div id="dialogBox" class="tha">' +
-            '</br>' +
-            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
-            '</div>');
-
-
-//        console.log("t",t);
-//        t.getElementById('dialogBox');
-
-
-
-
-//console.log("t",t);
-
-
-//        $(t).hide();
-//        $("#home-view").hide();
-//       $('dialogBox').append('');
-
+//        $(this.el).append('<div id="dialogBox" class="tha">' +
+//            '</br>' +
+//            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
+//            '</div>');
 
         canvas.width=640;
         canvas.height=920;
@@ -150,15 +113,12 @@ module.exports = View.extend({
         Touch.enable ( this.stage , true , false );
         RF.stage=this.stage;
 
-
-
         //Stage
         //BACKGROUND
         var bmp = new Bitmap("images/BACK.jpg");
         this.stage.addChild(bmp);
 
         //SCREENMANAGER
-
 
         var MainBtnModel = Backbone.Model.extend({
             defaults: {setLabel:"BEDZIE OK",setColor:111}
@@ -184,10 +144,13 @@ module.exports = View.extend({
         var patternPage = new PatternPage();
         patternPage.init(mezzData);
 
+        var popUp = new PopUp();
+
+
+
         // passing 2 datasets
         var plusPage = new PlusPage();
-        plusPage.init(mainBtnCollection,mezzData);
-
+        plusPage.init(mainBtnCollection,mezzData,popUp);
 
         var infoPage = new InfoPage();
 
@@ -203,19 +166,19 @@ module.exports = View.extend({
         var navBtn1 = new RFButtonBitmap();
         navBtn1.init("images/Navigation_def_01.png","images/Navigation_down_01.png");
         this.stage.addChild(navBtn1);
-        navBtn1.y=691;
+        navBtn1.y=774;
 
         var navBtn2 = new RFButtonBitmap();
         navBtn2.init("images/Navigation_def_02.png","images/Navigation_down_02.png");
         this.stage.addChild(navBtn2);
         navBtn2.x=216;
-        navBtn2.y=691;
+        navBtn2.y=774;
 
         var navBtn3 = new RFButtonBitmap();
         navBtn3.init("images/Navigation_def_04.png","images/Navigation_down_04.png");
         this.stage.addChild(navBtn3);
         navBtn3.x=216+205;
-        navBtn3.y=691;
+        navBtn3.y=774;
 
         var nav = require('classes/nav/RFNav');
         nav.setup([navBtn1,navBtn2,navBtn3],curtain);
@@ -227,43 +190,61 @@ module.exports = View.extend({
 
         //FOOTER
         var f = new Bitmap("images/footer.png");
-        this.stage.addChild(f);
+//        this.stage.addChild(f);
         f.y=833;
 
         //TOP
         var top = new Bitmap("images/top.png");
         this.stage.addChild(top);
 
+        var box = new  Bitmap("images/box.png");
+        this.stage.addChild(box);
+        box.x=30;
+        box.y=120;
+
         Ticker.addListener(this);
         Ticker.setFPS(40);
 
-        setTimeout(this.getcarter,2500)
+//        setTimeout(this.getcarter,2500);
 
-//        console.log("el",this.body,$('body'));
+        popUp.init(plusPage);
+
+        var that=this;
+
+        $(this.el).append('<input id="dialogBox" value="Tap here" type="text" name="firstname" >');
+
+        popUp.on("SHOW_POPUP", function(msg) {
+
+            $("#dialogBox").val("TAP HERE")
+
+            $("#dialogBox").css("height","50px");
+            $("#dialogBox").css("display","inline");
+
+
+            $('#dialogBox').focus(function() {$("#dialogBox").val("")})
 
 
 
-    },
+//            document.getElementbyId('dialogBox').value="sksk "
+
+        });
+
+        popUp.on("HIDE_POPUP", function(msg) {
+            $("#dialogBox").css("height","0px");
+            $("#dialogBox").css("display","none");
+
+//            height: 150px;
+        });
+
+        this.stage.addChild(popUp);
 
 
-    getcarter: function() {
 
-        console.log("this.el",$(this.el));
-//        $(".tha").hide()
-
-//        $(".tha").append(' <a href="index.html" data-role="button">Link button</a>');
     },
 
     myFunction: function(e) {
         console.log("eee",e);
     },
-
-    do:function() {
-
-        curtain.do();
-
-    },
-
 
     tick: function() {
         this.stage.update();
@@ -318,3 +299,24 @@ module.exports = View.extend({
 //        canvas.height = "920"; // allow 40 pixels for status bar on iOS
 //        canvas.style.width = "320px";
 //        canvas.style.height = "460px";
+
+
+
+//        console.log("t",t);
+//        t.getElementById('dialogBox');
+
+
+
+
+//console.log("t",t);
+
+
+//        $(t).hide();
+//        $("#home-view").hide();
+//       $('dialogBox').append('');
+
+//       $(this.el).append('<div>sdsdd</div>');
+
+
+//       $(this.el).append(' <a href="#popupPadded" data-rel="popup" data-role="button">Popup with padding</a>');
+

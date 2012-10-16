@@ -1,36 +1,37 @@
 
 (function(window) {
 
-    function RFButtonBitmap() {
+    function RFButtonBitmap2() {
         this.initialize();
     }
 
-    RFButtonBitmap.prototype = new Container();
-    RFButtonBitmap.prototype.Container_initialize = RFButtonBitmap.prototype.initialize;	//unique to avoid overiding base class
+    RFButtonBitmap2.prototype = new Container();
+    RFButtonBitmap2.prototype.Container_initialize = RFButtonBitmap2.prototype.initialize;	//unique to avoid overiding base class
 
-    RFButtonBitmap.prototype.img1;
-    RFButtonBitmap.prototype.img2;
+    RFButtonBitmap2.prototype.img1;
+    RFButtonBitmap2.prototype.img2;
 
-    RFButtonBitmap.prototype.stateNo;
+    RFButtonBitmap2.prototype.stateNo;
 
-    RFButtonBitmap.prototype.toggleBtn=false;
-    RFButtonBitmap.prototype.radioBtn=false;
+    RFButtonBitmap2.prototype.toggleBtn=false;
+    RFButtonBitmap2.prototype.radioBtn=false;
 
-    RFButtonBitmap.prototype.eventName;
-    RFButtonBitmap.prototype.id;
+    RFButtonBitmap2.prototype.eventName;
+    RFButtonBitmap2.prototype.id;
 
-    RFButtonBitmap.prototype.dispatcher;
+    RFButtonBitmap2.prototype.dispatcher;
 
-    RFButtonBitmap.prototype.prevState;
+    RFButtonBitmap2.prototype.prevState;
 
-    RFButtonBitmap.prototype.justReverted;
+    RFButtonBitmap2.prototype.justReverted;
 
 
-    RFButtonBitmap.prototype.initialize = function() {
+    RFButtonBitmap2.prototype.initialize = function() {
         this.Container_initialize();
+
     };
 
-    RFButtonBitmap.prototype.init = function(img1,img2,toggleBtn,eventName) {
+    RFButtonBitmap2.prototype.init = function(img1,img2,toggleBtn,eventName) {
 
         if(eventName) this.eventName=eventName;
 
@@ -49,9 +50,12 @@
 
         this.click = _.bind( this.click, this );
 
+        _.extend(this, Backbone.Events);
+
+
     };
 
-    RFButtonBitmap.prototype.revert = function() {
+    RFButtonBitmap2.prototype.revert = function() {
 
         //console.log("revert",this);
         this.justReverted=true;
@@ -63,17 +67,21 @@
 
     }
 
-    RFButtonBitmap.prototype.reportInteraction = function(e) {
+    RFButtonBitmap2.prototype.reportInteraction = function(e) {
 
         ////console.log("super");
 
     }
 
-    RFButtonBitmap.prototype.click = function(e) {
+    RFButtonBitmap2.prototype.click = function(e) {
+
+
 
         //console.log("click>this.justReverted",this.justReverted);
 
         if(!this.toggleBtn && this.radioBtn!=true) {
+
+
 
             if(e.type=='onClick' && !this.justReverted) {
 
@@ -81,7 +89,11 @@
 
                 this.justReverted=false;
                 this.setState(1);
-                if(this.eventName) EventBus.dispatch(this.eventName,this);
+
+
+//                console.log("this.eventName",this.eventName);
+                if(this.eventName) this.trigger(this.eventName, e);
+
 
                 //console.log("inside");
 
@@ -104,7 +116,10 @@
             if(e.type=='onPress') {
                 if(this.stateNo==1) {this.setState(2)} else {this.setState(1)};
 
-                if(this.eventName) EventBus.dispatch(this.eventName,this);
+                console.log("this.eventName",this.eventName);
+
+                if(this.eventName) this.trigger(this.eventName, e);
+
             };
 
         };
@@ -116,7 +131,7 @@
 
                 if(this.stateNo==1) {
                     this.setState(2);
-                    if(this.eventName) EventBus.dispatch(this.eventName,this);
+                    if(this.eventName) this.trigger(this.eventName, e);
                 }
 
             };
@@ -125,7 +140,7 @@
 
     }
 
-    RFButtonBitmap.prototype.setState = function(stateNo) {
+    RFButtonBitmap2.prototype.setState = function(stateNo) {
 
 
 
@@ -145,7 +160,7 @@
 
     };
 
-    window.RFButtonBitmap = RFButtonBitmap;
+    window.RFButtonBitmap2 = RFButtonBitmap2;
 
 }(window));
 

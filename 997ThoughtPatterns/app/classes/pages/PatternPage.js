@@ -49,7 +49,7 @@ require('classes/SElementBulbRow');
             var m = new PatternRowModel();
             this.patternRowCollection.add(m);
 
-            for ( var j = 0; j < 8; j++) {
+            for ( var j = 0; j < 7; j++) {
                 var mB = new BulbModel();
                 m.bulbCollection.add(mB);
             }
@@ -58,9 +58,9 @@ require('classes/SElementBulbRow');
 
         }
 
-        list.init("y",SElementBulbRow,{w:74*8,h:74},6,this.patternRowCollection,30);
-        list.y=170;
-        list.x=13;
+        list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
+        list.y=150;
+        list.x=60;
 
         var that=this;
 

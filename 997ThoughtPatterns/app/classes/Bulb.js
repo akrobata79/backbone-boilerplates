@@ -24,9 +24,11 @@
 
 
         var sqback =new  RFBlock();
-        sqback.setSize(74,74);
-        this.addChild(sqback)
-        sqback.alpha=0;
+        sqback.setSize(82,78);
+
+//        ,{w:82*7,h:78}
+        this.addChild(sqback);
+        sqback.alpha=0.01;
 
         this.bottom = new Bitmap("images/bulbBack.png");
         this.addChild(this.bottom);
@@ -55,7 +57,7 @@
 
     p.temp2=function(){
 
-        this.cache(0,0,74,74);
+//        this.cache(0,0,74,74);
 
 
     }
