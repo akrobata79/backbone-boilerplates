@@ -40,11 +40,6 @@ require('classes/Bulb');
 
         }
 
-
-
-
-
-
         // this.data.bind('change', this.updateView, this);
 
 //            //////console.log("this.dataSet",this.dataSet);

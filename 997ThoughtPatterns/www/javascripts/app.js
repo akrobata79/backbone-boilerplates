@@ -146,7 +146,7 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.gr;
 
-      p.data
+      p.data;
 
       p.init = function() {
 
@@ -185,19 +185,10 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.temp2=function(){
 
-  //        this.cache(0,0,74,74);
+          this.cache(0,0,82,78    );
 
 
       }
-
-
-
-
-
-
-
-
-
 
       p.setColor = function(n) {
 
@@ -260,7 +251,7 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 window.require.define({"classes/PopUp": function(exports, require, module) {
   
 
-
+  require('classes/additional/ColorBox');
   (function() {
 
       var PopUp = function() {this.initialize();}
@@ -268,6 +259,7 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
 
       p.controller;
       p.back;
+      p.colorBox;
 
       p.init = function(controller) {
 
@@ -283,7 +275,6 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
           this.back.onClick = null;
           this.back.onPress = null;
 
-
           console.log("789");
           var pop = new Bitmap("images/popUp.png");
           this.addChild(pop)
@@ -296,13 +287,13 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
           var deleteBtn = new RFButtonBitmap2();
           deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",false, "CANCEL");
           this.addChild(deleteBtn)
-          deleteBtn.y=530;
+          deleteBtn.y=550;
           deleteBtn.x=0+offset;
 
           var addBtn = new RFButtonBitmap2();
           addBtn.init("images/addBtnDef.png","images/addBtnDown.png",false, "CONFIRM");
           this.addChild(addBtn);
-          addBtn.y=530;
+          addBtn.y=550;
           addBtn.x=200+offset;
 
           var that=this;
@@ -315,9 +306,14 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
               that.clicked(msg)
           });
 
+          var colorBox = new ColorBox();
+          this.addChild(colorBox);
+          colorBox.init();
+          colorBox.y=455;
+          colorBox.x=400;
 
 
-  //        controller
+
 
       };
 
@@ -444,11 +440,6 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           }
 
-
-
-
-
-
           // this.data.bind('change', this.updateView, this);
 
   //            //////console.log("this.dataSet",this.dataSet);
@@ -551,6 +542,9 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
 window.require.define({"classes/SElementMainBtn": function(exports, require, module) {
   
+
+  require('classes/Bulb');
+
   (function() {
 
       var SElementMainBtn = function() {this.initialize();}
@@ -563,6 +557,8 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
       p.width;
       p.height;
 
+      p.bulb;
+
       p.init = function(patternData) {
 
           var mainBtn = new RFButtonBitmap();
@@ -574,10 +570,23 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
           this.text = new createjs.Text("TEMP", "50px Arial", "#000");
           this.text.textBaseline = "top";
 
-          this.text.x=40;
+          this.text.x=80;
           this.text.y=17;
 
-          this.addChild(mainBtn,this.text);
+          this.bulb = new Bulb();
+          this.bulb.init()
+
+          this.bulb.scaleX=0.5
+          this.bulb.scaleY=0.5
+
+          this.bulb.x=30
+          this.bulb.y=25
+
+          this.bulb.revert=null;
+          this.bulb.onClick=null;
+          this.bulb.onPress=null;
+
+          this.addChild(mainBtn,this.text,this.bulb);
 
       };
 
@@ -661,6 +670,80 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
   //}());
 }});
 
+window.require.define({"classes/additional/ColorBox": function(exports, require, module) {
+  
+
+  (function() {
+
+      var ColorBox = function() {this.initialize();}
+
+      ColorBox.prototype = p = new Container();
+
+      p.gr;
+      p.colorPart;
+
+      p.colorArr;
+
+      p.currColor;
+
+
+      p.init = function() {
+
+          this.gr = new createjs.Graphics();
+
+
+          this.colorPart = new createjs.Shape(this.gr);   // new Bitmap("images/ColorBoxTop.png");
+
+         this.setColor(10);
+
+          this.onPress = _.bind( this.onPress, this );
+
+          console.log("...");
+          this.addChild(this.colorPart);
+
+          this.colorArr = new Array();
+
+          for ( var i = 0; i < 36; i++) {
+              this.colorArr.push(i*10);
+          };
+
+
+
+      };
+
+
+      p.setColor = function(n) {
+          this.gr.clear()
+          this.gr.beginFill(Graphics.getHSL(n,100,50,1));
+          this.gr.drawRoundRect(0,0,60,55,5);
+      }
+
+
+      p.onPress = function(e) {
+
+
+          this.currColor=Rnd.integer(0,35)
+          this.setColor(this.colorArr[this.currColor])
+
+      }
+
+      p.pluck = function() {
+
+      }
+
+
+      window.ColorBox = ColorBox;
+
+  }());/**
+   * Created with JetBrains WebStorm.
+   * User: Robert
+   * Date: 10/16/12
+   * Time: 8:41 PM
+   * To change this template use File | Settings | File Templates.
+   */
+  
+}});
+
 window.require.define({"classes/additional/Curtain": function(exports, require, module) {
   
   (function(window) {
@@ -720,6 +803,53 @@ window.require.define({"classes/additional/Curtain": function(exports, require, 
 
 
 
+  
+}});
+
+window.require.define({"classes/additional/MessageBox": function(exports, require, module) {
+  
+
+  (function() {
+
+      var MessageBox = function() {this.initialize();}
+
+      MessageBox.prototype = p = new Container();
+
+      p.init = function() {
+
+          var background = new Bitmap("images/mainMessage.png");
+          this.addChild(background)
+
+
+
+
+      };
+
+
+      p.setMessage = function(n) {
+
+      }
+
+
+
+
+
+      window.MessageBox = MessageBox;
+
+  }());/**
+   * Created with JetBrains WebStorm.
+   * User: Robert
+   * Date: 10/16/12
+   * Time: 8:41 PM
+   * To change this template use File | Settings | File Templates.
+   */
+  /**
+   * Created with JetBrains WebStorm.
+   * User: Robert
+   * Date: 10/16/12
+   * Time: 10:11 PM
+   * To change this template use File | Settings | File Templates.
+   */
   
 }});
 
@@ -974,6 +1104,7 @@ window.require.define({"classes/pages/InfoPage": function(exports, require, modu
 window.require.define({"classes/pages/PatternPage": function(exports, require, module) {
   
   require('classes/SElementBulbRow');
+  require('classes/additional/MessageBox');
 
   (function(window) {
 
@@ -990,6 +1121,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
       PatternPage.prototype.patternRowCollection;
       PatternPage.prototype.mezzData;
+      PatternPage.prototype.messageBox;
 
       PatternPage.prototype.init = function(dataSet) {
 
@@ -1032,7 +1164,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           }
 
-          list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
+  //        list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
           list.y=150;
           list.x=60;
 
@@ -1043,18 +1175,13 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
               var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1)
               t.set({setColor:ship.get('setColor')});
 
-
-
-
           });
 
-
-
-
-          PatternPage.prototype.updateView2 =function(e) {
-              //////console.log("!!!!!!!!!!");
-          }
-
+          this.messageBox = new MessageBox();
+          this.addChild(this.messageBox);
+          this.messageBox.y=660;
+          this.messageBox.x=55;
+          this.messageBox.init()
 
       }
 
@@ -1097,6 +1224,7 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
       PlusPage.prototype.popUp;
 
       PlusPage.prototype.addBtn;
+      PlusPage.prototype.list;
 
       PlusPage.prototype.initialize = function() {
           this.Container_initialize();
@@ -1107,20 +1235,23 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
           this.mezzData=mezzData;
 
-          var list = new RFScrollableList();
-          this.addChild(list);
+          this.list = new RFScrollableList();
+          this.addChild(this.list);
 
-          list.init("y",SElementMainBtn,{w:535,h:90},5,dataSet,20);
-          list.y=160;
-          list.x=52;
+          this.list.init("y",SElementMainBtn,{w:535,h:90},5,dataSet,20);
+
+  //        window.deb.add(this.list.rail,"y","rail.y");
+
+          this.list.y=160;
+          this.list.x=52;
 
           this.addToMezz = _.bind( this.addToMezz, this );
 
           var that=this;
 
-          for ( var i = 0; i < list.theArr.length; i++) {
+          for ( var i = 0; i < this.list.theArr.length; i++) {
 
-              var t = list.theArr[i];
+              var t = this.list.theArr[i];
 
               t.on("YOYO", function(e){
 
@@ -1148,6 +1279,8 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
           this.addBtn.x=200+offset;
 
 
+
+  //    p.add = function(t, property, name) {
 
 
           this.addBtn.on("ADDBTN", function(msg) {
@@ -1573,6 +1706,10 @@ window.require.define({"views/HomeView": function(exports, require, module) {
    *
    * javascript frameworks http://www.remotesynthesis.com/post.cfm/50-javascript-html5-frameworks-and-related-tools
    *
+   * http://stackoverflow.com/questions/10866976/mouse-click-or-touch-events-on-canvas-causes-selection-using-html5-phonegap-a
+   *
+   * MEETING:
+   * https://github.com/jamesor/backbone-demo
    */
 
   var View = require('./supers/View');
@@ -1611,6 +1748,8 @@ window.require.define({"views/HomeView": function(exports, require, module) {
       myC:null,
       stage:null,
 
+      plusPage:null,
+
 
       //--------------------------------------
       //+ INHERITED / OVERRIDES
@@ -1632,22 +1771,11 @@ window.require.define({"views/HomeView": function(exports, require, module) {
        */
       render: function() {
 
-          this.updateView();
-
-          return this;
-
-      },
-
-      yo:function (e) {
-
-      },
-
-      updateView: function() {
-          //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
-
           var canvas = document.createElement("canvas");
-          $(this.el).width(640);
-          $(this.el).height(920);
+  //        $(this.el).width(640);
+  //        $(this.el).height(420);
+  //        $(this.el).tabindex=1;
+  //        tabindex="1"
 
   //        addBtnDef.png
   //        addBtnDown.png
@@ -1670,6 +1798,14 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           canvas.height=920;
 
           this.stage = new Stage(canvas);
+          this.stage.tickOnUpdate=true;
+
+          window.deb=new RFDebug();
+          deb.init(500,300,600);
+          deb.x=160;
+
+
+          //Touch.enable = function(stage, singleTouch, allowDefault) {
           Touch.enable ( this.stage , true , false );
           RF.stage=this.stage;
 
@@ -1706,16 +1842,14 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           var popUp = new PopUp();
 
-
-
           // passing 2 datasets
-          var plusPage = new PlusPage();
-          plusPage.init(mainBtnCollection,mezzData,popUp);
+          this.plusPage = new PlusPage();
+          this.plusPage.init(mainBtnCollection,mezzData,popUp);
 
           var infoPage = new InfoPage();
 
           var screenManager = new ScreenManager();
-          screenManager.init([plusPage,patternPage,infoPage]);
+          screenManager.init([this.plusPage,patternPage,infoPage]);
           this.stage.addChild(screenManager);
 
           //CURTAIN
@@ -1755,7 +1889,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           //TOP
           var top = new Bitmap("images/top.png");
-          this.stage.addChild(top);
+  //        this.stage.addChild(top);
 
           var box = new  Bitmap("images/box.png");
           this.stage.addChild(box);
@@ -1763,40 +1897,108 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           box.y=120;
 
           Ticker.addListener(this);
-          Ticker.setFPS(40);
+          Ticker.setFPS(30);
 
   //        setTimeout(this.getcarter,2500);
 
-          popUp.init(plusPage);
+          popUp.init(this.plusPage);
+
+  //        this.plusPage.list.setAllow(false)
 
           var that=this;
+          //$(this.el).append(''<div id="yoDiv"><div>);
 
-          $(this.el).append('<input id="dialogBox" value="Tap here" type="text" name="firstname" >');
+  //        $.extend($.mobile.zoom, {locked:true,enabled:false})
+
+  //        $(this.el).append('<div><input id="dialogBox" value="Tap here" type="month" name="firstname"  ></div>');
+          $(this.el).append('<div><img id="dialogBox" src="images/addBtnDown.png" alt="some_text"></div>');
+
+
+          this.yo = _.bind( this.yo, this );
+          setTimeout(this.yo,500);
 
           popUp.on("SHOW_POPUP", function(msg) {
 
-              $("#dialogBox").val("TAP HERE")
+  //            $("#dialogBox").show();
+  //
+  //            $("#dialogBox").val("TAP HERE")
+  //
+  //            $("#dialogBox").css("height","50px");
+  //            $("#dialogBox").css("display","inline");
+  //
+  //            $('#dialogBox').focus(function() {$("#dialogBox").val("")});
 
-              $("#dialogBox").css("height","50px");
-              $("#dialogBox").css("display","inline");
 
 
-              $('#dialogBox').focus(function() {$("#dialogBox").val("")})
-
-
+  //60x55
 
   //            document.getElementbyId('dialogBox').value="sksk "
 
           });
 
           popUp.on("HIDE_POPUP", function(msg) {
-              $("#dialogBox").css("height","0px");
-              $("#dialogBox").css("display","none");
 
+  //            $("#dialogBox").css("height","0px");
+  //            $("#dialogBox").css("display","none");
+  //            $("#dialogBox").hide()
   //            height: 150px;
           });
 
           this.stage.addChild(popUp);
+
+          var stitch = new Bitmap("images/stitch.png");
+          this.stage.addChild(stitch)
+          stitch.y=745;
+
+
+  //        this.stage.addChild(deb);
+
+
+          return this;
+
+      },
+
+
+
+      yo:function (e) {
+
+          var that=this
+
+
+
+
+          $("#dialogBox").blur( function(msg) {
+              console.log("lostBlur");
+
+
+
+  //            window.scrollTo(0, 0);
+  //            document.body.scrollTop = 0;
+  //            Touch.enable ( this.stage , true , true );
+  //            Touch.enable ( this.stage , true , false );
+
+
+
+
+  //            setTimeout(function(){that.plusPage.list.setAllow(true)},2500)
+
+
+
+
+          })
+
+          $("#dialogBox").focus( function(msg) {
+              console.log("focus");
+
+              console.log("that",that);
+  //            that.plusPage.list.setAllow(false)
+
+          })
+
+      },
+
+      updateView: function() {
+          //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
 
 

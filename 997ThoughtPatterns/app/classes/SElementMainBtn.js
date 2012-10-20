@@ -1,4 +1,7 @@
 
+
+require('classes/Bulb');
+
 (function() {
 
     var SElementMainBtn = function() {this.initialize();}
@@ -11,6 +14,8 @@
     p.width;
     p.height;
 
+    p.bulb;
+
     p.init = function(patternData) {
 
         var mainBtn = new RFButtonBitmap();
@@ -22,10 +27,23 @@
         this.text = new createjs.Text("TEMP", "50px Arial", "#000");
         this.text.textBaseline = "top";
 
-        this.text.x=40;
+        this.text.x=80;
         this.text.y=17;
 
-        this.addChild(mainBtn,this.text);
+        this.bulb = new Bulb();
+        this.bulb.init()
+
+        this.bulb.scaleX=0.5
+        this.bulb.scaleY=0.5
+
+        this.bulb.x=30
+        this.bulb.y=25
+
+        this.bulb.revert=null;
+        this.bulb.onClick=null;
+        this.bulb.onPress=null;
+
+        this.addChild(mainBtn,this.text,this.bulb);
 
     };
 

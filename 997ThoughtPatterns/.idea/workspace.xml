@@ -29,64 +29,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HomeView.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="HomeView.js" pinned="true" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/HomeView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="217" column="41" selection-start="5622" selection-end="5622" vertical-scroll-proportion="-9.807693">
+            <state line="261" column="0" selection-start="6986" selection-end="6986" vertical-scroll-proportion="1.4936886">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="thoughtpatterns.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/styles/thoughtpatterns.css">
+      <file leaf-file-name="RFDebug.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFDebug.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="3" selection-start="32" selection-end="49" vertical-scroll-proportion="0.0">
+            <state line="38" column="41" selection-start="731" selection-end="772" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlusPage.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/classes/pages/PlusPage.js">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="27" selection-start="1473" selection-end="1473" vertical-scroll-proportion="0.0">
+            <state line="83" column="13" selection-start="2773" selection-end="2773" vertical-scroll-proportion="-48.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RFButtonBitmap.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js">
+      <file leaf-file-name="RFBlock.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFBlock.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="8" selection-start="1198" selection-end="1238" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SElementMainBtn.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/classes/SElementMainBtn.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="0" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PopUp.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/classes/PopUp.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="32" selection-start="1500" selection-end="1510" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RFButtonBitmap2.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap2.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="16" selection-start="2069" selection-end="2120" vertical-scroll-proportion="0.0">
+            <state line="10" column="39" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -95,25 +68,34 @@
       <file leaf-file-name="PatternPage.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/classes/pages/PatternPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="23" selection-start="1400" selection-end="1400" vertical-scroll-proportion="0.0">
+            <state line="63" column="9" selection-start="1692" selection-end="1692" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bulb.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/classes/Bulb.js">
+      <file leaf-file-name="SElementMainBtn.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/classes/SElementMainBtn.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="24" selection-start="349" selection-end="349" vertical-scroll-proportion="0.27142859">
+            <state line="26" column="8" selection-start="534" selection-end="594" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SElementBulbRow.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/classes/SElementBulbRow.js">
+      <file leaf-file-name="PlusPage.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/classes/pages/PlusPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="30" selection-start="1073" selection-end="1073" vertical-scroll-proportion="0.0">
+            <state line="33" column="2" selection-start="712" selection-end="712" vertical-scroll-proportion="-11.692307">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RFScrollableList.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="308" column="0" selection-start="6728" selection-end="6728" vertical-scroll-proportion="-10.384615">
               <folding />
             </state>
           </provider>
@@ -129,22 +111,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/classes/nav/ScreenManager.js" />
-        <option value="$PROJECT_DIR$/app/classes/pages/InfoPage.js" />
-        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFScrollableElement.js" />
-        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js" />
-        <option value="$PROJECT_DIR$/config.coffee" />
-        <option value="$PROJECT_DIR$/app/assets/index.html" />
-        <option value="$PROJECT_DIR$/app/classes/SElementMainBtn.js" />
         <option value="$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js" />
         <option value="$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap2.js" />
-        <option value="$PROJECT_DIR$/app/classes/pages/PlusPage.js" />
         <option value="$PROJECT_DIR$/app/classes/PopUp.js" />
-        <option value="$PROJECT_DIR$/vendor/styles/thoughtpatterns.css" />
-        <option value="$PROJECT_DIR$/app/views/HomeView.js" />
-        <option value="$PROJECT_DIR$/app/classes/SElementBulbRow.js" />
+        <option value="$PROJECT_DIR$/app/classes/additional/ColorBox.js" />
+        <option value="$PROJECT_DIR$/app/classes/additional/MessageBox.js" />
+        <option value="$PROJECT_DIR$/app/classes/SElementMainBtn.js" />
         <option value="$PROJECT_DIR$/app/classes/pages/PatternPage.js" />
         <option value="$PROJECT_DIR$/app/classes/Bulb.js" />
+        <option value="$PROJECT_DIR$/app/classes/SElementBulbRow.js" />
+        <option value="$PROJECT_DIR$/vendor/styles/thoughtpatterns.css" />
+        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFBlock.js" />
+        <option value="$PROJECT_DIR$/app/assets/index.html" />
+        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFDebug.js" />
+        <option value="$PROJECT_DIR$/app/classes/pages/PlusPage.js" />
+        <option value="$PROJECT_DIR$/app/views/HomeView.js" />
+        <option value="$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js" />
       </list>
     </option>
   </component>
@@ -160,12 +142,70 @@
           <State>
             <id />
           </State>
-        </expanded-state>
-        <selected-state>
+          <State>
+            <id>ActionScript specificJavaScript</id>
+          </State>
           <State>
             <id>CSS</id>
           </State>
-        </selected-state>
+          <State>
+            <id>Code quality toolsJavaScript</id>
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Control flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>DOM issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Data flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Error handlingJavaScript</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>HTML</id>
+          </State>
+          <State>
+            <id>Internationalization issues</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript validity issuesJavaScript</id>
+          </State>
+          <State>
+            <id>JsTestDriverJavaScript</id>
+          </State>
+          <State>
+            <id>Node.jsJavaScript</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsJavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
+          </State>
+          <State>
+            <id>Spelling</id>
+          </State>
+          <State>
+            <id>XML</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+        </expanded-state>
       </profile-state>
     </entry>
   </component>
@@ -195,7 +235,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -300,7 +339,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -319,6 +358,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="997ThoughtPatterns" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nav" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -342,26 +407,27 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="options.lastSelected" value="editing.templates" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
-    <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../XUMO_CONTENT/41_Autozone" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/vendor/styles" />
       <recent name="$PROJECT_DIR$/vendor/scripts/rf" />
       <recent name="$PROJECT_DIR$/vendor/scripts" />
       <recent name="$PROJECT_DIR$/app/assets" />
       <recent name="$PROJECT_DIR$/app/classes" />
-      <recent name="$PROJECT_DIR$/../../../../XUMO_CONTENT/41_Autozone/assets" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/vendor" />
@@ -441,7 +507,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.12266858" sideWeight="0.6002656" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15853658" sideWeight="0.6706507" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20444763" sideWeight="0.6706507" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3997344" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1743185" sideWeight="0.5498008" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -510,108 +576,100 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableElement.js">
+    <entry file="file://$PROJECT_DIR$/app/classes/PopUp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="283" selection-end="283" vertical-scroll-proportion="0.021037867" />
+        <state line="48" column="0" selection-start="1168" selection-end="1168" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.coffee">
+    <entry file="file://$PROJECT_DIR$/app/classes/nav/RFNav.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="24" selection-start="953" selection-end="953" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/styles/jquery.mobile-1.2.0.css">
+    <entry file="file://$PROJECT_DIR$/app/classes/Bulb.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="4" selection-start="3726" selection-end="3740" vertical-scroll-proportion="0.37868163" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="0" selection-start="3888" selection-end="3888" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/SElementMainBtn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="595" selection-end="595" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/scripts/backbone-0.9.2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="4" selection-start="5513" selection-end="5513" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="654" selection-end="654" vertical-scroll-proportion="0.18803419">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="8" selection-start="1198" selection-end="1238" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/pages/PlusPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="27" selection-start="1473" selection-end="1473" vertical-scroll-proportion="0.0">
+        <state line="20" column="11" selection-start="0" selection-end="2013" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="16" selection-start="2069" selection-end="2120" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="11" column="35" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/PopUp.js">
+    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFButtonBitmap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="32" selection-start="1500" selection-end="1510" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/styles/thoughtpatterns.css">
+    <entry file="file://$PROJECT_DIR$/app/classes/nav/ScreenManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="3" selection-start="32" selection-end="49" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/HomeView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="217" column="41" selection-start="5622" selection-end="5622" vertical-scroll-proportion="-9.807693">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/classes/SElementBulbRow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="30" selection-start="1073" selection-end="1073" vertical-scroll-proportion="0.0">
+        <state line="36" column="36" selection-start="655" selection-end="655" vertical-scroll-proportion="0.74380165" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/classes/SElementMainBtn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="8" selection-start="534" selection-end="594" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/classes/pages/PatternPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="23" selection-start="1400" selection-end="1400" vertical-scroll-proportion="0.0">
+        <state line="63" column="9" selection-start="1692" selection-end="1692" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/classes/Bulb.js">
+    <entry file="file://$PROJECT_DIR$/vendor/styles/thoughtpatterns.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="24" selection-start="349" selection-end="349" vertical-scroll-proportion="0.27142859">
+        <state line="16" column="10" selection-start="136" selection-end="136" vertical-scroll-proportion="0.3305785" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFBlock.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="39" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="13" selection-start="2773" selection-end="2773" vertical-scroll-proportion="-48.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFDebug.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="41" selection-start="731" selection-end="772" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/classes/pages/PlusPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="2" selection-start="712" selection-end="712" vertical-scroll-proportion="-11.692307">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/scripts/rf/RFScrollableList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="308" column="0" selection-start="6728" selection-end="6728" vertical-scroll-proportion="-10.384615">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/HomeView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="261" column="0" selection-start="6986" selection-end="6986" vertical-scroll-proportion="1.4936886">
           <folding />
         </state>
       </provider>

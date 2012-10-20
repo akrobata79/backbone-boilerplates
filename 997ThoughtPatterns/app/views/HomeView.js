@@ -13,6 +13,10 @@
  *
  * javascript frameworks http://www.remotesynthesis.com/post.cfm/50-javascript-html5-frameworks-and-related-tools
  *
+ * http://stackoverflow.com/questions/10866976/mouse-click-or-touch-events-on-canvas-causes-selection-using-html5-phonegap-a
+ *
+ * MEETING:
+ * https://github.com/jamesor/backbone-demo
  */
 
 var View = require('./supers/View');
@@ -51,6 +55,8 @@ module.exports = View.extend({
     myC:null,
     stage:null,
 
+    plusPage:null,
+
 
     //--------------------------------------
     //+ INHERITED / OVERRIDES
@@ -72,22 +78,11 @@ module.exports = View.extend({
      */
     render: function() {
 
-        this.updateView();
-
-        return this;
-
-    },
-
-    yo:function (e) {
-
-    },
-
-    updateView: function() {
-        //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
-
         var canvas = document.createElement("canvas");
-        $(this.el).width(640);
-        $(this.el).height(920);
+//        $(this.el).width(640);
+//        $(this.el).height(420);
+//        $(this.el).tabindex=1;
+//        tabindex="1"
 
 //        addBtnDef.png
 //        addBtnDown.png
@@ -110,6 +105,14 @@ module.exports = View.extend({
         canvas.height=920;
 
         this.stage = new Stage(canvas);
+        this.stage.tickOnUpdate=true;
+
+        window.deb=new RFDebug();
+        deb.init(500,300,600);
+        deb.x=160;
+
+
+        //Touch.enable = function(stage, singleTouch, allowDefault) {
         Touch.enable ( this.stage , true , false );
         RF.stage=this.stage;
 
@@ -146,16 +149,14 @@ module.exports = View.extend({
 
         var popUp = new PopUp();
 
-
-
         // passing 2 datasets
-        var plusPage = new PlusPage();
-        plusPage.init(mainBtnCollection,mezzData,popUp);
+        this.plusPage = new PlusPage();
+        this.plusPage.init(mainBtnCollection,mezzData,popUp);
 
         var infoPage = new InfoPage();
 
         var screenManager = new ScreenManager();
-        screenManager.init([plusPage,patternPage,infoPage]);
+        screenManager.init([this.plusPage,patternPage,infoPage]);
         this.stage.addChild(screenManager);
 
         //CURTAIN
@@ -195,7 +196,7 @@ module.exports = View.extend({
 
         //TOP
         var top = new Bitmap("images/top.png");
-        this.stage.addChild(top);
+//        this.stage.addChild(top);
 
         var box = new  Bitmap("images/box.png");
         this.stage.addChild(box);
@@ -203,40 +204,108 @@ module.exports = View.extend({
         box.y=120;
 
         Ticker.addListener(this);
-        Ticker.setFPS(40);
+        Ticker.setFPS(30);
 
 //        setTimeout(this.getcarter,2500);
 
-        popUp.init(plusPage);
+        popUp.init(this.plusPage);
+
+//        this.plusPage.list.setAllow(false)
 
         var that=this;
+        //$(this.el).append(''<div id="yoDiv"><div>);
 
-        $(this.el).append('<input id="dialogBox" value="Tap here" type="text" name="firstname" >');
+//        $.extend($.mobile.zoom, {locked:true,enabled:false})
+
+//        $(this.el).append('<div><input id="dialogBox" value="Tap here" type="month" name="firstname"  ></div>');
+        $(this.el).append('<div><img id="dialogBox" src="images/addBtnDown.png" alt="some_text"></div>');
+
+
+        this.yo = _.bind( this.yo, this );
+        setTimeout(this.yo,500);
 
         popUp.on("SHOW_POPUP", function(msg) {
 
-            $("#dialogBox").val("TAP HERE")
+//            $("#dialogBox").show();
+//
+//            $("#dialogBox").val("TAP HERE")
+//
+//            $("#dialogBox").css("height","50px");
+//            $("#dialogBox").css("display","inline");
+//
+//            $('#dialogBox').focus(function() {$("#dialogBox").val("")});
 
-            $("#dialogBox").css("height","50px");
-            $("#dialogBox").css("display","inline");
 
 
-            $('#dialogBox').focus(function() {$("#dialogBox").val("")})
-
-
+//60x55
 
 //            document.getElementbyId('dialogBox').value="sksk "
 
         });
 
         popUp.on("HIDE_POPUP", function(msg) {
-            $("#dialogBox").css("height","0px");
-            $("#dialogBox").css("display","none");
 
+//            $("#dialogBox").css("height","0px");
+//            $("#dialogBox").css("display","none");
+//            $("#dialogBox").hide()
 //            height: 150px;
         });
 
         this.stage.addChild(popUp);
+
+        var stitch = new Bitmap("images/stitch.png");
+        this.stage.addChild(stitch)
+        stitch.y=745;
+
+
+//        this.stage.addChild(deb);
+
+
+        return this;
+
+    },
+
+
+
+    yo:function (e) {
+
+        var that=this
+
+
+
+
+        $("#dialogBox").blur( function(msg) {
+            console.log("lostBlur");
+
+
+
+//            window.scrollTo(0, 0);
+//            document.body.scrollTop = 0;
+//            Touch.enable ( this.stage , true , true );
+//            Touch.enable ( this.stage , true , false );
+
+
+
+
+//            setTimeout(function(){that.plusPage.list.setAllow(true)},2500)
+
+
+
+
+        })
+
+        $("#dialogBox").focus( function(msg) {
+            console.log("focus");
+
+            console.log("that",that);
+//            that.plusPage.list.setAllow(false)
+
+        })
+
+    },
+
+    updateView: function() {
+        //  console.log(">>>", $(this.el), $("#home-view"),document.getElementById("home-view"));
 
 
 

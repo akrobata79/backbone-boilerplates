@@ -29708,16 +29708,14 @@ var RF = {};;
     }
 
     RFBlock.prototype = new Container();
+    RFBlock.prototype.Container_initialize = RFBlock.prototype.initialize;	//unique to avoid overiding base class
 
-    RFBlock.prototype.data={};
+    RFBlock.prototype.data={color:"#FFF"};
 
     RFBlock.prototype.width=100;
     RFBlock.prototype.height=100;
 
     RFBlock.prototype.theShape=null;
-
-
-    RFBlock.prototype.Container_initialize = RFBlock.prototype.initialize;	//unique to avoid overiding base class
 
     RFBlock.prototype.initialize = function() {
         this.Container_initialize();
@@ -29729,15 +29727,14 @@ var RF = {};;
 
     RFBlock.prototype.init = function(data) {
         this.drawUI();
-        if (!data ) {this.data.color = 0} else this.data=data;
-
+        if (!data ) {this.data.color = "#FFF"} else {this.data=data }
     };
 
 
     RFBlock.prototype.drawUI = function() {
 
         this.theShape.graphics.clear();
-        this.theShape.graphics.beginFill("rgba(255,0,0,1)");
+        this.theShape.graphics.beginFill(this.data.color);
         this.theShape.graphics.lineTo(this.width, 0);
         this.theShape.graphics.lineTo(this.width, this.height);
         this.theShape.graphics.lineTo(0,this.height);
@@ -29746,8 +29743,6 @@ var RF = {};;
         this.theShape.graphics.endFill();
 
     };
-
-
 
     RFBlock.prototype.setSize = function(passW,passH) {
         this.width=passW;
@@ -30138,6 +30133,101 @@ var RF = {};;
 
 ;
 
+
+
+(function() {
+
+    var RFDebug = function() {this.initialize();}
+
+    RFDebug.prototype = p = new Container();
+
+    p.background;
+
+    p.frequency;
+
+    p.elHeight = 30;
+    p.sqback;
+
+    p.bind;
+    p.theArr= new Array();
+    p.textFieldArr=new Array()
+
+    p.init = function(width,height,frequency) {
+
+        this.onInterval = _.bind( this.onInterval, this );
+
+        this.sqback =new  RFBlock();
+        this.sqback.init({color:"#F00"})
+        this.sqback.setSize(width,height);
+        this.addChild(this.sqback);
+
+        setInterval(this.onInterval, frequency)
+
+        this.bind={};
+
+//        var yourHash = new Hash({foo: 'bar'});
+//        yourHash['key1'] = 'value';
+//        yourHash.key2    = 'value';
+
+    };
+
+    p.add = function(t, property, name) {
+
+        var result=new Object();
+        result.target=t;
+        result.property=property;
+
+        this.theArr.push(result);
+
+        var label = new createjs.Text(name, this.elHeight.toString()+"px Arial", "#FF0");
+        this.addChild(label);
+        label.y=(this.theArr.length-1)*this.elHeight;
+        label.x=20;
+
+        var el = new createjs.Text("asa", this.elHeight.toString()+"px Arial", "#FF0");
+        this.addChild(el);
+        el.x=40+label.getMeasuredWidth();
+        el.y=(this.theArr.length-1)*this.elHeight;
+
+        result.id=el.id;
+
+//        console.log("bb",this.theArr[this.theArr.length-1],this.theArr.length-1,this.theArr);
+
+        this.textFieldArr.push(el);
+
+
+//        this.bind[this.theArr[this.theArr.length-1]]="new";
+
+//        console.log("this.textfieldIdArrBind",this.textfieldIdArrBind);
+//        this.bind["hj"]=2;
+
+//        console.log("this one",this.bind.values());
+//        console.log("bind",this.bind,result.target,result.property);
+
+    };
+
+
+    p.onInterval = function() {
+
+        for ( var int = 0; int < this.theArr.length; int++) {
+
+            var elo = this.theArr[int];
+            var targetTxtField = _.find(this.textFieldArr, function(num){
+                return num.id==elo.id
+            },this)
+
+            targetTxtField.text=elo.target[elo.property]
+
+        }
+
+    }
+
+
+
+    window.RFDebug = RFDebug;
+
+}());;
+
 (function() {
 
     var RFScrollableElement = function() {
@@ -30268,6 +30358,14 @@ var RF = {};;
     p.background;
     p.currentRevert;
 
+    p.allow=true;
+
+//    p.debug;
+
+
+    p.proxyMove=null;
+    p.proxyUp=null;
+
 
     p.init = function( targetProp,
                        targetClass,
@@ -30280,7 +30378,6 @@ var RF = {};;
         var that=this;
 
         if(!speedCap){this.speedCap=5} else {this.speedCap=speedCap};
-
 
         //console.log("this.speedCap",this.speedCap);
 
@@ -30316,7 +30413,7 @@ var RF = {};;
 
         this.rail = new RFBlock();
         this.rail.setSize(100,this.dataSet.length*this.elementSize.h);
-
+//        this.addChild(this.rail)
 
         //////////console.log("this.dataSet.length",this.dataSet.length);
         var hm = this.dataSet.length;
@@ -30381,6 +30478,7 @@ var RF = {};;
 
         Ticker.addListener(this);
 
+
 //        this.dataSet.on("add", function(msg) {
 //            ////////console.log(">>>>> got it ",this.dataSet.length);
 //
@@ -30391,6 +30489,12 @@ var RF = {};;
 //        ////////console.log("this.height",this.height);
 
 
+//        this.debug = new createjs.Text("TEMP", "30px Arial", "#FFF");
+//        this.debug.text = "sksks";
+//        this.addChild(this.debug);
+//        this.debug.x=150;
+//        this.debug.y=-50;
+
 
 
     };
@@ -30398,46 +30502,78 @@ var RF = {};;
     p.setThisOne = function(e) {
     }
 
+
+    p.setAllow = function(b) {
+
+        this.allow=b;
+
+        if(b) {
+            Ticker.addListener(this);
+        } else {
+            Ticker.removeListener(this)
+
+        }
+
+
+
+    }
+
     p.onPresso = function(e) {
 
         //console.log("onPresso",e, this);
 
-        this.currentRevert = e.target;
+        if(this.allow) {
 
-        RF.stage.onMouseMove  = _.bind(this.onMouseMove, this );
-        RF.stage.onMouseUp  = _.bind(this.onMouseUpo, this );
+            this.currenX =  RF.stage.mouseY;
 
-        this.isDragging = true;
-        this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
+            this.currentRevert = e.target;
+
+            RF.stage.onMouseMove  = _.bind(this.onMouseMove, this );
+            RF.stage.onMouseUp  = _.bind(this.onMouseUpo, this );
+
+            this.isDragging = true;
+            this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
+
+
+        }
 
 //        e.target.revert();
     };
 
     p.onMouseUpo = function(e) {
+        if(this.allow) {
+//        this.alpha=0.5;
 
-        this.isDragging = false;
+            console.log("upup   ");
 
-        RF.stage.onMouseMove=null
-        RF.stage.onMouseUp=null
+            this.isDragging = false;
 
-        this.currentRevert = e.target;
+//            $(RF.stage.onMouseMove).unbind("this.onMouseMove");
+//            $(RF.stage.onMouseUp).unbind("this.onMouseUpo");
 
+            RF.stage.onMouseMove=null
+            RF.stage.onMouseUp=null
+
+            this.currentRevert = e.target;
+        }
 
     }
 
     p.onMouseMove = function(e) {
 
         ////////console.log("onMouseMove");
+        if(this.allow) {
+            if(this.currentRevert) {
+                this.currentRevert.revert();
+                this.currentRevert=null;
 
-        if(this.currentRevert) {
-            this.currentRevert.revert();
-            this.currentRevert=null;
+            }
 
-        }
+            if(this.isDragging) {
+                this.rail.y = this.globalToLocal(e.stageX,e.stageY).y - this.offset;
+                this.handleMove();
 
-        if(this.isDragging) {
-            this.rail.y = this.globalToLocal(e.stageX,e.stageY).y - this.offset;
-            this.handleMove();
+            }
         }
     }
 
@@ -30453,14 +30589,31 @@ var RF = {};;
         }
 
         if(this.isDragging) {
+
+//            this.debug.text = "cX "+this.currentX +"..."+"lastX"+this.lastX;
+
             this.lastX = this.currentX;
             this.currentX = RF.stage.mouseY;
+
+//            if(this.currentX - this.lastX==0) {this.debug.text = "zero"} else {this.debug.text = "i"}
+
             this.vx = this.currentX - this.lastX;
 
         } else {
 
             this.rail.y += this.vx;
             this.handleMove();
+
+
+
+//            this.x++
+//
+//            if(Rnd.integer(1,50)==10) {
+
+
+//            }
+
+
         }
 
 
@@ -30523,7 +30676,7 @@ var RF = {};;
 
         if(where==this.lowerBorder) {
             this.theArr[i].setSetters( this.dataSet.models[this.index].attributes );
-           this.theArr[i].setData(this.dataSet.models[this.index])
+            this.theArr[i].setData(this.dataSet.models[this.index])
         }
 
 //        ////////console.log("end");

@@ -1,6 +1,6 @@
 
 
-
+require('classes/additional/ColorBox');
 (function() {
 
     var PopUp = function() {this.initialize();}
@@ -8,6 +8,7 @@
 
     p.controller;
     p.back;
+    p.colorBox;
 
     p.init = function(controller) {
 
@@ -23,7 +24,6 @@
         this.back.onClick = null;
         this.back.onPress = null;
 
-
         console.log("789");
         var pop = new Bitmap("images/popUp.png");
         this.addChild(pop)
@@ -36,13 +36,13 @@
         var deleteBtn = new RFButtonBitmap2();
         deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",false, "CANCEL");
         this.addChild(deleteBtn)
-        deleteBtn.y=530;
+        deleteBtn.y=550;
         deleteBtn.x=0+offset;
 
         var addBtn = new RFButtonBitmap2();
         addBtn.init("images/addBtnDef.png","images/addBtnDown.png",false, "CONFIRM");
         this.addChild(addBtn);
-        addBtn.y=530;
+        addBtn.y=550;
         addBtn.x=200+offset;
 
         var that=this;
@@ -55,9 +55,14 @@
             that.clicked(msg)
         });
 
+        var colorBox = new ColorBox();
+        this.addChild(colorBox);
+        colorBox.init();
+        colorBox.y=455;
+        colorBox.x=400;
 
 
-//        controller
+
 
     };
 

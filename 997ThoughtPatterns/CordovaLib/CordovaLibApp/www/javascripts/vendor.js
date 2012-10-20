@@ -30268,6 +30268,14 @@ var RF = {};;
     p.background;
     p.currentRevert;
 
+    p.allow=true;
+
+    p.debug;
+
+
+    p.proxyMove=null;
+    p.proxyUp=null;
+
 
     p.init = function( targetProp,
                        targetClass,
@@ -30280,7 +30288,6 @@ var RF = {};;
         var that=this;
 
         if(!speedCap){this.speedCap=5} else {this.speedCap=speedCap};
-
 
         //console.log("this.speedCap",this.speedCap);
 
@@ -30316,7 +30323,7 @@ var RF = {};;
 
         this.rail = new RFBlock();
         this.rail.setSize(100,this.dataSet.length*this.elementSize.h);
-
+        this.addChild(this.rail)
 
         //////////console.log("this.dataSet.length",this.dataSet.length);
         var hm = this.dataSet.length;
@@ -30381,6 +30388,7 @@ var RF = {};;
 
         Ticker.addListener(this);
 
+
 //        this.dataSet.on("add", function(msg) {
 //            ////////console.log(">>>>> got it ",this.dataSet.length);
 //
@@ -30391,6 +30399,12 @@ var RF = {};;
 //        ////////console.log("this.height",this.height);
 
 
+        this.debug = new createjs.Text("TEMP", "30px Arial", "#FFF");
+        this.debug.text = "sksks";
+        this.addChild(this.debug);
+        this.debug.x=150;
+        this.debug.y=-50;
+
 
 
     };
@@ -30398,46 +30412,78 @@ var RF = {};;
     p.setThisOne = function(e) {
     }
 
+
+    p.setAllow = function(b) {
+
+        this.allow=b;
+
+        if(b) {
+            Ticker.addListener(this);
+        } else {
+            Ticker.removeListener(this)
+
+        }
+
+
+
+    }
+
     p.onPresso = function(e) {
 
         //console.log("onPresso",e, this);
 
-        this.currentRevert = e.target;
+        if(this.allow) {
 
-        RF.stage.onMouseMove  = _.bind(this.onMouseMove, this );
-        RF.stage.onMouseUp  = _.bind(this.onMouseUpo, this );
+            this.currenX =  RF.stage.mouseY
 
-        this.isDragging = true;
-        this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
+            this.currentRevert = e.target;
+
+            RF.stage.onMouseMove  = _.bind(this.onMouseMove, this );
+            RF.stage.onMouseUp  = _.bind(this.onMouseUpo, this );
+
+            this.isDragging = true;
+            this.offset = this.globalToLocal(e.stageX,e.stageY).y - this.rail.y
+
+
+        }
 
 //        e.target.revert();
     };
 
     p.onMouseUpo = function(e) {
+        if(this.allow) {
+//        this.alpha=0.5;
 
-        this.isDragging = false;
+            console.log("upup   ");
 
-        RF.stage.onMouseMove=null
-        RF.stage.onMouseUp=null
+            this.isDragging = false;
 
-        this.currentRevert = e.target;
+//            $(RF.stage.onMouseMove).unbind("this.onMouseMove");
+//            $(RF.stage.onMouseUp).unbind("this.onMouseUpo");
 
+            RF.stage.onMouseMove=null
+            RF.stage.onMouseUp=null
+
+            this.currentRevert = e.target;
+        }
 
     }
 
     p.onMouseMove = function(e) {
 
         ////////console.log("onMouseMove");
+        if(this.allow) {
+            if(this.currentRevert) {
+                this.currentRevert.revert();
+                this.currentRevert=null;
 
-        if(this.currentRevert) {
-            this.currentRevert.revert();
-            this.currentRevert=null;
+            }
 
-        }
+            if(this.isDragging) {
+                this.rail.y = this.globalToLocal(e.stageX,e.stageY).y - this.offset;
+                this.handleMove();
 
-        if(this.isDragging) {
-            this.rail.y = this.globalToLocal(e.stageX,e.stageY).y - this.offset;
-            this.handleMove();
+            }
         }
     }
 
@@ -30453,14 +30499,29 @@ var RF = {};;
         }
 
         if(this.isDragging) {
+
+//            this.debug.text = "cX "+this.currentX +"..."+"lastX"+this.lastX;
+
             this.lastX = this.currentX;
             this.currentX = RF.stage.mouseY;
+
             this.vx = this.currentX - this.lastX;
 
         } else {
 
             this.rail.y += this.vx;
             this.handleMove();
+
+
+                        this.debug.text = this.vx
+//            this.x++
+//
+//            if(Rnd.integer(1,50)==10) {
+
+
+//            }
+
+
         }
 
 
@@ -30523,7 +30584,7 @@ var RF = {};;
 
         if(where==this.lowerBorder) {
             this.theArr[i].setSetters( this.dataSet.models[this.index].attributes );
-           this.theArr[i].setData(this.dataSet.models[this.index])
+            this.theArr[i].setData(this.dataSet.models[this.index])
         }
 
 //        ////////console.log("end");

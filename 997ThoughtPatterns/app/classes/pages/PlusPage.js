@@ -15,6 +15,7 @@ require('classes/SElementMainBtn');
     PlusPage.prototype.popUp;
 
     PlusPage.prototype.addBtn;
+    PlusPage.prototype.list;
 
     PlusPage.prototype.initialize = function() {
         this.Container_initialize();
@@ -25,20 +26,23 @@ require('classes/SElementMainBtn');
 
         this.mezzData=mezzData;
 
-        var list = new RFScrollableList();
-        this.addChild(list);
+        this.list = new RFScrollableList();
+        this.addChild(this.list);
 
-        list.init("y",SElementMainBtn,{w:535,h:90},5,dataSet,20);
-        list.y=160;
-        list.x=52;
+        this.list.init("y",SElementMainBtn,{w:535,h:90},5,dataSet,20);
+
+//        window.deb.add(this.list.rail,"y","rail.y");
+
+        this.list.y=160;
+        this.list.x=52;
 
         this.addToMezz = _.bind( this.addToMezz, this );
 
         var that=this;
 
-        for ( var i = 0; i < list.theArr.length; i++) {
+        for ( var i = 0; i < this.list.theArr.length; i++) {
 
-            var t = list.theArr[i];
+            var t = this.list.theArr[i];
 
             t.on("YOYO", function(e){
 
@@ -66,6 +70,8 @@ require('classes/SElementMainBtn');
         this.addBtn.x=200+offset;
 
 
+
+//    p.add = function(t, property, name) {
 
 
         this.addBtn.on("ADDBTN", function(msg) {
