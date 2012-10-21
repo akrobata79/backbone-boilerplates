@@ -10,7 +10,16 @@ require('classes/additional/ColorBox');
     p.back;
     p.colorBox;
 
+    p.popData;
+    p.colorBox;
+
     p.init = function(controller) {
+
+        this.colorBox = new ColorBox();
+
+        this.colorBox.init();
+        this.colorBox.y=455;
+        this.colorBox.x=400;
 
         _.extend(this, Backbone.Events);
 
@@ -55,14 +64,7 @@ require('classes/additional/ColorBox');
             that.clicked(msg)
         });
 
-        var colorBox = new ColorBox();
-        this.addChild(colorBox);
-        colorBox.init();
-        colorBox.y=455;
-        colorBox.x=400;
-
-
-
+        this.addChild(this.colorBox);
 
     };
 
@@ -86,11 +88,16 @@ require('classes/additional/ColorBox');
 
     }
 
-    p.hide = function() {
+    p.hide = function(surpress) {
 
+        var that=this
         this.visible=false;
 
-        this.trigger("HIDE_POPUP");
+        this.popData={setColor:that.colorBox.currColor,setLabel:$("#mainTextfield").val()}
+
+//        console.log("!!!!!! popData",this.popData.setColor, this.popData.setLabel);
+
+       if(!surpress) this.trigger("HIDE_POPUP");
 
 
     }

@@ -34,12 +34,11 @@
             this.colorArr.push(i*10);
         };
 
-
-
     };
 
 
     p.setColor = function(n) {
+        this.currColor=n;
         this.gr.clear()
         this.gr.beginFill(Graphics.getHSL(n,100,50,1));
         this.gr.drawRoundRect(0,0,60,55,5);
@@ -49,8 +48,8 @@
     p.onPress = function(e) {
 
 
-        this.currColor=Rnd.integer(0,35)
-        this.setColor(this.colorArr[this.currColor])
+
+        this.setColor(this.colorArr[Rnd.integer(0,35)])
 
     }
 

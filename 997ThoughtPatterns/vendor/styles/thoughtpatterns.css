@@ -10,22 +10,22 @@ body{
 }
 
 
-#dialogBox {
+#mainTextfield {
 
-color: #fcffc2;
+    color: #ff0027;
     position: relative;
-    top:-200px;
-    /*left:80px;*/
+    top:-570px;
+    left:80px;
 
-    /*font-size:200%;*/
+    font-size:200%;
     /*padding: 30px;*/
-
-    /*background-color:transparent;*/
-    width: 130px;
-    height: 120px;
+border-color: transparent;
+    background-color:transparent;
+    width: 500px;
+    height: 70px;
     /*border: 0px;*/
 
-    /*display:none;*/
+    display:none;
     /*overflow:hidden;*/
 
 

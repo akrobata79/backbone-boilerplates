@@ -22,7 +22,6 @@
 
     p.init = function() {
 
-
         var sqback =new  RFBlock();
         sqback.setSize(82,78);
 
@@ -48,8 +47,8 @@
 
 
 
-        this.temp2 = _.bind( this.temp2, this );
-        setTimeout(this.temp2,1500);
+//        this.temp2 = _.bind( this.temp2, this );
+//        setTimeout(this.temp2,1500);
 
 
     };
@@ -57,7 +56,7 @@
 
     p.temp2=function(){
 
-        this.cache(0,0,82,78    );
+//        this.cache(0,0,82,78    );
 
 
     }
@@ -75,7 +74,13 @@
     }
 
     p.setData = function (data) {
+
+//        console.log("666",data);
+
         this.data=data;
+
+        console.log("*",data.get("setLabel"));
+
         //////console.log("bulb setData should change view",data.attributes.setColor);
 
         this.data.bind('change', this.updateView, this);
@@ -83,7 +88,6 @@
         this.updateView();
         // on change should change kuzwa
         //this.data
-
     }
 
 
@@ -101,11 +105,8 @@
             this.reportInteraction(e);
             this.justReverted=false;
 
-            //////console.log("important bulb clicked");
         }
-
     }
-
 
     p.onPress = function(e) {
         //////////console.log("qqq");

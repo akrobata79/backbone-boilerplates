@@ -19,6 +19,13 @@ require('classes/Bulb');
 
     p.init = function() {
 
+
+
+
+        _.extend(this, Backbone.Events);
+
+
+
         this.bulbSet=[];
 
 //74x74
@@ -49,28 +56,43 @@ require('classes/Bulb');
 
 
 
+    p.sup_passInteraction = p.passInteraction;
+    p.passInteraction = function(e) {
+        this.sup_passInteraction(e);
+
+        if (e.type=="onClick") {
+            ////////console.log("new shit");
+            //update the other collection
+
+//            console.log("jkl", e.target.data.get("setLabel"));
+
+
+
+            this.trigger("alert", e.target.data.get("setLabel"));
+
+
+
+
+        }
+
+
+    };
+
+
+
 
 
 
 
     p.populateRow = function() {
 
-
-        //////console.log("should populate row",this.data);
-
-//        //console.log("",);
-
-        var printRow=new Array()
-
         for ( var i = 0; i < 7; i++) {
             var t = this.bulbSet[i];
             var g = this.data.bulbCollection.models[i]
             t.setData(g);
-            printRow.push(g.get("setColor"))
+
 
         }
-
-        //console.log("populating",printRow,this.data.cid );
 
     }
 
@@ -81,6 +103,8 @@ require('classes/Bulb');
 
         this.sup_setData(data);
         this.data.bulbCollection.bind('change', this.updateView, this);
+
+//        trace("666")
         this.populateRow();
 
         //console.log("data",this.data.cid,this.data.bulbCollection);
@@ -89,7 +113,7 @@ require('classes/Bulb');
 
     p.updateView = function(e) {
         //this.setColor(this.data.attributes.setColor);
-        //////console.log("caught 2!",e);
+        console.log("updateView rowbulb!",e);
         // this.populateRow();
     }
 

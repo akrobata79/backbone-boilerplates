@@ -150,7 +150,6 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.init = function() {
 
-
           var sqback =new  RFBlock();
           sqback.setSize(82,78);
 
@@ -176,8 +175,8 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
 
 
-          this.temp2 = _.bind( this.temp2, this );
-          setTimeout(this.temp2,1500);
+  //        this.temp2 = _.bind( this.temp2, this );
+  //        setTimeout(this.temp2,1500);
 
 
       };
@@ -185,7 +184,7 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.temp2=function(){
 
-          this.cache(0,0,82,78    );
+  //        this.cache(0,0,82,78    );
 
 
       }
@@ -203,7 +202,13 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
       }
 
       p.setData = function (data) {
+
+  //        console.log("666",data);
+
           this.data=data;
+
+          console.log("*",data.get("setLabel"));
+
           //////console.log("bulb setData should change view",data.attributes.setColor);
 
           this.data.bind('change', this.updateView, this);
@@ -211,7 +216,6 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
           this.updateView();
           // on change should change kuzwa
           //this.data
-
       }
 
 
@@ -229,11 +233,8 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
               this.reportInteraction(e);
               this.justReverted=false;
 
-              //////console.log("important bulb clicked");
           }
-
       }
-
 
       p.onPress = function(e) {
           //////////console.log("qqq");
@@ -244,6 +245,172 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
 
       window.Bulb = Bulb;
+
+  }());
+}});
+
+window.require.define({"classes/BulbSpecial": function(exports, require, module) {
+  
+
+  (function() {
+
+      var BulbSpecial = function() {this.initialize();}
+
+      BulbSpecial.prototype = p = new Container();
+
+      p.label;
+      p.backlayer1ound;
+      p.text;
+
+      p.width;
+      p.height;
+
+      p.top;
+      p.bottom;
+
+      p.layer1;
+
+      p.data;
+
+      p.init = function() {
+
+          var sqback =new  RFBlock();
+          sqback.setSize(82,78);
+
+  //        ,{w:82*7,h:78}
+          this.addChild(sqback);
+          sqback.alpha=0.01;
+
+          this.bottom = new Bitmap("images/specialBulb.png");
+          this.addChild(this.bottom);
+  //        this.bottom.alpha=0.5
+
+          this.layer1 = new createjs.Graphics();
+          var color = Rnd.integer(0,360);
+
+          this.top = new createjs.Shape(this.layer1);   // new Bitmap("images/bulbTop.png");
+
+          this.top.x = 37;
+          this.top.y = 38;
+
+          this.addChild(this.top);
+
+          this.layer2 = new createjs.Graphics();
+
+          this.topper = new createjs.Shape(this.layer2);
+          this.addChild(this.topper);
+
+          this.topper.x = 37;
+          this.topper.y = 38;
+
+          var blurFilter = new BoxBlurFilter(8, 8, 5);
+          var margins = blurFilter.getBounds();
+
+          this.topper.filters = [blurFilter];
+          // filters are only displayed when the display object is cached
+          // later, you can call updateCache() to update changes to your filters
+
+
+          this.topper.cache(-100,-100,200,200);
+  //        this.topper.x += this.topper.x+this.layer2.width;
+  //        this.addChild(bmp);
+
+  //        this.layer1.beginFill(Graphics.getHSL(0,100,5,0.85));
+  //        this.layer1.drawCircle(-20,-20,12);
+
+
+
+  //        this.temp2 = _.bind( this.temp2, this );
+  //        setTimeout(this.temp2,1500);
+
+          this.resetAnim = _.bind( this.resetAnim, this );
+
+
+
+
+      };
+
+
+      p.temp2=function(){
+
+  //        this.cache(0,0,82,78    );
+
+
+      }
+
+      p.setColor = function(n) {
+
+          this.layer1.clear()
+          this.layer2.clear()
+
+          this.layer1.beginFill(Graphics.getHSL(n,100,50,0.45));
+          this.layer1.drawCircle(0,0,47/2);
+
+
+          this.layer2.beginFill(Graphics.getHSL(n,100,50,0.45));
+          this.layer2.drawCircle(0,0,74/2);
+
+          this.topper.updateCache()
+
+          TweenLite.to(this.top, 1, {alpha:1});
+          this.topper.alpha=0
+
+          TweenMax.to(this.topper, 0.5, {alpha:1,  scaleX:1,scaleY:1, onComplete:this.resetAnim});
+
+
+
+      }
+
+      p.resetAnim = function  () {
+          this.topper.alpha=0;
+          TweenLite.to(this.top, 3, {alpha:0,delay:1});
+
+      }
+
+      p.setData = function (data) {
+
+  //        console.log("666",data);
+
+          this.data=data;
+
+          console.log("*",data.get("setLabel"));
+
+          //////console.log("bulb setData should change view",data.attributes.setColor);
+
+          this.data.bind('change', this.updateView, this);
+
+          this.updateView();
+          // on change should change kuzwa
+          //this.data
+      }
+
+
+      p.updateView = function(e) {
+          this.setColor(this.data.attributes.setColor);
+      }
+
+      p.revert = function() {
+          this.justReverted=true;
+      }
+
+      p.onClick = function(e) {
+
+          if(!this.justReverted) {
+              this.reportInteraction(e);
+              this.justReverted=false;
+
+          }
+      }
+
+      p.onPress = function(e) {
+          //////////console.log("qqq");
+          this.reportInteraction(e);
+      }
+
+
+
+
+      window.BulbSpecial = BulbSpecial;
 
   }());
 }});
@@ -261,7 +428,16 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
       p.back;
       p.colorBox;
 
+      p.popData;
+      p.colorBox;
+
       p.init = function(controller) {
+
+          this.colorBox = new ColorBox();
+
+          this.colorBox.init();
+          this.colorBox.y=455;
+          this.colorBox.x=400;
 
           _.extend(this, Backbone.Events);
 
@@ -306,14 +482,7 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
               that.clicked(msg)
           });
 
-          var colorBox = new ColorBox();
-          this.addChild(colorBox);
-          colorBox.init();
-          colorBox.y=455;
-          colorBox.x=400;
-
-
-
+          this.addChild(this.colorBox);
 
       };
 
@@ -337,11 +506,16 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
 
       }
 
-      p.hide = function() {
+      p.hide = function(surpress) {
 
+          var that=this
           this.visible=false;
 
-          this.trigger("HIDE_POPUP");
+          this.popData={setColor:that.colorBox.currColor,setLabel:$("#mainTextfield").val()}
+
+  //        console.log("!!!!!! popData",this.popData.setColor, this.popData.setLabel);
+
+         if(!surpress) this.trigger("HIDE_POPUP");
 
 
       }
@@ -419,6 +593,13 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
       p.init = function() {
 
+
+
+
+          _.extend(this, Backbone.Events);
+
+
+
           this.bulbSet=[];
 
   //74x74
@@ -449,28 +630,43 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
 
 
+      p.sup_passInteraction = p.passInteraction;
+      p.passInteraction = function(e) {
+          this.sup_passInteraction(e);
+
+          if (e.type=="onClick") {
+              ////////console.log("new shit");
+              //update the other collection
+
+  //            console.log("jkl", e.target.data.get("setLabel"));
+
+
+
+              this.trigger("alert", e.target.data.get("setLabel"));
+
+
+
+
+          }
+
+
+      };
+
+
+
 
 
 
 
       p.populateRow = function() {
 
-
-          //////console.log("should populate row",this.data);
-
-  //        //console.log("",);
-
-          var printRow=new Array()
-
           for ( var i = 0; i < 7; i++) {
               var t = this.bulbSet[i];
               var g = this.data.bulbCollection.models[i]
               t.setData(g);
-              printRow.push(g.get("setColor"))
+
 
           }
-
-          //console.log("populating",printRow,this.data.cid );
 
       }
 
@@ -481,6 +677,8 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
           this.sup_setData(data);
           this.data.bulbCollection.bind('change', this.updateView, this);
+
+  //        trace("666")
           this.populateRow();
 
           //console.log("data",this.data.cid,this.data.bulbCollection);
@@ -489,7 +687,7 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
 
       p.updateView = function(e) {
           //this.setColor(this.data.attributes.setColor);
-          //////console.log("caught 2!",e);
+          console.log("updateView rowbulb!",e);
           // this.populateRow();
       }
 
@@ -562,7 +760,7 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
       p.init = function(patternData) {
 
           var mainBtn = new RFButtonBitmap();
-          mainBtn.init("images/mainBtn.png","images/mainBtn.png");
+          mainBtn.init("images/mainBtn.png","images/mainBtnDown.png");
 
           this.passInteraction  = _.bind(this.passInteraction, this );
           mainBtn.reportInteraction = this.passInteraction;
@@ -596,24 +794,48 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
 
       p.setColor = function(color) {
 
+          this.bulb.setColor(color)
+
       }
 
       p.sup_passInteraction = p.passInteraction;
-
       p.passInteraction = function(e) {
           this.sup_passInteraction(e);
 
           if (e.type=="onClick") {
-
               ////////console.log("new shit");
-
               //update the other collection
-
+              console.log("jkl");
 
 
 
           }
       };
+
+
+      p.sup_setData = p.setData;
+      p.setData = function(data) {
+          this.sup_setData(data);
+
+          //console.log("q",data.get("setColor"),data.get("setLabel"));
+
+
+
+
+          this.data.bind('change', this.updateView, this);
+
+      };
+      
+      p.updateView = function () {
+          this.setLabel(this.data.get("setLabel"));
+          this.setColor(this.data.get("setColor"));
+
+          console.log("qwerty");
+
+          //how about updating everything inside
+      }
+      
+      
 
       window.SElementMainBtn = SElementMainBtn;
 
@@ -707,12 +929,11 @@ window.require.define({"classes/additional/ColorBox": function(exports, require,
               this.colorArr.push(i*10);
           };
 
-
-
       };
 
 
       p.setColor = function(n) {
+          this.currColor=n;
           this.gr.clear()
           this.gr.beginFill(Graphics.getHSL(n,100,50,1));
           this.gr.drawRoundRect(0,0,60,55,5);
@@ -722,8 +943,8 @@ window.require.define({"classes/additional/ColorBox": function(exports, require,
       p.onPress = function(e) {
 
 
-          this.currColor=Rnd.integer(0,35)
-          this.setColor(this.colorArr[this.currColor])
+
+          this.setColor(this.colorArr[Rnd.integer(0,35)])
 
       }
 
@@ -815,18 +1036,30 @@ window.require.define({"classes/additional/MessageBox": function(exports, requir
 
       MessageBox.prototype = p = new Container();
 
+      p.text;
+
       p.init = function() {
 
           var background = new Bitmap("images/mainMessage.png");
-          this.addChild(background)
+          this.addChild(background);
 
+          this.text = new createjs.Text("TEMP", "30px Arial", "#FFF");
+          this.text.textBaseline = "top";
 
+          this.text.x=40;
+          this.text.y=17;
 
+          this.text.text="tap bulb to display the thought"
+          this.addChild(this.text);
 
       };
 
 
+
+
       p.setMessage = function(n) {
+
+          this.text.text=n;
 
       }
 
@@ -1125,6 +1358,15 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
       PatternPage.prototype.init = function(dataSet) {
 
+
+          this.messageBox = new MessageBox();
+          this.addChild(this.messageBox);
+          this.messageBox.y=660;
+          this.messageBox.x=55;
+          this.messageBox.init()
+
+          var that=this;
+
           this.mezzData=dataSet;
 
           var list = new RFScrollableList();
@@ -1160,28 +1402,40 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
                   m.bulbCollection.add(mB);
               }
 
-              //////console.log(">>",this.patternRowCollection.models);
-
           }
 
-  //        list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
+          list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
           list.y=150;
           list.x=60;
 
-          var that=this;
+
+          for (var i = 0; i < list.theArr.length; i++) {
+              var t = list.theArr[i];
+
+              t.on("alert", function(msg) {
+
+  //                console.log("msg",msg);
+
+                  that.messageBox.setMessage(msg)
+
+              });
+
+          }
+
+
+
 
           this.mezzData.on("add", function(ship) {
 
-              var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1)
-              t.set({setColor:ship.get('setColor')});
+              var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1);
+
+              t.set({setColor:ship.get('setColor'),setLabel:ship.get('setLabel')});
+
+
 
           });
 
-          this.messageBox = new MessageBox();
-          this.addChild(this.messageBox);
-          this.messageBox.y=660;
-          this.messageBox.x=55;
-          this.messageBox.init()
+
 
       }
 
@@ -1223,17 +1477,28 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
       PlusPage.prototype.popUp;
 
-      PlusPage.prototype.addBtn;
+      PlusPage.prototype.switch;
       PlusPage.prototype.list;
+
+      PlusPage.prototype.mainBulb;
+      PlusPage.prototype.state = "STATE_DEFAULT"
+
+      PlusPage.prototype.currentlyEdited;
+
+
+      //DEFAULT_STATE
 
       PlusPage.prototype.initialize = function() {
           this.Container_initialize();
       };
 
+
       PlusPage.prototype.mezzData;
-      PlusPage.prototype.init = function(dataSet,mezzData,popUp) {
+      PlusPage.prototype.init = function(dataSet,mezzData,popUp,mainBulb) {
 
           this.mezzData=mezzData;
+
+          this.mainBulb=mainBulb
 
           this.list = new RFScrollableList();
           this.addChild(this.list);
@@ -1257,7 +1522,30 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
                   if(e.type=="onClick") {
 
-                      that.addToMezz(e.target.parent.data);
+                      console.log("button in question");
+
+
+                      if(that.state=="STATE_EDIT") {
+                          that.popUp.show();
+                          that.currentlyEdited=e.target.parent.data
+                          console.log("currentlyEdited",that.currentlyEdited);
+
+                          //that.currentlyEdited.set()
+
+  //                        this.list.visible=false;
+                      }
+
+                      if(that.state=="STATE_DEFAULT") {
+
+
+                          that.addToMezz(e.target.parent.data);
+                      }
+
+
+
+
+
+
                   }
 
               })
@@ -1265,47 +1553,101 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
           }
 
           var offset=130;
+  //        switch_default.png
+  //        switch_edit.png
 
-          var deleteBtn = new RFButtonBitmap2();
-          deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",true);
-          this.addChild(deleteBtn)
-          deleteBtn.y=674
-          deleteBtn.x=0+offset;
 
-          this.addBtn = new RFButtonBitmap2();
-          this.addBtn.init("images/addBtnDef.png","images/addBtnDown.png",true, "ADDBTN");
-          this.addChild(this.addBtn);
-          this.addBtn.y=674
-          this.addBtn.x=200+offset;
+          this.switch = new RFButtonBitmap2();
+          this.switch.init("images/switch_default.png","images/switch_edit.png",true, "EVENT_SWITCH");
+          this.addChild(this.switch);
+          this.switch.y=664
+          this.switch.x=220//+offset;
 
+          var offsx = 50
+          var offsy = 7
+
+          var rec = new Bitmap("images/copy_record.png");
+          this.addChild(rec)
+          rec.y=662+offsy
+          rec.x=40
+
+          var edit = new Bitmap("images/copy_edit.png");
+          this.addChild(edit)
+          edit.y=662+offsy
+          edit.x=465;
 
 
   //    p.add = function(t, property, name) {
 
 
-          this.addBtn.on("ADDBTN", function(msg) {
-  //            alert("Triggered " + msg);
+          this.switch.on("EVENT_SWITCH", function(msg) {
 
-              that.popUp.show();
+              if(msg.target.stateNo==2) {
+                  that.setState("STATE_EDIT");
+              }
+              if(msg.target.stateNo==1) {
+                  that.setState("STATE_DEFAULT");
+
+              }
+
+
           });
 
 
-
-
-
           this.popUp=popUp;
+          this.popUp.init(this);
+
+          this.popUp.on("HIDE_POPUP", function() {
+
+  //            console.log("lokalizacja",that.popUp.popData,that.currentlyEdited);
+  //            console.log("that.currentlyEdited",that.currentlyEdited);
+
+              that.currentlyEdited.set(that.popUp.popData)
+
+
+              that.setState("STATE_DEFAULT");
+  //            that.popUp.hide();
+
+              //tutaj wpisz resultat do currentlyEdited
+
+
+          })
 
 
 
       }
 
+      PlusPage.prototype.setState = function (state) {
+
+          this.state=state;
+
+          if(state=="STATE_DEFAULT") {
+              this.switch.setState(1);
+
+          }
+
+          if(state=="STATE_EDIT") {
+              this.switch.setState(2);
+
+          }
+
+
+
+
+
+      }
+
+
+
       PlusPage.prototype.addToMezz = function(data) {
 
-          ////console.log("xx", data);
+          console.log("xx", data);
 
-          var t = data.clone()
+          var t = data.clone();
 
           this.mezzData.add(t);
+
+          this.mainBulb.setColor(t.get("setColor"));
 
           ////console.log("666 ",this.mezzData.length, t);
 
@@ -1722,6 +2064,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
   require('classes/pages/InfoPage');
   require('classes/pages/PatternPage');
   require('classes/PopUp');
+  require('classes/BulbSpecial');
 
   //require('rf/RF');
 
@@ -1749,6 +2092,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
       stage:null,
 
       plusPage:null,
+      theH:null,
 
 
       //--------------------------------------
@@ -1789,7 +2133,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           $(this.el).append(canvas);
 
-  //        $(this.el).append('<div id="dialogBox" class="tha">' +
+  //        $(this.el).append('<div id="mainTextfield" class="tha">' +
   //            '</br>' +
   //            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
   //            '</div>');
@@ -1829,7 +2173,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           for ( var i = 0; i < 20; i++) {
               var m = new MainBtnModel();
               mainBtnCollection.add(m);
-              m.set({setLabel:""+i, setColor:i*10})
+              m.set({setLabel:'EMPTY', setColor:30})
           }
 
           var MezzData = Backbone.Collection.extend({
@@ -1842,9 +2186,11 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           var popUp = new PopUp();
 
+          var mainBulb = new BulbSpecial();
+
           // passing 2 datasets
           this.plusPage = new PlusPage();
-          this.plusPage.init(mainBtnCollection,mezzData,popUp);
+          this.plusPage.init(mainBtnCollection,mezzData,popUp,mainBulb);
 
           var infoPage = new InfoPage();
 
@@ -1861,6 +2207,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           navBtn1.init("images/Navigation_def_01.png","images/Navigation_down_01.png");
           this.stage.addChild(navBtn1);
           navBtn1.y=774;
+
 
           var navBtn2 = new RFButtonBitmap();
           navBtn2.init("images/Navigation_def_02.png","images/Navigation_down_02.png");
@@ -1889,7 +2236,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           //TOP
           var top = new Bitmap("images/top.png");
-  //        this.stage.addChild(top);
+          this.stage.addChild(top);
 
           var box = new  Bitmap("images/box.png");
           this.stage.addChild(box);
@@ -1901,47 +2248,25 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
   //        setTimeout(this.getcarter,2500);
 
-          popUp.init(this.plusPage);
+
 
   //        this.plusPage.list.setAllow(false)
 
           var that=this;
-          //$(this.el).append(''<div id="yoDiv"><div>);
-
-  //        $.extend($.mobile.zoom, {locked:true,enabled:false})
-
-  //        $(this.el).append('<div><input id="dialogBox" value="Tap here" type="month" name="firstname"  ></div>');
-          $(this.el).append('<div><img id="dialogBox" src="images/addBtnDown.png" alt="some_text"></div>');
+          
+          $(this.el).append('<div><input id="mainTextfield" value="Tap here" type="text" name="firstname"  ></div>');
 
 
-          this.yo = _.bind( this.yo, this );
-          setTimeout(this.yo,500);
+          this.onReady = _.bind( this.onReady, this );
+          setTimeout(this.onReady,1500);
 
           popUp.on("SHOW_POPUP", function(msg) {
-
-  //            $("#dialogBox").show();
-  //
-  //            $("#dialogBox").val("TAP HERE")
-  //
-  //            $("#dialogBox").css("height","50px");
-  //            $("#dialogBox").css("display","inline");
-  //
-  //            $('#dialogBox').focus(function() {$("#dialogBox").val("")});
-
-
-
-  //60x55
-
-  //            document.getElementbyId('dialogBox').value="sksk "
-
+              $("#mainTextfield").css("display","inline");
           });
 
           popUp.on("HIDE_POPUP", function(msg) {
-
-  //            $("#dialogBox").css("height","0px");
-  //            $("#dialogBox").css("display","none");
-  //            $("#dialogBox").hide()
-  //            height: 150px;
+              $("#mainTextfield").css("display","none");
+              console.log("result", $("#mainTextfield").val());
           });
 
           this.stage.addChild(popUp);
@@ -1950,9 +2275,15 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           this.stage.addChild(stitch)
           stitch.y=745;
 
+          this.stage.addChild(mainBulb)
+          mainBulb.init();
+          mainBulb.scaleX=0.4
+          mainBulb.scaleY=0.4
+          mainBulb.x=292;
+          mainBulb.y=42;
+
 
   //        this.stage.addChild(deb);
-
 
           return this;
 
@@ -1960,39 +2291,19 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
 
 
-      yo:function (e) {
+      onReady:function (e) {
+          console.log("ready");
+          var that=this;
 
-          var that=this
-
-
-
-
-          $("#dialogBox").blur( function(msg) {
+          $("#mainTextfield").blur( function(msg) {
               console.log("lostBlur");
-
-
-
-  //            window.scrollTo(0, 0);
-  //            document.body.scrollTop = 0;
-  //            Touch.enable ( this.stage , true , true );
-  //            Touch.enable ( this.stage , true , false );
-
-
-
-
-  //            setTimeout(function(){that.plusPage.list.setAllow(true)},2500)
-
-
-
-
+              window.scrollTo(0, 0);
+              document.body.scrollTop = 0;
           })
 
-          $("#dialogBox").focus( function(msg) {
+          $("#mainTextfield").focus( function(msg) {
               console.log("focus");
-
-              console.log("that",that);
-  //            that.plusPage.list.setAllow(false)
-
+              $("#mainTextfield").val('')
           })
 
       },
@@ -2065,7 +2376,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
 
   //        console.log("t",t);
-  //        t.getElementById('dialogBox');
+  //        t.getElementById('mainTextfield');
 
 
 
@@ -2075,7 +2386,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
   //        $(t).hide();
   //        $("#home-view").hide();
-  //       $('dialogBox').append('');
+  //       $('mainTextfield').append('');
 
   //       $(this.el).append('<div>sdsdd</div>');
 

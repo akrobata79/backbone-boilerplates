@@ -21,6 +21,15 @@ require('classes/additional/MessageBox');
 
     PatternPage.prototype.init = function(dataSet) {
 
+
+        this.messageBox = new MessageBox();
+        this.addChild(this.messageBox);
+        this.messageBox.y=660;
+        this.messageBox.x=55;
+        this.messageBox.init()
+
+        var that=this;
+
         this.mezzData=dataSet;
 
         var list = new RFScrollableList();
@@ -56,28 +65,40 @@ require('classes/additional/MessageBox');
                 m.bulbCollection.add(mB);
             }
 
-            //////console.log(">>",this.patternRowCollection.models);
-
         }
 
-//        list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
+        list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
         list.y=150;
         list.x=60;
 
-        var that=this;
+
+        for (var i = 0; i < list.theArr.length; i++) {
+            var t = list.theArr[i];
+
+            t.on("alert", function(msg) {
+
+//                console.log("msg",msg);
+
+                that.messageBox.setMessage(msg)
+
+            });
+
+        }
+
+
+
 
         this.mezzData.on("add", function(ship) {
 
-            var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1)
-            t.set({setColor:ship.get('setColor')});
+            var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1);
+
+            t.set({setColor:ship.get('setColor'),setLabel:ship.get('setLabel')});
+
+
 
         });
 
-        this.messageBox = new MessageBox();
-        this.addChild(this.messageBox);
-        this.messageBox.y=660;
-        this.messageBox.x=55;
-        this.messageBox.init()
+
 
     }
 

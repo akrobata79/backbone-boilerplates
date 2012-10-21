@@ -19,7 +19,7 @@ require('classes/Bulb');
     p.init = function(patternData) {
 
         var mainBtn = new RFButtonBitmap();
-        mainBtn.init("images/mainBtn.png","images/mainBtn.png");
+        mainBtn.init("images/mainBtn.png","images/mainBtnDown.png");
 
         this.passInteraction  = _.bind(this.passInteraction, this );
         mainBtn.reportInteraction = this.passInteraction;
@@ -53,24 +53,48 @@ require('classes/Bulb');
 
     p.setColor = function(color) {
 
+        this.bulb.setColor(color)
+
     }
 
     p.sup_passInteraction = p.passInteraction;
-
     p.passInteraction = function(e) {
         this.sup_passInteraction(e);
 
         if (e.type=="onClick") {
-
             ////////console.log("new shit");
-
             //update the other collection
-
+            console.log("jkl");
 
 
 
         }
     };
+
+
+    p.sup_setData = p.setData;
+    p.setData = function(data) {
+        this.sup_setData(data);
+
+        //console.log("q",data.get("setColor"),data.get("setLabel"));
+
+
+
+
+        this.data.bind('change', this.updateView, this);
+
+    };
+    
+    p.updateView = function () {
+        this.setLabel(this.data.get("setLabel"));
+        this.setColor(this.data.get("setColor"));
+
+        console.log("qwerty");
+
+        //how about updating everything inside
+    }
+    
+    
 
     window.SElementMainBtn = SElementMainBtn;
 

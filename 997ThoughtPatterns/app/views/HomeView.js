@@ -29,6 +29,7 @@ require('classes/pages/PlusPage');
 require('classes/pages/InfoPage');
 require('classes/pages/PatternPage');
 require('classes/PopUp');
+require('classes/BulbSpecial');
 
 //require('rf/RF');
 
@@ -56,6 +57,7 @@ module.exports = View.extend({
     stage:null,
 
     plusPage:null,
+    theH:null,
 
 
     //--------------------------------------
@@ -96,7 +98,7 @@ module.exports = View.extend({
 
         $(this.el).append(canvas);
 
-//        $(this.el).append('<div id="dialogBox" class="tha">' +
+//        $(this.el).append('<div id="mainTextfield" class="tha">' +
 //            '</br>' +
 //            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
 //            '</div>');
@@ -136,7 +138,7 @@ module.exports = View.extend({
         for ( var i = 0; i < 20; i++) {
             var m = new MainBtnModel();
             mainBtnCollection.add(m);
-            m.set({setLabel:""+i, setColor:i*10})
+            m.set({setLabel:'EMPTY', setColor:30})
         }
 
         var MezzData = Backbone.Collection.extend({
@@ -149,9 +151,11 @@ module.exports = View.extend({
 
         var popUp = new PopUp();
 
+        var mainBulb = new BulbSpecial();
+
         // passing 2 datasets
         this.plusPage = new PlusPage();
-        this.plusPage.init(mainBtnCollection,mezzData,popUp);
+        this.plusPage.init(mainBtnCollection,mezzData,popUp,mainBulb);
 
         var infoPage = new InfoPage();
 
@@ -168,6 +172,7 @@ module.exports = View.extend({
         navBtn1.init("images/Navigation_def_01.png","images/Navigation_down_01.png");
         this.stage.addChild(navBtn1);
         navBtn1.y=774;
+
 
         var navBtn2 = new RFButtonBitmap();
         navBtn2.init("images/Navigation_def_02.png","images/Navigation_down_02.png");
@@ -196,7 +201,7 @@ module.exports = View.extend({
 
         //TOP
         var top = new Bitmap("images/top.png");
-//        this.stage.addChild(top);
+        this.stage.addChild(top);
 
         var box = new  Bitmap("images/box.png");
         this.stage.addChild(box);
@@ -208,47 +213,25 @@ module.exports = View.extend({
 
 //        setTimeout(this.getcarter,2500);
 
-        popUp.init(this.plusPage);
+
 
 //        this.plusPage.list.setAllow(false)
 
         var that=this;
-        //$(this.el).append(''<div id="yoDiv"><div>);
-
-//        $.extend($.mobile.zoom, {locked:true,enabled:false})
-
-//        $(this.el).append('<div><input id="dialogBox" value="Tap here" type="month" name="firstname"  ></div>');
-        $(this.el).append('<div><img id="dialogBox" src="images/addBtnDown.png" alt="some_text"></div>');
+        
+        $(this.el).append('<div><input id="mainTextfield" value="Tap here" type="text" name="firstname"  ></div>');
 
 
-        this.yo = _.bind( this.yo, this );
-        setTimeout(this.yo,500);
+        this.onReady = _.bind( this.onReady, this );
+        setTimeout(this.onReady,1500);
 
         popUp.on("SHOW_POPUP", function(msg) {
-
-//            $("#dialogBox").show();
-//
-//            $("#dialogBox").val("TAP HERE")
-//
-//            $("#dialogBox").css("height","50px");
-//            $("#dialogBox").css("display","inline");
-//
-//            $('#dialogBox').focus(function() {$("#dialogBox").val("")});
-
-
-
-//60x55
-
-//            document.getElementbyId('dialogBox').value="sksk "
-
+            $("#mainTextfield").css("display","inline");
         });
 
         popUp.on("HIDE_POPUP", function(msg) {
-
-//            $("#dialogBox").css("height","0px");
-//            $("#dialogBox").css("display","none");
-//            $("#dialogBox").hide()
-//            height: 150px;
+            $("#mainTextfield").css("display","none");
+            console.log("result", $("#mainTextfield").val());
         });
 
         this.stage.addChild(popUp);
@@ -257,9 +240,15 @@ module.exports = View.extend({
         this.stage.addChild(stitch)
         stitch.y=745;
 
+        this.stage.addChild(mainBulb)
+        mainBulb.init();
+        mainBulb.scaleX=0.4
+        mainBulb.scaleY=0.4
+        mainBulb.x=292;
+        mainBulb.y=42;
+
 
 //        this.stage.addChild(deb);
-
 
         return this;
 
@@ -267,39 +256,19 @@ module.exports = View.extend({
 
 
 
-    yo:function (e) {
+    onReady:function (e) {
+        console.log("ready");
+        var that=this;
 
-        var that=this
-
-
-
-
-        $("#dialogBox").blur( function(msg) {
+        $("#mainTextfield").blur( function(msg) {
             console.log("lostBlur");
-
-
-
-//            window.scrollTo(0, 0);
-//            document.body.scrollTop = 0;
-//            Touch.enable ( this.stage , true , true );
-//            Touch.enable ( this.stage , true , false );
-
-
-
-
-//            setTimeout(function(){that.plusPage.list.setAllow(true)},2500)
-
-
-
-
+            window.scrollTo(0, 0);
+            document.body.scrollTop = 0;
         })
 
-        $("#dialogBox").focus( function(msg) {
+        $("#mainTextfield").focus( function(msg) {
             console.log("focus");
-
-            console.log("that",that);
-//            that.plusPage.list.setAllow(false)
-
+            $("#mainTextfield").val('')
         })
 
     },
@@ -372,7 +341,7 @@ module.exports = View.extend({
 
 
 //        console.log("t",t);
-//        t.getElementById('dialogBox');
+//        t.getElementById('mainTextfield');
 
 
 
@@ -382,7 +351,7 @@ module.exports = View.extend({
 
 //        $(t).hide();
 //        $("#home-view").hide();
-//       $('dialogBox').append('');
+//       $('mainTextfield').append('');
 
 //       $(this.el).append('<div>sdsdd</div>');
 

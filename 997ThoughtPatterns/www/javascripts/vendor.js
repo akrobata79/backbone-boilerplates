@@ -30029,8 +30029,6 @@ var RF = {};;
 
     RFButtonBitmap2.prototype.click = function(e) {
 
-
-
         //console.log("click>this.justReverted",this.justReverted);
 
         if(!this.toggleBtn && this.radioBtn!=true) {
