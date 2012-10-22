@@ -20,10 +20,14 @@
 
     p.data;
 
+    p.cached=false
+
+    p.firstTimeDark = false;
+
     p.init = function() {
 
         var sqback =new  RFBlock();
-        sqback.setSize(82,78);
+        sqback.setSize(82* window.resize,78* window.resize);
 
 //        ,{w:82*7,h:78}
         this.addChild(sqback);
@@ -37,18 +41,16 @@
 
         this.top = new createjs.Shape(this.gr);   // new Bitmap("images/bulbTop.png");
 
-        this.top.x = 37;
-        this.top.y = 38;
+        this.top.x = 37* window.resize;
+        this.top.y = 38* window.resize;
 
         this.addChild(this.top);
 
         this.gr.beginFill(Graphics.getHSL(0,100,5,0.85));
-        this.gr.drawCircle(0,0,47/2);
+        this.gr.drawCircle(0,0,(47/2)* window.resize);
 
-
-
-//        this.temp2 = _.bind( this.temp2, this );
-//        setTimeout(this.temp2,1500);
+        this.temp2 = _.bind( this.temp2, this );
+        setTimeout(this.temp2,1500);
 
 
     };
@@ -56,7 +58,11 @@
 
     p.temp2=function(){
 
-//        this.cache(0,0,82,78    );
+
+
+        this.cache(0,0,82*window.resize,78*window.resize    );
+        this.cached=true;
+        this.updateCache();
 
 
     }
@@ -65,9 +71,12 @@
 
         this.gr.clear()
 
-        this.gr.beginFill(Graphics.getHSL(n,100,50,0.45));
-        this.gr.drawCircle(0,0,47/2);
+        this.gr.beginFill(Graphics.getHSL(n,100,50,(this.firstTimeDark)? 0.1 : 0.45));
+        this.gr.drawCircle(0,0,(47/2)* window.resize);
 
+        this.firstTimeDark=false;
+
+        if(this.cached)this.updateCache();
 
 
 

@@ -13,8 +13,15 @@
 
     p.currColor;
 
+    p.bottom;
+
 
     p.init = function() {
+
+
+        this.bottom = new Bitmap("images/bulbBack.png");
+        this.addChild(this.bottom);
+
 
         this.gr = new createjs.Graphics();
 
@@ -34,14 +41,17 @@
             this.colorArr.push(i*10);
         };
 
+        this.colorPart.x = 37* window.resize;
+        this.colorPart.y = 38* window.resize;
+
     };
 
 
     p.setColor = function(n) {
         this.currColor=n;
         this.gr.clear()
-        this.gr.beginFill(Graphics.getHSL(n,100,50,1));
-        this.gr.drawRoundRect(0,0,60,55,5);
+        this.gr.beginFill(Graphics.getHSL(n,100,50,0.45));
+        this.gr.drawCircle(0,0,(47/2)* window.resize);
     }
 
 

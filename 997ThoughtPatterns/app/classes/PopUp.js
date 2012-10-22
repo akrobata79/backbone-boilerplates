@@ -18,15 +18,15 @@ require('classes/additional/ColorBox');
         this.colorBox = new ColorBox();
 
         this.colorBox.init();
-        this.colorBox.y=455;
-        this.colorBox.x=400;
+        this.colorBox.y=450* window.resize;
+        this.colorBox.x=400* window.resize;
 
         _.extend(this, Backbone.Events);
 
         this.controller=controller;
 
         this.back = new RFBlock();
-        this.back.setSize(640,920)
+        this.back.setSize(640* window.resize,920* window.resize)
 //        this.addChild(this.back);
         this.back.alpha=0.9
 
@@ -36,23 +36,23 @@ require('classes/additional/ColorBox');
         console.log("789");
         var pop = new Bitmap("images/popUp.png");
         this.addChild(pop)
-        pop.x=56
-        pop.y=150
+        pop.x=56* window.resize
+        pop.y=150* window.resize
 
         this.hide();
-        var offset=130
+        var offset=290* window.resize
 
         var deleteBtn = new RFButtonBitmap2();
         deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",false, "CANCEL");
         this.addChild(deleteBtn)
-        deleteBtn.y=550;
-        deleteBtn.x=0+offset;
+        deleteBtn.y=550* window.resize;
+        deleteBtn.x=(0+offset)* window.resize;
 
         var addBtn = new RFButtonBitmap2();
         addBtn.init("images/addBtnDef.png","images/addBtnDown.png",false, "CONFIRM");
         this.addChild(addBtn);
-        addBtn.y=550;
-        addBtn.x=200+offset;
+        addBtn.y=550* window.resize;
+        addBtn.x=(200+offset)* window.resize;
 
         var that=this;
 

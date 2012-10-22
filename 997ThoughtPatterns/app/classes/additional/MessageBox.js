@@ -13,13 +13,14 @@
         var background = new Bitmap("images/mainMessage.png");
         this.addChild(background);
 
-        this.text = new createjs.Text("TEMP", "30px Arial", "#FFF");
+        this.text = new createjs.Text("TEMP", "15px Arial", "#FFF");
+        this.text.textAlign = "center"
         this.text.textBaseline = "top";
 
-        this.text.x=40;
-        this.text.y=17;
+        this.text.x=260* window.resize;
+        this.text.y=17* window.resize;
 
-        this.text.text="tap bulb to display the thought"
+        this.text.text="Tap a bulb to reveal the thought"
         this.addChild(this.text);
 
     };

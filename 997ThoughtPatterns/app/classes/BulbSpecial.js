@@ -23,7 +23,7 @@
     p.init = function() {
 
         var sqback =new  RFBlock();
-        sqback.setSize(82,78);
+        sqback.setSize(82* window.resize,78* window.resize);
 
 //        ,{w:82*7,h:78}
         this.addChild(sqback);
@@ -38,8 +38,8 @@
 
         this.top = new createjs.Shape(this.layer1);   // new Bitmap("images/bulbTop.png");
 
-        this.top.x = 37;
-        this.top.y = 38;
+        this.top.x = 37* window.resize;
+        this.top.y = 38* window.resize;
 
         this.addChild(this.top);
 
@@ -48,10 +48,10 @@
         this.topper = new createjs.Shape(this.layer2);
         this.addChild(this.topper);
 
-        this.topper.x = 37;
-        this.topper.y = 38;
+        this.topper.x = 37* window.resize;
+        this.topper.y = 38* window.resize;
 
-        var blurFilter = new BoxBlurFilter(8, 8, 5);
+        var blurFilter = new BoxBlurFilter(8* window.resize, 8* window.resize, 5);
         var margins = blurFilter.getBounds();
 
         this.topper.filters = [blurFilter];
@@ -59,7 +59,7 @@
         // later, you can call updateCache() to update changes to your filters
 
 
-        this.topper.cache(-100,-100,200,200);
+        this.topper.cache(-100* window.resize,-100* window.resize,200* window.resize,200* window.resize);
 //        this.topper.x += this.topper.x+this.layer2.width;
 //        this.addChild(bmp);
 
@@ -88,22 +88,22 @@
 
     p.setColor = function(n) {
 
-        this.layer1.clear()
-        this.layer2.clear()
-
-        this.layer1.beginFill(Graphics.getHSL(n,100,50,0.45));
-        this.layer1.drawCircle(0,0,47/2);
-
-
-        this.layer2.beginFill(Graphics.getHSL(n,100,50,0.45));
-        this.layer2.drawCircle(0,0,74/2);
-
-        this.topper.updateCache()
-
-        TweenLite.to(this.top, 1, {alpha:1});
-        this.topper.alpha=0
-
-        TweenMax.to(this.topper, 0.5, {alpha:1,  scaleX:1,scaleY:1, onComplete:this.resetAnim});
+//        this.layer1.clear()
+//        this.layer2.clear()
+//
+//        this.layer1.beginFill(Graphics.getHSL(n,100,50,0.45));
+//        this.layer1.drawCircle(0,0,(47/2)* window.resize);
+//
+//
+//        this.layer2.beginFill(Graphics.getHSL(n,100,50,0.45));
+//        this.layer2.drawCircle(0,0,(74/2)* window.resize);
+//
+//        this.topper.updateCache()
+//
+//        TweenLite.to(this.top, 1, {alpha:1});
+//        this.topper.alpha=0
+//
+//        TweenMax.to(this.topper, 0.5, {alpha:1,  scaleX:1,scaleY:1, onComplete:this.resetAnim});
 
 
 

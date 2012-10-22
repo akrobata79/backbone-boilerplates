@@ -148,10 +148,14 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.data;
 
+      p.cached=false
+
+      p.firstTimeDark = false;
+
       p.init = function() {
 
           var sqback =new  RFBlock();
-          sqback.setSize(82,78);
+          sqback.setSize(82* window.resize,78* window.resize);
 
   //        ,{w:82*7,h:78}
           this.addChild(sqback);
@@ -165,18 +169,16 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
           this.top = new createjs.Shape(this.gr);   // new Bitmap("images/bulbTop.png");
 
-          this.top.x = 37;
-          this.top.y = 38;
+          this.top.x = 37* window.resize;
+          this.top.y = 38* window.resize;
 
           this.addChild(this.top);
 
           this.gr.beginFill(Graphics.getHSL(0,100,5,0.85));
-          this.gr.drawCircle(0,0,47/2);
+          this.gr.drawCircle(0,0,(47/2)* window.resize);
 
-
-
-  //        this.temp2 = _.bind( this.temp2, this );
-  //        setTimeout(this.temp2,1500);
+          this.temp2 = _.bind( this.temp2, this );
+          setTimeout(this.temp2,1500);
 
 
       };
@@ -184,7 +186,11 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
       p.temp2=function(){
 
-  //        this.cache(0,0,82,78    );
+
+
+          this.cache(0,0,82*window.resize,78*window.resize    );
+          this.cached=true;
+          this.updateCache();
 
 
       }
@@ -193,9 +199,12 @@ window.require.define({"classes/Bulb": function(exports, require, module) {
 
           this.gr.clear()
 
-          this.gr.beginFill(Graphics.getHSL(n,100,50,0.45));
-          this.gr.drawCircle(0,0,47/2);
+          this.gr.beginFill(Graphics.getHSL(n,100,50,(this.firstTimeDark)? 0.1 : 0.45));
+          this.gr.drawCircle(0,0,(47/2)* window.resize);
 
+          this.firstTimeDark=false;
+
+          if(this.cached)this.updateCache();
 
 
 
@@ -275,7 +284,7 @@ window.require.define({"classes/BulbSpecial": function(exports, require, module)
       p.init = function() {
 
           var sqback =new  RFBlock();
-          sqback.setSize(82,78);
+          sqback.setSize(82* window.resize,78* window.resize);
 
   //        ,{w:82*7,h:78}
           this.addChild(sqback);
@@ -290,8 +299,8 @@ window.require.define({"classes/BulbSpecial": function(exports, require, module)
 
           this.top = new createjs.Shape(this.layer1);   // new Bitmap("images/bulbTop.png");
 
-          this.top.x = 37;
-          this.top.y = 38;
+          this.top.x = 37* window.resize;
+          this.top.y = 38* window.resize;
 
           this.addChild(this.top);
 
@@ -300,10 +309,10 @@ window.require.define({"classes/BulbSpecial": function(exports, require, module)
           this.topper = new createjs.Shape(this.layer2);
           this.addChild(this.topper);
 
-          this.topper.x = 37;
-          this.topper.y = 38;
+          this.topper.x = 37* window.resize;
+          this.topper.y = 38* window.resize;
 
-          var blurFilter = new BoxBlurFilter(8, 8, 5);
+          var blurFilter = new BoxBlurFilter(8* window.resize, 8* window.resize, 5);
           var margins = blurFilter.getBounds();
 
           this.topper.filters = [blurFilter];
@@ -311,7 +320,7 @@ window.require.define({"classes/BulbSpecial": function(exports, require, module)
           // later, you can call updateCache() to update changes to your filters
 
 
-          this.topper.cache(-100,-100,200,200);
+          this.topper.cache(-100* window.resize,-100* window.resize,200* window.resize,200* window.resize);
   //        this.topper.x += this.topper.x+this.layer2.width;
   //        this.addChild(bmp);
 
@@ -340,22 +349,22 @@ window.require.define({"classes/BulbSpecial": function(exports, require, module)
 
       p.setColor = function(n) {
 
-          this.layer1.clear()
-          this.layer2.clear()
-
-          this.layer1.beginFill(Graphics.getHSL(n,100,50,0.45));
-          this.layer1.drawCircle(0,0,47/2);
-
-
-          this.layer2.beginFill(Graphics.getHSL(n,100,50,0.45));
-          this.layer2.drawCircle(0,0,74/2);
-
-          this.topper.updateCache()
-
-          TweenLite.to(this.top, 1, {alpha:1});
-          this.topper.alpha=0
-
-          TweenMax.to(this.topper, 0.5, {alpha:1,  scaleX:1,scaleY:1, onComplete:this.resetAnim});
+  //        this.layer1.clear()
+  //        this.layer2.clear()
+  //
+  //        this.layer1.beginFill(Graphics.getHSL(n,100,50,0.45));
+  //        this.layer1.drawCircle(0,0,(47/2)* window.resize);
+  //
+  //
+  //        this.layer2.beginFill(Graphics.getHSL(n,100,50,0.45));
+  //        this.layer2.drawCircle(0,0,(74/2)* window.resize);
+  //
+  //        this.topper.updateCache()
+  //
+  //        TweenLite.to(this.top, 1, {alpha:1});
+  //        this.topper.alpha=0
+  //
+  //        TweenMax.to(this.topper, 0.5, {alpha:1,  scaleX:1,scaleY:1, onComplete:this.resetAnim});
 
 
 
@@ -436,15 +445,15 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
           this.colorBox = new ColorBox();
 
           this.colorBox.init();
-          this.colorBox.y=455;
-          this.colorBox.x=400;
+          this.colorBox.y=450* window.resize;
+          this.colorBox.x=400* window.resize;
 
           _.extend(this, Backbone.Events);
 
           this.controller=controller;
 
           this.back = new RFBlock();
-          this.back.setSize(640,920)
+          this.back.setSize(640* window.resize,920* window.resize)
   //        this.addChild(this.back);
           this.back.alpha=0.9
 
@@ -454,23 +463,23 @@ window.require.define({"classes/PopUp": function(exports, require, module) {
           console.log("789");
           var pop = new Bitmap("images/popUp.png");
           this.addChild(pop)
-          pop.x=56
-          pop.y=150
+          pop.x=56* window.resize
+          pop.y=150* window.resize
 
           this.hide();
-          var offset=130
+          var offset=290* window.resize
 
           var deleteBtn = new RFButtonBitmap2();
           deleteBtn.init("images/deleteBtnDef.png","images/deleteBtnDown.png",false, "CANCEL");
           this.addChild(deleteBtn)
-          deleteBtn.y=550;
-          deleteBtn.x=0+offset;
+          deleteBtn.y=550* window.resize;
+          deleteBtn.x=(0+offset)* window.resize;
 
           var addBtn = new RFButtonBitmap2();
           addBtn.init("images/addBtnDef.png","images/addBtnDown.png",false, "CONFIRM");
           this.addChild(addBtn);
-          addBtn.y=550;
-          addBtn.x=200+offset;
+          addBtn.y=550* window.resize;
+          addBtn.x=(200+offset)* window.resize;
 
           var that=this;
 
@@ -609,10 +618,11 @@ window.require.define({"classes/SElementBulbRow": function(exports, require, mod
           for ( var i = 0; i < 7; i++) {
 
               var temp = new Bulb();
+
               temp.init();
               this.addChild(temp);
 
-              temp.x = 74*i;
+              temp.x = (74*i)* window.resize;
               temp.reportInteraction = this.passInteraction;
 
               this.bulbSet.push(temp);
@@ -765,11 +775,11 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
           this.passInteraction  = _.bind(this.passInteraction, this );
           mainBtn.reportInteraction = this.passInteraction;
 
-          this.text = new createjs.Text("TEMP", "50px Arial", "#000");
+          this.text = new createjs.Text("TEMP", "15px Arial", "#000");
           this.text.textBaseline = "top";
 
-          this.text.x=80;
-          this.text.y=17;
+          this.text.x=80* window.resize;
+          this.text.y=28* window.resize;
 
           this.bulb = new Bulb();
           this.bulb.init()
@@ -777,14 +787,16 @@ window.require.define({"classes/SElementMainBtn": function(exports, require, mod
           this.bulb.scaleX=0.5
           this.bulb.scaleY=0.5
 
-          this.bulb.x=30
-          this.bulb.y=25
+          this.bulb.x=30* window.resize
+          this.bulb.y=25* window.resize
 
           this.bulb.revert=null;
           this.bulb.onClick=null;
           this.bulb.onPress=null;
 
           this.addChild(mainBtn,this.text,this.bulb);
+
+  //        268x44
 
       };
 
@@ -908,8 +920,15 @@ window.require.define({"classes/additional/ColorBox": function(exports, require,
 
       p.currColor;
 
+      p.bottom;
+
 
       p.init = function() {
+
+
+          this.bottom = new Bitmap("images/bulbBack.png");
+          this.addChild(this.bottom);
+
 
           this.gr = new createjs.Graphics();
 
@@ -929,14 +948,17 @@ window.require.define({"classes/additional/ColorBox": function(exports, require,
               this.colorArr.push(i*10);
           };
 
+          this.colorPart.x = 37* window.resize;
+          this.colorPart.y = 38* window.resize;
+
       };
 
 
       p.setColor = function(n) {
           this.currColor=n;
           this.gr.clear()
-          this.gr.beginFill(Graphics.getHSL(n,100,50,1));
-          this.gr.drawRoundRect(0,0,60,55,5);
+          this.gr.beginFill(Graphics.getHSL(n,100,50,0.45));
+          this.gr.drawCircle(0,0,(47/2)* window.resize);
       }
 
 
@@ -988,8 +1010,8 @@ window.require.define({"classes/additional/Curtain": function(exports, require, 
           this.addChild(this.img1);
           this.addChild(this.img2);
 
-          this.img1.x=-320;
-          this.img2.x=640;
+          this.img1.x=-320* window.resize;
+          this.img2.x=640* window.resize;
 
           this.backo = _.bind( this.backo, this );
 
@@ -1043,11 +1065,11 @@ window.require.define({"classes/additional/MessageBox": function(exports, requir
           var background = new Bitmap("images/mainMessage.png");
           this.addChild(background);
 
-          this.text = new createjs.Text("TEMP", "30px Arial", "#FFF");
+          this.text = new createjs.Text("TEMP", "15px Arial", "#FFF");
           this.text.textBaseline = "top";
 
-          this.text.x=40;
-          this.text.y=17;
+          this.text.x=40* window.resize;
+          this.text.y=17* window.resize;
 
           this.text.text="tap bulb to display the thought"
           this.addChild(this.text);
@@ -1361,8 +1383,8 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           this.messageBox = new MessageBox();
           this.addChild(this.messageBox);
-          this.messageBox.y=660;
-          this.messageBox.x=55;
+          this.messageBox.y=660* window.resize;
+          this.messageBox.x=55* window.resize;
           this.messageBox.init()
 
           var that=this;
@@ -1373,7 +1395,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
           this.addChild(list);
 
           var BulbModel = Backbone.Model.extend({
-              defaults: {setLabel:"NONE",setColor:10}
+              defaults: {setLabel:"EMPTY",setColor:30}
           });
 
           var BulbCollection = Backbone.Collection.extend({
@@ -1404,9 +1426,9 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           }
 
-          list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
-          list.y=150;
-          list.x=60;
+          list.init("y",SElementBulbRow,{w:(82*7)* window.resize,h:78* window.resize},6,this.patternRowCollection,30);
+          list.y=150* window.resize;
+          list.x=60* window.resize;
 
 
           for (var i = 0; i < list.theArr.length; i++) {
@@ -1485,6 +1507,10 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
       PlusPage.prototype.currentlyEdited;
 
+      PlusPage.prototype.gr;
+      PlusPage.prototype.backBlink;
+
+
 
       //DEFAULT_STATE
 
@@ -1500,15 +1526,26 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
           this.mainBulb=mainBulb
 
+          this.gr = new createjs.Graphics();
+          this.backBlink = new createjs.Shape(this.gr);
+
+          this.gr.beginFill(Graphics.getHSL(10,100,50,0.00));
+          this.gr.drawRoundRect ( 0 , 0 , 360 , 640 , 20 );
+
+          this.addChild(this.backBlink);
+
           this.list = new RFScrollableList();
           this.addChild(this.list);
 
-          this.list.init("y",SElementMainBtn,{w:535,h:90},5,dataSet,20);
+
+
+
+          this.list.init("y",SElementMainBtn,{w:535* window.resize,h:90* window.resize},5,dataSet,20);
 
   //        window.deb.add(this.list.rail,"y","rail.y");
 
-          this.list.y=160;
-          this.list.x=52;
+          this.list.y=160* window.resize;
+          this.list.x=52* window.resize;
 
           this.addToMezz = _.bind( this.addToMezz, this );
 
@@ -1537,8 +1574,9 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
                       if(that.state=="STATE_DEFAULT") {
 
+                          if(e.target.parent.data.get('setLabel')!="EMPTY") that.addToMezz(e.target.parent.data);
 
-                          that.addToMezz(e.target.parent.data);
+
                       }
 
 
@@ -1552,7 +1590,7 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
           }
 
-          var offset=130;
+          var offset=130* window.resize;
   //        switch_default.png
   //        switch_edit.png
 
@@ -1560,21 +1598,21 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
           this.switch = new RFButtonBitmap2();
           this.switch.init("images/switch_default.png","images/switch_edit.png",true, "EVENT_SWITCH");
           this.addChild(this.switch);
-          this.switch.y=664
-          this.switch.x=220//+offset;
+          this.switch.y=664* window.resize
+          this.switch.x=220* window.resize//+offset;
 
-          var offsx = 50
-          var offsy = 7
+          var offsx = 50* window.resize
+          var offsy = 7* window.resize
 
           var rec = new Bitmap("images/copy_record.png");
           this.addChild(rec)
-          rec.y=662+offsy
-          rec.x=40
+          rec.y=(662+offsy)* window.resize
+          rec.x=40* window.resize
 
           var edit = new Bitmap("images/copy_edit.png");
           this.addChild(edit)
-          edit.y=662+offsy
-          edit.x=465;
+          edit.y=(662+offsy)* window.resize
+          edit.x=465* window.resize;
 
 
   //    p.add = function(t, property, name) {
@@ -1641,9 +1679,20 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
       PlusPage.prototype.addToMezz = function(data) {
 
+          //uruchom blink
+          var t = data.clone();
+
+          this.backBlink.alpha=1
+          this.gr.clear();
+          this.gr.beginFill(Graphics.getHSL(t.get("setColor"),100,50,0.45));
+          this.gr.drawRoundRect ( 0 , 0 , 360 , 640 , 20 );
+
+
+          var tween = createjs.Tween.get(this.backBlink).to({alpha:0}, 1500, createjs.Ease.cubicInOut)
+
           console.log("xx", data);
 
-          var t = data.clone();
+
 
           this.mezzData.add(t);
 
@@ -2115,6 +2164,9 @@ window.require.define({"views/HomeView": function(exports, require, module) {
        */
       render: function() {
 
+
+          window.resize=0.5;
+
           var canvas = document.createElement("canvas");
   //        $(this.el).width(640);
   //        $(this.el).height(420);
@@ -2138,8 +2190,8 @@ window.require.define({"views/HomeView": function(exports, require, module) {
   //            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
   //            '</div>');
 
-          canvas.width=640;
-          canvas.height=920;
+          canvas.width=640* window.resize;
+          canvas.height=920* window.resize;
 
           this.stage = new Stage(canvas);
           this.stage.tickOnUpdate=true;
@@ -2206,20 +2258,20 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           var navBtn1 = new RFButtonBitmap();
           navBtn1.init("images/Navigation_def_01.png","images/Navigation_down_01.png");
           this.stage.addChild(navBtn1);
-          navBtn1.y=774;
+          navBtn1.y=774* window.resize;
 
 
           var navBtn2 = new RFButtonBitmap();
           navBtn2.init("images/Navigation_def_02.png","images/Navigation_down_02.png");
           this.stage.addChild(navBtn2);
-          navBtn2.x=216;
-          navBtn2.y=774;
+          navBtn2.x=216* window.resize;
+          navBtn2.y=774* window.resize;
 
           var navBtn3 = new RFButtonBitmap();
           navBtn3.init("images/Navigation_def_04.png","images/Navigation_down_04.png");
           this.stage.addChild(navBtn3);
-          navBtn3.x=216+205;
-          navBtn3.y=774;
+          navBtn3.x=(216+205)* window.resize;
+          navBtn3.y=774* window.resize;
 
           var nav = require('classes/nav/RFNav');
           nav.setup([navBtn1,navBtn2,navBtn3],curtain);
@@ -2232,7 +2284,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           //FOOTER
           var f = new Bitmap("images/footer.png");
   //        this.stage.addChild(f);
-          f.y=833;
+          f.y=833* window.resize;
 
           //TOP
           var top = new Bitmap("images/top.png");
@@ -2240,8 +2292,8 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           var box = new  Bitmap("images/box.png");
           this.stage.addChild(box);
-          box.x=30;
-          box.y=120;
+          box.x=30* window.resize;
+          box.y=120* window.resize;
 
           Ticker.addListener(this);
           Ticker.setFPS(30);
@@ -2273,14 +2325,14 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           var stitch = new Bitmap("images/stitch.png");
           this.stage.addChild(stitch)
-          stitch.y=745;
+          stitch.y=745* window.resize;
 
           this.stage.addChild(mainBulb)
           mainBulb.init();
           mainBulb.scaleX=0.4
           mainBulb.scaleY=0.4
-          mainBulb.x=292;
-          mainBulb.y=42;
+          mainBulb.x=292* window.resize;
+          mainBulb.y=42* window.resize;
 
 
   //        this.stage.addChild(deb);

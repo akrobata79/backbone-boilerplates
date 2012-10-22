@@ -4,25 +4,25 @@
 
 body{
 
-    width: 640px;
-    height: 920px;
+    width: 320px;
+    height: 460px;
     position:fixed;
 }
 
 
 #mainTextfield {
 
-    color: #ff0027;
+    color: #f9ffab;
     position: relative;
-    top:-570px;
-    left:80px;
+    top:-287px;
+    left:40px;
 
-    font-size:200%;
+    font-size:15px;
     /*padding: 30px;*/
-border-color: transparent;
+    border-color: transparent;
     background-color:transparent;
-    width: 500px;
-    height: 70px;
+    width: 250px;
+    height: 35px;
     /*border: 0px;*/
 
     display:none;

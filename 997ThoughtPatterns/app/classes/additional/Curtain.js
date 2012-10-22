@@ -20,8 +20,8 @@
         this.addChild(this.img1);
         this.addChild(this.img2);
 
-        this.img1.x=-320;
-        this.img2.x=640;
+        this.img1.x=-320* window.resize;
+        this.img2.x=640* window.resize;
 
         this.backo = _.bind( this.backo, this );
 

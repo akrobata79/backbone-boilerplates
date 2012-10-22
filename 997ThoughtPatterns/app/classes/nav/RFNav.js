@@ -5,7 +5,7 @@ RFNav = (function() {
     var _show = false;
 
     var _btnArr=null;
-    var _curtain=null;
+
 
     var _pageEvent=null;
     var _currSelected;
@@ -43,8 +43,8 @@ RFNav = (function() {
             ( doShow ) ? show() : hide();
         },
 
-        setup: function(arr,curtain) {
-            _curtain=curtain;
+        setup: function(arr) {
+            //_curtain=curtain;
             _btnArr=arr;
 
             this.onButtonClicked = _.bind( this.onButtonClicked, this );
@@ -54,7 +54,10 @@ RFNav = (function() {
             for ( var i = 0; i < arr.length; i++) {
                 _btnArr[i].radioBtn=true
                 _btnArr[i].eventName="NAVBTN_EVENTS";
+
             }
+
+
 
         },
 
@@ -64,7 +67,7 @@ RFNav = (function() {
                 if(_btnArr[i]!= e.target) {_btnArr[i].setState(1)} else { _currSelected = i }
             }
 
-            _curtain.do();
+           // _curtain.do();
 
             ////////console.log("_pageEvent",_pageEvent);
             EventBus.dispatch(_pageEvent,this);

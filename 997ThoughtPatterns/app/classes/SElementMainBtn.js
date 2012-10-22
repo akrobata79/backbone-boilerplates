@@ -24,11 +24,11 @@ require('classes/Bulb');
         this.passInteraction  = _.bind(this.passInteraction, this );
         mainBtn.reportInteraction = this.passInteraction;
 
-        this.text = new createjs.Text("TEMP", "50px Arial", "#000");
+        this.text = new createjs.Text("TEMP", "15px Arial", "#000");
         this.text.textBaseline = "top";
 
-        this.text.x=80;
-        this.text.y=17;
+        this.text.x=80* window.resize;
+        this.text.y=28* window.resize;
 
         this.bulb = new Bulb();
         this.bulb.init()
@@ -36,14 +36,16 @@ require('classes/Bulb');
         this.bulb.scaleX=0.5
         this.bulb.scaleY=0.5
 
-        this.bulb.x=30
-        this.bulb.y=25
+        this.bulb.x=30* window.resize
+        this.bulb.y=25* window.resize
 
         this.bulb.revert=null;
         this.bulb.onClick=null;
         this.bulb.onPress=null;
 
         this.addChild(mainBtn,this.text,this.bulb);
+
+//        268x44
 
     };
 

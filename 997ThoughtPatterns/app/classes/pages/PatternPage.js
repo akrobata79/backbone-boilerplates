@@ -19,13 +19,19 @@ require('classes/additional/MessageBox');
     PatternPage.prototype.mezzData;
     PatternPage.prototype.messageBox;
 
-    PatternPage.prototype.init = function(dataSet) {
+    PatternPage.prototype.verticalCounter
+    PatternPage.prototype.prevVerticalCounter
+    PatternPage.prototype.horizontalCounter
 
+    PatternPage.prototype.init = function(dataSet) {
+this.verticalCounter=0
+        this.prevVerticalCounter=0
+        this.horizontalCounter=0
 
         this.messageBox = new MessageBox();
         this.addChild(this.messageBox);
-        this.messageBox.y=660;
-        this.messageBox.x=55;
+        this.messageBox.y=660* window.resize;
+        this.messageBox.x=55* window.resize;
         this.messageBox.init()
 
         var that=this;
@@ -36,7 +42,7 @@ require('classes/additional/MessageBox');
         this.addChild(list);
 
         var BulbModel = Backbone.Model.extend({
-            defaults: {setLabel:"NONE",setColor:10}
+            defaults: {setLabel:"EMPTY",setColor:30}
         });
 
         var BulbCollection = Backbone.Collection.extend({
@@ -55,7 +61,7 @@ require('classes/additional/MessageBox');
 
         this.patternRowCollection = new PatternRowCollection();
 
-        for ( var i = 0; i < 31; i++) {
+        for ( var i = 0; i < 10; i++) {
 
             var m = new PatternRowModel();
             this.patternRowCollection.add(m);
@@ -67,9 +73,9 @@ require('classes/additional/MessageBox');
 
         }
 
-        list.init("y",SElementBulbRow,{w:82*7,h:78},6,this.patternRowCollection,30);
-        list.y=150;
-        list.x=60;
+        list.init("y",SElementBulbRow,{w:(82*7)* window.resize,h:78* window.resize},6,this.patternRowCollection,30);
+        list.y=150* window.resize;
+        list.x=60* window.resize;
 
 
         for (var i = 0; i < list.theArr.length; i++) {
@@ -90,11 +96,32 @@ require('classes/additional/MessageBox');
 
         this.mezzData.on("add", function(ship) {
 
-            var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1);
+            //this///
+
+            // 7
+
+            that.prevVerticalCounter=that.verticalCounter
+            that.verticalCounter = (that.mezzData.length/7).toString().split(".")[0]
+
+//            console.log("after",;
+
+
+            if( (that.mezzData.length/7).toString().split(".")[1] ==undefined ) that.verticalCounter = that.prevVerticalCounter;
+
+console.log("that.prevVerticalCounter,this.verticalCounter",that.prevVerticalCounter,that.verticalCounter);
+          //  console.log("that.mezzData.length",that.mezzData.length,"/7",that.mezzData.length/7);
+
+
+
+//            console.log("calculation",calculation)
+
+            if(that.prevVerticalCounter!=that.verticalCounter) {that.horizontalCounter=0}
+
+            var t = that.patternRowCollection.at(that.verticalCounter).bulbCollection.at(that.horizontalCounter);
 
             t.set({setColor:ship.get('setColor'),setLabel:ship.get('setLabel')});
 
-
+            that.horizontalCounter++
 
         });
 

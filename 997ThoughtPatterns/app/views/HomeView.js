@@ -80,6 +80,9 @@ module.exports = View.extend({
      */
     render: function() {
 
+
+        window.resize=0.5;
+
         var canvas = document.createElement("canvas");
 //        $(this.el).width(640);
 //        $(this.el).height(420);
@@ -103,8 +106,8 @@ module.exports = View.extend({
 //            '<input type="text" name="user" id="un" value="" placeholder="write your " />' +
 //            '</div>');
 
-        canvas.width=640;
-        canvas.height=920;
+        canvas.width=640* window.resize;
+        canvas.height=920* window.resize;
 
         this.stage = new Stage(canvas);
         this.stage.tickOnUpdate=true;
@@ -164,30 +167,31 @@ module.exports = View.extend({
         this.stage.addChild(screenManager);
 
         //CURTAIN
-        curtain = new Curtain();
+//        curtain = new Curtain();
         //        this.stage.addChild(curtain);
 
         //NAV
         var navBtn1 = new RFButtonBitmap();
         navBtn1.init("images/Navigation_def_01.png","images/Navigation_down_01.png");
         this.stage.addChild(navBtn1);
-        navBtn1.y=774;
+        navBtn1.y=774* window.resize;
+        navBtn1.setState(2)
 
 
         var navBtn2 = new RFButtonBitmap();
         navBtn2.init("images/Navigation_def_02.png","images/Navigation_down_02.png");
         this.stage.addChild(navBtn2);
-        navBtn2.x=216;
-        navBtn2.y=774;
+        navBtn2.x=216* window.resize;
+        navBtn2.y=774* window.resize;
 
         var navBtn3 = new RFButtonBitmap();
         navBtn3.init("images/Navigation_def_04.png","images/Navigation_down_04.png");
         this.stage.addChild(navBtn3);
-        navBtn3.x=216+205;
-        navBtn3.y=774;
+        navBtn3.x=(216+205)* window.resize;
+        navBtn3.y=774* window.resize;
 
         var nav = require('classes/nav/RFNav');
-        nav.setup([navBtn1,navBtn2,navBtn3],curtain);
+        nav.setup([navBtn1,navBtn2,navBtn3]);
         nav.setPageEvent("PAGE_CHANGE_EVENT")
         //SCREENMANAGER
         screenManager.setController(nav,"PAGE_CHANGE_EVENT");
@@ -197,7 +201,7 @@ module.exports = View.extend({
         //FOOTER
         var f = new Bitmap("images/footer.png");
 //        this.stage.addChild(f);
-        f.y=833;
+        f.y=833* window.resize;
 
         //TOP
         var top = new Bitmap("images/top.png");
@@ -205,8 +209,8 @@ module.exports = View.extend({
 
         var box = new  Bitmap("images/box.png");
         this.stage.addChild(box);
-        box.x=30;
-        box.y=120;
+        box.x=30* window.resize;
+        box.y=120* window.resize;
 
         Ticker.addListener(this);
         Ticker.setFPS(30);
@@ -227,6 +231,8 @@ module.exports = View.extend({
 
         popUp.on("SHOW_POPUP", function(msg) {
             $("#mainTextfield").css("display","inline");
+            $("#mainTextfield").val('Tap here');
+//            value="Tap here"
         });
 
         popUp.on("HIDE_POPUP", function(msg) {
@@ -238,14 +244,14 @@ module.exports = View.extend({
 
         var stitch = new Bitmap("images/stitch.png");
         this.stage.addChild(stitch)
-        stitch.y=745;
+        stitch.y=745* window.resize;
 
         this.stage.addChild(mainBulb)
         mainBulb.init();
         mainBulb.scaleX=0.4
         mainBulb.scaleY=0.4
-        mainBulb.x=292;
-        mainBulb.y=42;
+        mainBulb.x=292* window.resize;
+        mainBulb.y=42* window.resize;
 
 
 //        this.stage.addChild(deb);

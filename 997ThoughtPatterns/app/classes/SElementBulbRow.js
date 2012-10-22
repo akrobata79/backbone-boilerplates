@@ -35,10 +35,11 @@ require('classes/Bulb');
         for ( var i = 0; i < 7; i++) {
 
             var temp = new Bulb();
+
             temp.init();
             this.addChild(temp);
 
-            temp.x = 74*i;
+            temp.x = (74*i)* window.resize;
             temp.reportInteraction = this.passInteraction;
 
             this.bulbSet.push(temp);
