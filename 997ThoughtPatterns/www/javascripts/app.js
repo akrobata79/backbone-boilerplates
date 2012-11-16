@@ -1387,7 +1387,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
       PatternPage.prototype.horizontalCounter
 
       PatternPage.prototype.init = function(dataSet) {
-  this.verticalCounter=0
+          this.verticalCounter=0
           this.prevVerticalCounter=0
           this.horizontalCounter=0
 
@@ -1471,8 +1471,8 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
               if( (that.mezzData.length/7).toString().split(".")[1] ==undefined ) that.verticalCounter = that.prevVerticalCounter;
 
-  console.log("that.prevVerticalCounter,this.verticalCounter",that.prevVerticalCounter,that.verticalCounter);
-            //  console.log("that.mezzData.length",that.mezzData.length,"/7",that.mezzData.length/7);
+              console.log("that.prevVerticalCounter,this.verticalCounter",that.prevVerticalCounter,that.verticalCounter);
+              //  console.log("that.mezzData.length",that.mezzData.length,"/7",that.mezzData.length/7);
 
 
 
@@ -1610,7 +1610,7 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
               var t = this.list.theArr[i];
 
-              t.on("YOYO", function(e){
+              t.on("EVENT_INTERACTION", function(e){
 
                   if(e.type=="onClick") {
 

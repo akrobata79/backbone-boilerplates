@@ -10,7 +10,7 @@
     p.width;
     p.height;
     p.data;
-
+    p.list;
 //
 //    p.initialize = function() {
 ////        this.Container_initialize();
@@ -50,7 +50,20 @@
     p.passInteraction = function(e) {
 
         ////console.log("passInteraction >> ",e);
-        this.trigger("YOYO",e)
+        this.trigger("EVENT_INTERACTION",e)
+
+        var that=this;
+        if(e.type=="onClick") {
+
+            console.log("RESET!!!");
+            that.list.vx=0;
+
+        }
+
+    }
+
+    p.setList = function(list) {
+        this.list=list;
 
     }
 

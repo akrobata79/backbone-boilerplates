@@ -143,7 +143,7 @@
             t.y=size.h*i;
 
 
-
+            t.setList(this)
             t.setSetters( this.dataSet.models[i].attributes );
             t.setData(this.dataSet.models[i])
 
@@ -152,7 +152,7 @@
             t.offset=0;
             this.theArr.push(t);
 
-            t.on("YOYO", function(e) {
+            t.on("EVENT_INTERACTION", function(e) {
 
 
                     if(e.type=="onPress") {

@@ -24,7 +24,7 @@ require('classes/additional/MessageBox');
     PatternPage.prototype.horizontalCounter
 
     PatternPage.prototype.init = function(dataSet) {
-this.verticalCounter=0
+        this.verticalCounter=0
         this.prevVerticalCounter=0
         this.horizontalCounter=0
 
@@ -108,8 +108,8 @@ this.verticalCounter=0
 
             if( (that.mezzData.length/7).toString().split(".")[1] ==undefined ) that.verticalCounter = that.prevVerticalCounter;
 
-console.log("that.prevVerticalCounter,this.verticalCounter",that.prevVerticalCounter,that.verticalCounter);
-          //  console.log("that.mezzData.length",that.mezzData.length,"/7",that.mezzData.length/7);
+            console.log("that.prevVerticalCounter,this.verticalCounter",that.prevVerticalCounter,that.verticalCounter);
+            //  console.log("that.mezzData.length",that.mezzData.length,"/7",that.mezzData.length/7);
 
 
 

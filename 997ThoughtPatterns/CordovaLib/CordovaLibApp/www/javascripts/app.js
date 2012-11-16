@@ -1066,12 +1066,13 @@ window.require.define({"classes/additional/MessageBox": function(exports, requir
           this.addChild(background);
 
           this.text = new createjs.Text("TEMP", "15px Arial", "#FFF");
+          this.text.textAlign = "center"
           this.text.textBaseline = "top";
 
-          this.text.x=40* window.resize;
+          this.text.x=260* window.resize;
           this.text.y=17* window.resize;
 
-          this.text.text="tap bulb to display the thought"
+          this.text.text="Tap a bulb to reveal the thought"
           this.addChild(this.text);
 
       };
@@ -1116,7 +1117,7 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
       var _show = false;
 
       var _btnArr=null;
-      var _curtain=null;
+
 
       var _pageEvent=null;
       var _currSelected;
@@ -1154,8 +1155,8 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
               ( doShow ) ? show() : hide();
           },
 
-          setup: function(arr,curtain) {
-              _curtain=curtain;
+          setup: function(arr) {
+              //_curtain=curtain;
               _btnArr=arr;
 
               this.onButtonClicked = _.bind( this.onButtonClicked, this );
@@ -1165,7 +1166,10 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
               for ( var i = 0; i < arr.length; i++) {
                   _btnArr[i].radioBtn=true
                   _btnArr[i].eventName="NAVBTN_EVENTS";
+
               }
+
+
 
           },
 
@@ -1175,7 +1179,7 @@ window.require.define({"classes/nav/RFNav": function(exports, require, module) {
                   if(_btnArr[i]!= e.target) {_btnArr[i].setState(1)} else { _currSelected = i }
               }
 
-              _curtain.do();
+             // _curtain.do();
 
               ////////console.log("_pageEvent",_pageEvent);
               EventBus.dispatch(_pageEvent,this);
@@ -1378,8 +1382,14 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
       PatternPage.prototype.mezzData;
       PatternPage.prototype.messageBox;
 
-      PatternPage.prototype.init = function(dataSet) {
+      PatternPage.prototype.verticalCounter
+      PatternPage.prototype.prevVerticalCounter
+      PatternPage.prototype.horizontalCounter
 
+      PatternPage.prototype.init = function(dataSet) {
+          this.verticalCounter=0
+          this.prevVerticalCounter=0
+          this.horizontalCounter=0
 
           this.messageBox = new MessageBox();
           this.addChild(this.messageBox);
@@ -1414,7 +1424,7 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           this.patternRowCollection = new PatternRowCollection();
 
-          for ( var i = 0; i < 31; i++) {
+          for ( var i = 0; i < 10; i++) {
 
               var m = new PatternRowModel();
               this.patternRowCollection.add(m);
@@ -1449,11 +1459,32 @@ window.require.define({"classes/pages/PatternPage": function(exports, require, m
 
           this.mezzData.on("add", function(ship) {
 
-              var t = that.patternRowCollection.at(0).bulbCollection.at(that.mezzData.length-1);
+              //this///
+
+              // 7
+
+              that.prevVerticalCounter=that.verticalCounter
+              that.verticalCounter = (that.mezzData.length/7).toString().split(".")[0]
+
+  //            console.log("after",;
+
+
+              if( (that.mezzData.length/7).toString().split(".")[1] ==undefined ) that.verticalCounter = that.prevVerticalCounter;
+
+              console.log("that.prevVerticalCounter,this.verticalCounter",that.prevVerticalCounter,that.verticalCounter);
+              //  console.log("that.mezzData.length",that.mezzData.length,"/7",that.mezzData.length/7);
+
+
+
+  //            console.log("calculation",calculation)
+
+              if(that.prevVerticalCounter!=that.verticalCounter) {that.horizontalCounter=0}
+
+              var t = that.patternRowCollection.at(that.verticalCounter).bulbCollection.at(that.horizontalCounter);
 
               t.set({setColor:ship.get('setColor'),setLabel:ship.get('setLabel')});
 
-
+              that.horizontalCounter++
 
           });
 
@@ -1510,7 +1541,12 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
       PlusPage.prototype.gr;
       PlusPage.prototype.backBlink;
 
+  //    tinyBulbs_black.png
+  //    tinyBulbs_red.png
+  //    tinyBulbs_yellow.png
 
+      PlusPage.prototype.redLamp;
+      PlusPage.prototype.yellowLamp;
 
       //DEFAULT_STATE
 
@@ -1521,6 +1557,25 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
       PlusPage.prototype.mezzData;
       PlusPage.prototype.init = function(dataSet,mezzData,popUp,mainBulb) {
+
+
+          var tempYoff = 10
+
+          this.redLamp = new RFButtonBitmap2()
+          this.redLamp.init("images/tinyBulbs_black.png","images/tinyBulbs_red.png")
+          this.addChild(this.redLamp)
+          this.redLamp.x=50
+          this.redLamp.y=(640)* window.resize+tempYoff
+
+
+          this.yellowLamp = new RFButtonBitmap2()
+          this.yellowLamp.init("images/tinyBulbs_black.png","images/tinyBulbs_yellow.png")
+          this.addChild(this.yellowLamp)
+          this.yellowLamp.x=249
+          this.yellowLamp.y=(640)* window.resize+tempYoff
+
+
+  //        rec.y=
 
           this.mezzData=mezzData;
 
@@ -1555,12 +1610,11 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
               var t = this.list.theArr[i];
 
-              t.on("YOYO", function(e){
+              t.on("EVENT_INTERACTION", function(e){
 
                   if(e.type=="onClick") {
 
                       console.log("button in question");
-
 
                       if(that.state=="STATE_EDIT") {
                           that.popUp.show();
@@ -1576,13 +1630,7 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
                           if(e.target.parent.data.get('setLabel')!="EMPTY") that.addToMezz(e.target.parent.data);
 
-
                       }
-
-
-
-
-
 
                   }
 
@@ -1606,12 +1654,12 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
           var rec = new Bitmap("images/copy_record.png");
           this.addChild(rec)
-          rec.y=(662+offsy)* window.resize
+          rec.y=(662+offsy)* window.resize+tempYoff
           rec.x=40* window.resize
 
           var edit = new Bitmap("images/copy_edit.png");
           this.addChild(edit)
-          edit.y=(662+offsy)* window.resize
+          edit.y=(662+offsy)* window.resize+tempYoff
           edit.x=465* window.resize;
 
 
@@ -1622,14 +1670,18 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
 
               if(msg.target.stateNo==2) {
                   that.setState("STATE_EDIT");
+
               }
               if(msg.target.stateNo==1) {
                   that.setState("STATE_DEFAULT");
+
 
               }
 
 
           });
+
+          this.setState("STATE_EDIT")
 
 
           this.popUp=popUp;
@@ -1662,10 +1714,15 @@ window.require.define({"classes/pages/PlusPage": function(exports, require, modu
           if(state=="STATE_DEFAULT") {
               this.switch.setState(1);
 
+              this.yellowLamp.setState(1);
+              this.redLamp.setState(2);
+
           }
 
           if(state=="STATE_EDIT") {
               this.switch.setState(2);
+              this.yellowLamp.setState(2);
+              this.redLamp.setState(1);
 
           }
 
@@ -2251,7 +2308,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           this.stage.addChild(screenManager);
 
           //CURTAIN
-          curtain = new Curtain();
+  //        curtain = new Curtain();
           //        this.stage.addChild(curtain);
 
           //NAV
@@ -2259,6 +2316,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           navBtn1.init("images/Navigation_def_01.png","images/Navigation_down_01.png");
           this.stage.addChild(navBtn1);
           navBtn1.y=774* window.resize;
+          navBtn1.setState(2)
 
 
           var navBtn2 = new RFButtonBitmap();
@@ -2274,7 +2332,7 @@ window.require.define({"views/HomeView": function(exports, require, module) {
           navBtn3.y=774* window.resize;
 
           var nav = require('classes/nav/RFNav');
-          nav.setup([navBtn1,navBtn2,navBtn3],curtain);
+          nav.setup([navBtn1,navBtn2,navBtn3]);
           nav.setPageEvent("PAGE_CHANGE_EVENT")
           //SCREENMANAGER
           screenManager.setController(nav,"PAGE_CHANGE_EVENT");
@@ -2314,6 +2372,8 @@ window.require.define({"views/HomeView": function(exports, require, module) {
 
           popUp.on("SHOW_POPUP", function(msg) {
               $("#mainTextfield").css("display","inline");
+              $("#mainTextfield").val('Tap here');
+  //            value="Tap here"
           });
 
           popUp.on("HIDE_POPUP", function(msg) {

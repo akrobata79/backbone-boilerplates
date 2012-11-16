@@ -94,7 +94,7 @@ require('classes/SElementMainBtn');
 
             var t = this.list.theArr[i];
 
-            t.on("YOYO", function(e){
+            t.on("EVENT_INTERACTION", function(e){
 
                 if(e.type=="onClick") {
 

@@ -24857,7 +24857,7 @@ var RF = {};;
     p.width;
     p.height;
     p.data;
-
+    p.list;
 //
 //    p.initialize = function() {
 ////        this.Container_initialize();
@@ -24897,7 +24897,20 @@ var RF = {};;
     p.passInteraction = function(e) {
 
         ////console.log("passInteraction >> ",e);
-        this.trigger("YOYO",e)
+        this.trigger("EVENT_INTERACTION",e)
+
+        var that=this;
+        if(e.type=="onClick") {
+
+            console.log("RESET!!!");
+            that.list.vx=0;
+
+        }
+
+    }
+
+    p.setList = function(list) {
+        this.list=list;
 
     }
 
@@ -25050,7 +25063,7 @@ var RF = {};;
             t.y=size.h*i;
 
 
-
+            t.setList(this)
             t.setSetters( this.dataSet.models[i].attributes );
             t.setData(this.dataSet.models[i])
 
@@ -25059,7 +25072,7 @@ var RF = {};;
             t.offset=0;
             this.theArr.push(t);
 
-            t.on("YOYO", function(e) {
+            t.on("EVENT_INTERACTION", function(e) {
 
 
                     if(e.type=="onPress") {
