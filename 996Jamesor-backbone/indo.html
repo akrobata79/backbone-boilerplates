@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Backbone.js Demo</title>
+
+    <script type="text/javascript" src="js/vendor/html5shiv.min.js"></script>
+    <!--<link rel="stylesheet" href="css/fonts/charis/stylesheet.css"/>-->
+    <!--<link rel="stylesheet" href="css/fonts/inconsolata/stylesheet.css"/>-->
+    <link rel="stylesheet" href="css/main.css"/>
+
+    <style>
+
+        #map {
+            width:auto;
+            height: 200px;
+        }
+
+        #streetView {
+            width:auto;
+            height: 200px;
+        }
+
+        #map2 {
+            width:auto;
+            height: 200px;
+        }
+
+
+    </style>
+
+    <!--<link rel="stylesheet" href="css/minicolors/main.css"/>-->
+
+</head>
+<body>
+
+<header>
+</header>
+
+<!-- Content -->
+<div id="main">
+    <div id="map"></div>
+    <div id="map2"></div>
+    <div id="streetView"></div>
+    <!--<ul id="colorsList"></ul>-->
+</div>
+
+<footer>
+</footer>
+
+<!-- Templates -->
+
+<!-- Libraries -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+
+    var fenway = new google.maps.LatLng(42.345573,-71.098326);
+
+    var panoramaOptions = {
+        position: fenway,
+        pov: {
+            heading: 34,
+            pitch: 10,
+            zoom: 1
+        }
+    };
+
+    var panorama = new  google.maps.StreetViewPanorama(document.getElementById("map2"), panoramaOptions);
+    //    map.setStreetView(panorama);
+
+
+</script>
+
+<!--<script type="text/javascript" src="js/collections/Colors.js"></script>-->
+<!--<script type="text/javascript" src="js/views/AddColorView.js"></script>-->
+<!--<script type="text/javascript" src="js/views/ColorSampleView.js"></script>-->
+<!--<script type="text/javascript" src="js/views/ColorItemView.js"></script>-->
+<!--<script type="text/javascript" src="js/views/ColorsListView.js"></script>-->
+
+
+</body>
+</html>
